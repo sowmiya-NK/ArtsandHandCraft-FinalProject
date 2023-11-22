@@ -14,4 +14,9 @@ export class CategoryService {
       `${urlEndpoint.baseUrl}/admin/category/all`
     );
   }
+  deleteCategory(id: number): Observable<Category[]> {
+    return this.http.delete<Category[]>(
+      `${urlEndpoint.baseUrl}/admin/category/` + id
+    );
+  }
 }

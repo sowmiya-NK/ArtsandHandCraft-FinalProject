@@ -23,4 +23,17 @@ export class CategoryviewComponent implements OnInit {
       complete: () => console.log('completed'),
     });
   }
+
+  onDelete(deleteid: any): void {
+    console.log(deleteid);
+
+    this.categoryService.deleteCategory(deleteid).subscribe({
+      next: (Category: Category[]) => {
+        this.categories = Category;
+        console.log(this.categories);
+      },
+      complete: () => console.log('deleted'),
+      error: () => console.log('error'),
+    });
+  }
 }

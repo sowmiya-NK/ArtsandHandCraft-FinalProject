@@ -5,12 +5,18 @@
         <tr>
           <th>Category ID</th>
           <th>Category_Name</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody *ngFor="let category of categories">
         <tr>
           <td>{{ category.id }}</td>
-          <td>{{ category.title}}</td>
+          <td>{{ category.title }}</td>
+          <td>
+            <button type="submit" (click)="onDelete(category.id)">
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
