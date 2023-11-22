@@ -12,4 +12,9 @@ export class CartService {
   fetchdata(): Observable<Cart[]> {
     return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/6`);
   }
+  deleteCart(id: number, productId: number): Observable<Cart[]> {
+    return this.http.delete<Cart[]>(
+      `${urlEndpoint.baseUrl}/admin/artWork/${id}/${productId}`
+    );
+  }
 }

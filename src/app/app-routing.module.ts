@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'admin/product', component: ProductviewComponent },
   { path: 'admin/categoryview', component: CategoryviewComponent },
   { path: 'admin/user', component: UserProfileComponent },
-  {path:'/admin/order',component:AdminOrderComponent}
+  { path: 'admin/order', component: AdminOrderComponent },
 ];
 
 @NgModule({

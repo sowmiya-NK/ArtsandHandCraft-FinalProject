@@ -23,7 +23,7 @@
               <td>{{ cart.quantity }}</td>
               <td>{{ cart.Total }}</td>
               <td>
-                <button class="btn">
+                <button class="btn" (click)="onDelete(cart.userId,cart.artworkId)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>

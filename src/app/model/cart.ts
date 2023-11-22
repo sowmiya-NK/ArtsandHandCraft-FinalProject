@@ -5,4 +5,6 @@ export interface Cart {
   price: number;
   quantity: number;
   Total: number;
+  artworkId: number;
+  userId: number;
 }

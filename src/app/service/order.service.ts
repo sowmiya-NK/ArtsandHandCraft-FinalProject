@@ -12,4 +12,7 @@ export class OrderService {
   fetchdata(): Observable<Order[]> {
     return this.http.get<Order[]>(`${urlEndpoint.baseUrl}/order/3`);
   }
+  getAllOrderDetails(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${urlEndpoint.baseUrl}/admin/order/all`);
+  }
 }

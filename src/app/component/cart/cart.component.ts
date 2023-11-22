@@ -23,4 +23,17 @@ export class CartComponent implements OnInit {
       complete: () => console.log('completed'),
     });
   }
+
+  onDelete(deleteid:any,productId:any): void {
+    console.log(deleteid,productId);
+
+    this.cartService.deleteCart(deleteid,productId).subscribe({
+      next: (cart: Cart[]) => {
+        this.carts = cart;
+        console.log(cart);
+      },
+      complete: () => console.log('deleted'),
+      error: () => console.log('error'),
+    });
+  }
 }
