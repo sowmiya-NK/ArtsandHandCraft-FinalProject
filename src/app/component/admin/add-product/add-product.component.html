@@ -1,0 +1,90 @@
+<form class="form-horizontal">
+  <!-- Form Name -->
+
+  <!-- Text input-->
+  <div class="left-side">
+    <p>ADD PRODUCTS</p>
+    <div class="form-group">
+      <label class="control-label" for="product_id">PRODUCT ID</label>
+
+      <input
+        id="product_id"
+        name="product_id"
+        class="form-control input-md"
+        required=""
+        type="text"
+      />
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="control-label" for="product_name"> NAME</label>
+      <div class="">
+        <input
+          id="product_name"
+          name="product_name"
+          class="form-control input-md"
+          required=""
+          type="text"
+        />
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="control-label" for="product_description">
+        DESCRIPTION</label
+      >
+      <div class="">
+        <textarea
+          class="form-control"
+          id="product_description"
+          name="product_description"
+        ></textarea>
+      </div>
+    </div>
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="control-label" for="product_categorie"
+        >PRODUCT CATEGORY</label
+      >
+      <select name="dropdown" id="">
+        <option></option>
+        <option>abc</option>
+        <option>abc</option>
+        <option>abc</option>
+        <option>abc</option>
+        <option>abc</option>
+      </select>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="control-label" for="price">PRICE</label>
+      <div class="">
+        <input
+          id="Text"
+          name="price"
+          class="form-control input-md"
+          required=""
+          type="text"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="button">
+        <a routerLink="/admin/product"> <button>Add product</button></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image-->
+  <div class="right-side">
+    <div class="image-dummy">
+      <i class="fas fa-cloud-upload-alt" style="height: 60px">
+        <input type="file" name="myFile" id="myFile" />
+      </i>
+    </div>
+  </div>
+</form>

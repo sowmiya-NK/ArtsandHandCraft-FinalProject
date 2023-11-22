@@ -1,0 +1,30 @@
+<div class="container ">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>description</th>
+          <th>category</th>
+          <th>price</th>
+          <th>image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let product of productDetails">
+        <tr>
+          <td>{{product.id}}</td>
+          <td>{{product.title}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.price}}</td>
+          <td>image</td>
+          <td><button (click)="onDelete(product.id!)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<a routerLink="/admin"> <button type="submit">Back</button></a>
+<a routerLink="/admin/addproduct"> <button type="submit" >Add new Product</button></a>

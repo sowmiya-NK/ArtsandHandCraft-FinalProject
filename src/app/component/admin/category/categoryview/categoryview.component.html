@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Category ID</th>
+          <th>Category_Name</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let category of categories">
+        <tr>
+          <td>{{ category.id }}</td>
+          <td>{{ category.title}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<a routerLink="/admin"> <button>Back</button></a>
+<a routerLink="/admin/category"> <button>Add category</button></a>

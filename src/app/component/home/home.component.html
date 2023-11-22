@@ -1,0 +1,164 @@
+<!-- category -->
+<div class="dropdown">
+  Home Decor
+  <div class="dropdown-content">
+    <a href="#">God Idols</a>
+    <a href="#">Wall clocks</a>
+    <a href="#">Wall decor</a>
+    <a href="#">HandiCraft Items</a>
+    <a href="#">Home Accents</a>
+  </div>
+</div>
+
+<!-- dropdown -->
+<div class="dropdown">
+  Furnishing
+  <div class="dropdown-content">
+    <a href="#">BedSheets</a>
+    <a href="#">BedSheets By thread Count</a>
+    <a href="#">BedSheets Size</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  Paintings
+  <div class="dropdown-content">
+    <a href="#">Canvas Paintings</a>
+    <a href="#">Goddes & God Paintings</a>
+    <a href="#">Figurative Paintings</a>
+    <a href="#">Animal,Birds and fisher Paintings</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  Kitchen & Dining
+  <div class="dropdown-content">
+    <a href="#">kitchen Utility</a>
+    <a href="#">DrinkWare</a>
+    <a href="#">Kitchen Storage</a>
+  </div>
+</div>
+
+<div class="dropdown" style="color: red">
+  Gifts
+  <div class="dropdown-content">
+    <a href="#">Gift Hammers</a>
+    <a href="#">Occasional Gifts</a>
+    <a href="#">Return Gift</a>
+  </div>
+</div>
+
+<!-- carousel -->
+
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://artvira.com/wp-content/uploads/2023/01/cropped-Banner_001-scaled-1-1536x608.jpg"
+        class="d-block w-100"
+        alt="Best Home decorator"
+        style="height: 400px"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://outdocart.s3.amazonaws.com/uploads/kuber-handicraft/wbImages/167786673786811672892987837516728483538974Celebrating-the-beauty-of-Indian-Art-Heritage-1.png"
+        class="d-block w-100"
+        alt="Brass HandiCraft"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://www.himachalibazaar.com/public/uploads/all/4DaxWy7JowDfIKo7dnMcAgAbBfUlMHwr1yUXnYtZ.webp"
+        class="d-block w-100"
+        alt="canvas painting"
+      />
+    </div>
+
+    <div class="carousel-item">
+      <img
+        src=" https://www.himachalibazaar.com/public/uploads/all/NyoxKMeKsLYXYpyDcMfhBOq48exkNMDnWlpueJEj.webp"
+        class="d-block w-100"
+        alt="Wall painting"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- rounded images -->
+<div class="rounded-images">
+  <figure>
+    <img
+      src="https://m.media-amazon.com/images/I/71RnMbVM9pL._SX425_.jpg"
+      alt="Trulli"
+      style="border-radius: 50%; height: 200px"
+    />
+    <figcaption>HandiCraft Items</figcaption>
+  </figure>
+
+  <figure>
+    <img
+      src="https://m.media-amazon.com/images/I/91pMkJzAvhL._AC_UL480_FMwebp_QL65_.jpg"
+      alt="Trulli"
+      style="border-radius: 50%; height: 200px"
+    />
+    <figcaption>Water Foundation</figcaption>
+  </figure>
+
+  <figure>
+    <img
+      src="https://m.media-amazon.com/images/I/71rY1QZ9a8L._AC_UL480_FMwebp_QL65_.jpg"
+      alt="Trulli"
+      style="border-radius: 50%; height: 200px"
+    />
+    <figcaption>Digital Paintings</figcaption>
+  </figure>
+
+  <figure>
+    <img
+      src="https://m.media-amazon.com/images/I/61FQOlOUoxL._AC_UL480_FMwebp_QL65_.jpg"
+      alt="Trulli"
+      style="border-radius: 50%; height: 200px"
+    />
+    <figcaption style="margin-left: 45px">
+      Lotus Urli Tealight Holder
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img
+      src="https://m.media-amazon.com/images/I/81PM7pksrUL._AC_UL480_FMwebp_QL65_.jpg"
+      alt="Trulli"
+      style="border-radius: 50%; height: 200px"
+    />
+    <figcaption>Budha Idols</figcaption>
+  </figure>
+</div>
+
+<!-- marquee tag -->
+
+<marquee direction="left">
+  Free shipping on all India order. 10% off on purchase above Rs 1000. Use code
+  ABUFRS12 to get discount
+</marquee>
+
+<!-- product -->
+<div class="container">
+  <div class="row" *ngFor="let products of productDetails">
+    <div class="col-md-4">
+      <div class="photo">
+        <a routerLink="/sproduct">
+          <img
+            src="https://m.media-amazon.com/images/I/81As0c2fDzS._AC_UL480_FMwebp_QL65_.jpg"
+            alt=""
+        /></a>
+        <p>{{ products.title }}</p>
+        <p>{{ products.price }}</p>
+      </div>
+    </div>
+  </div>
+</div>

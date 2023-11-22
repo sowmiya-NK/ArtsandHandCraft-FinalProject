@@ -1,0 +1,133 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-6">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-6">
+        <h2 class="display-4 text-" style="color: rgb(133, 133, 169)">
+          Register
+        </h2>
+        <!-- validation -->
+        <form
+          class=""
+          (ngSubmit)="onSubmit(registerForm)"
+          #registerForm="ngForm"
+        >
+          <!-- Username input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="name">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              name="username"
+              required
+              ngModel
+              minlength="3"
+              #modeluser="ngModel"
+              [ngClass]="
+                modeluser.touched && modeluser.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div
+              *ngIf="modeluser.invalid && modeluser.touched"
+              class="invalid-feedback"
+            >
+              Username is required
+            </div>
+          </div>
+
+          <!-- email input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              required
+              email
+              ngModel
+              minlength="3"
+              #modelEmail="ngModel"
+              [ngClass]="
+                modelEmail.touched && modelEmail.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div
+              *ngIf="modelEmail.invalid && modelEmail.touched"
+              class="invalid-feedback"
+            >
+              Email is required
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              required
+              password
+              ngModel
+              minlength="8"
+              #modelpassword="ngModel"
+              [ngClass]="
+                modelpassword.invalid && modelpassword.touched ? 'is-invalid' : ''
+              "
+            />
+            <div
+              *ngIf="modelpassword.invalid && modelpassword.touched ? 'is-invalid' : ''"
+              class="invalid-feedback"
+            >
+              password must contain atleast 8 charcters
+            </div>
+          </div>
+
+          <!-- Confirm Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="confirmPassword"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="confirmpassword"
+              ngModel
+              required
+              password
+              minlength="8"
+              #modelrepeatpassword="ngModel"
+              [ngClass]="
+                modelrepeatpassword.invalid && modelrepeatpassword.touched
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="modelpassword.value !== modelrepeatpassword.value"
+              class="text-danger"
+            >
+              Password Mismatch
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-4">
+            <span>Already registered?</span>
+            <a
+              routerLink="/login"
+              class="text-primary text-decoration-none px-2"
+              >Login here</a
+            >
+          </div>
+
+          <!-- Submit button -->
+          <div class="d-grid gap-2 mb-5">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

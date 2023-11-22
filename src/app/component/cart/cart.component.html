@@ -1,0 +1,57 @@
+<ng-container *ngIf="true">
+  <div class="container" class="min-vh-100">
+    <div class="cart-table">
+      <div class="cart-product">
+        <div class="table table-responsive">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let cart of carts">
+            <tr>
+              <td>{{ cart.id }}</td>
+              <td>{{ cart.title }}</td>
+              <td>image</td>
+              <td>{{ cart.price }}</td>
+              <td>{{ cart.quantity }}</td>
+              <td>{{ cart.Total }}</td>
+              <td>
+                <button class="btn">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </div>
+      </div>
+    </div>
+    <div class="btn d-flex">
+      <button><a routerLink="">Continue to shop</a></button>
+      <button><a routerLink="/order">Order Now</a></button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="false">
+  <div class="container">
+    <div class="cart">
+      <div class="cart-title">My Cart</div>
+    </div>
+
+    <div class="center">
+      <img
+        src="https://static.wixstatic.com/media/7742ef_dfe620d0354b471b8620fcb2c3a46e62~mv2.gif"
+      />
+      <h4>Your cart is empty!!!</h4>
+      <h6>Add item to it now</h6>
+      <button class="btn">Shop now</button>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,32 @@
+<form class="form-horizontal min-vh-100">
+  <!-- Text input-->
+  <div class="form-group">
+    <p>ADD CATEGORY</p>
+    <div class="form-group">
+      <label class="control-label" for="category_id">CATEGORY ID</label>
+
+      <input
+        id="category_id"
+        name="category_id"
+        class="form-control input-md"
+        required=""
+        type="text"
+      />
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="control-label" for="category_name"> CATEGORY NAME</label>
+      <div class="">
+        <input
+          id="category_name"
+          name="category_name"
+          class="form-control input-md"
+          required=""
+          type="text"
+        />
+      </div>
+    </div>
+    <a routerLink="/admin/categoryview"> <button>Add Category</button></a>
+  </div>
+</form>

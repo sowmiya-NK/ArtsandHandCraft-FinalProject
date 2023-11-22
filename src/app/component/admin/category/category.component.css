@@ -1,0 +1,37 @@
+.form-horizontal {
+  border: 1px solid rgb(228, 197, 141);
+  margin: 50px 90px 40px 40px;
+  padding: 10px;
+  display: flex;
+}
+p {
+  font-size: 15px;
+  font-weight: 7px;
+  color: red;
+  font-family: sans-serif;
+}
+label {
+  font-size: 13px;
+  color: rgb(10, 10, 130);
+}
+input {
+  border-radius: 6px;
+}
+
+.form-group {
+  margin-bottom: 1px;
+  flex: 1;
+  padding: 10px;
+}
+
+.control-label {
+  font-weight: bold;
+}
+
+button {
+  border-radius: 6px;
+  padding: 7px;
+  width: 100%;
+  background-color: rgb(234, 200, 135);
+  border: none;
+}

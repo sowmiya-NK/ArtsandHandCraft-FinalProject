@@ -1,0 +1,44 @@
+.small-img-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.small-img-col {
+  flex-basis: 24%;
+  cursor: pointer;
+}
+li {
+  font-size: small;
+}
+.sproduct input {
+  width: 40px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.sproduct input:focus {
+  outline: none;
+}
+.buy-btn{
+    background-color: blanchedalmond;
+    border-radius: 5px;
+    padding: 4px;
+    width: 90px;
+    outline: none;
+}
+
+table{
+    font-size: 13px;
+}
+h5{
+    font-weight: 4px;
+    font-size: 19px;
+}
+
+h6{
+    color: rgb(210, 177, 177);
+}
+
+

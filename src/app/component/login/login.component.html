@@ -1,0 +1,83 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-6 w-25 h-100">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-6">
+        <h2 class="display-4 text-primary">Login</h2>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <!-- Username input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              name="username"
+              placeholder="username or email"
+              ngModel
+              required
+              minlength="3"
+              #modelEmail="ngModel"
+              [ngClass]="
+                modelEmail.touched && modelEmail.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div
+              *ngIf="modelEmail.invalid && modelEmail.dirty"
+              class="invalid-feedback"
+            >
+              please enter a valid email
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              ngModel
+              required
+              minlength="3"
+              #modelpassword="ngModel"
+              [ngClass]="
+                modelpassword.touched && modelpassword.invalid
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+
+            <div
+              *ngIf="modelpassword.invalid && modelpassword.dirty"
+              class="invalid-feedback"
+            >
+              password must contain 3 characters
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-4">
+            <span>Not registered?</span>
+            <a
+              routerLink="/register"
+              class="text-primary text-decoration-none px-2"
+              >Register here</a
+            >
+          </div>
+
+          <!-- Submit button -->
+          <div class="d-grid gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!loginForm.valid"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
