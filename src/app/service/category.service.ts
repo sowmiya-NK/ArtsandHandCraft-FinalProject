@@ -16,7 +16,7 @@ export class CategoryService {
   }
   deleteCategory(id: number): Observable<Category[]> {
     return this.http.delete<Category[]>(
-      `${urlEndpoint.baseUrl}/admin/category/` + id
+      `${urlEndpoint.baseUrl}/admin/category/${id}`
     );
   }
 }

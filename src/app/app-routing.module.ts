@@ -13,6 +13,7 @@ import { AdminComponent } from './component/admin/admin.component';
 import { ProductviewComponent } from './component/admin/add-product/productview/productview.component';
 import { CategoryviewComponent } from './component/admin/category/categoryview/categoryview.component';
 import { UserProfileComponent } from './component/admin/user-profile/user-profile.component';
+import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'admin/product', component: ProductviewComponent },
   { path: 'admin/categoryview', component: CategoryviewComponent },
   { path: 'admin/user', component: UserProfileComponent },
+  {path:'/admin/order',component:AdminOrderComponent}
 ];
 
 @NgModule({
