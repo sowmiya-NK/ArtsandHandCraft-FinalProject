@@ -5,14 +5,14 @@
       <thead >
         <tr>
           <th scope="col">userId</th>
-          <th scope="col">username</th>
           <th scope="col">email</th>
+          <th scope="col">username</th>
           <th scope="col">address</th>
         </tr>
       </thead>
       <tbody *ngFor="let  user of profiles">
         <tr>
-          <th scope="row">{{user.id}}</th>
+          <th>{{user.id}}</th>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
           <td>{{user.address}}</td>

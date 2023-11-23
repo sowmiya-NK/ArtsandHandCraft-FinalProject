@@ -1,6 +1,6 @@
 export interface UserProfile {
     userId:number;
     username:String;
-    email:String;
+    name:String;
     address:String;
 }
