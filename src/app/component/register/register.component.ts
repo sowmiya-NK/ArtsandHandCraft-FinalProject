@@ -20,12 +20,12 @@ export class RegisterComponent {
     private router: Router
   ) {}
   onSubmit(registerForm: NgForm) {
-    const value = registerForm.value;
-    this.storage.setLoggedInUser(value);
-    if (this.authService.isValidUser(value)) {
-      this.router.navigate(['/login'], { replaceUrl: true });
-    }else{
-      this.error="Invalid User!!";
-    }
+    // const value = registerForm.value;
+    // this.storage.setLoggedInUser(value);
+    // if (this.authService.isValidUser(value)) {
+    //   this.router.navigate(['/login'], { replaceUrl: true });
+    // }else{
+    //   this.error="Invalid User!!";
+    // }
   }
 }

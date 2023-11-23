@@ -16,7 +16,7 @@ import { UserProfileComponent } from './component/admin/user-profile/user-profil
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'sproduct', component: SproductComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent },
   { path: 'admin/addproduct', component: AddProductComponent },
   { path: 'admin/category', component: CategoryComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'admin/product', component: ProductviewComponent },
   { path: 'admin/categoryview', component: CategoryviewComponent },
   { path: 'admin/user', component: UserProfileComponent },

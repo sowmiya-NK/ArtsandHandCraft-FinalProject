@@ -1,4 +1,23 @@
-<div class="row min-vh-100 mx-4">
-  <div class="col-6 border border-3">user</div>
-  <div class="col-6 border border-3">user-address</div>
+<div class="container">
+  <div class="row">
+    <div class="col-5">user</div>
+    <table class="table table-striped">
+      <thead >
+        <tr>
+          <th scope="col">userId</th>
+          <th scope="col">username</th>
+          <th scope="col">email</th>
+          <th scope="col">address</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let  user of profiles">
+        <tr>
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.address}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

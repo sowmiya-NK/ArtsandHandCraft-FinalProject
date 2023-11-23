@@ -18,4 +18,19 @@ export class StorageService {
   public removeLoggedInUser(): void {
     localStorage.removeItem('loggedInUser');
   }
+
+
+  // route setting
+  public setRoute(route:string | null):void{
+    if(route != null)
+       localStorage.setItem("route",route);
+  }
+
+  public getRoute(): string | null {
+    return localStorage.getItem("route");
+  }
+
+  public removeRoute(): void {
+    localStorage.removeItem('route');
+  }
 }

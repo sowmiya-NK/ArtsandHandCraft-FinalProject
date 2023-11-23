@@ -5,13 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { urlEndpoint } from '../utils/constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserprofileService {
-
-  constructor(private http:HttpClient) { }
-  fetchdata():Observable<Profile[]>{
-    return this.http.get<Profile[]>(`${urlEndpoint.baseUrl}/admin/artWork/all`);
-
+  constructor(private http: HttpClient) {}
+  fetchdata(): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${urlEndpoint.baseUrl}/admin/user/all`);
   }
 }

@@ -32,6 +32,7 @@ export class LoginComponent {
 
     this.authService.login(_loginForm.value).subscribe({
       next: (response: AppResponse) => {
+        console.log(response.data,"dwsjbjsbf")
         this.authService.setLoggedIn(response.data);
       },
       error: (err) => {

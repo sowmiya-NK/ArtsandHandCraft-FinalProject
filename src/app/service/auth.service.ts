@@ -64,26 +64,29 @@ export class AuthService {
   setLoggedIn(user: AppUser): void {
     this.storageService.setLoggedInUser(user);
     this.isLoggedInSubject.next(true);
+    
+    let route: string | null = this.storageService.getRoute();
 
     if (user.role === CONSTANT.USER) {
-      this.router.navigate(['/'], { replaceUrl: true });
+      if (route === null) route = '';
+      this.router.navigate(["/" + route], { replaceUrl: true });
     } else if (user.role === CONSTANT.ADMIN) {
+      if (route === null) route = 'admin';
       this.isAdminSubject.next(true);
-      this.router.navigate(['/admin'], { replaceUrl: true });
+      this.router.navigate(["/" + route], { replaceUrl: true });
     }
   }
 
-  isValidUser(value: AppUser): boolean {
-    let loggedInUser: AppUser = this.storageService.getLoggedInUser();
-    let isUser: boolean = false;
-    if (
-     
-      loggedInUser.username === value.username &&
-      loggedInUser.password === value.password
-    ) {
-      this.storageService.setLoggedInUser(loggedInUser);
-      isUser = true;
-    }
-    return isUser;
-  }
+  // isValidUser(value: AppUser): boolean {
+  //   let loggedInUser: AppUser = this.storageService.getLoggedInUser();
+  //   let isUser: boolean = false;
+  //   if (
+  //     loggedInUser.username === value.username &&
+  //     loggedInUser.password === value.password
+  //   ) {
+  //     this.storageService.setLoggedInUser(loggedInUser);
+  //     isUser = true;
+  //   }
+  //   return isUser;
+  // }
 }
