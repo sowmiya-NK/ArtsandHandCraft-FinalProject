@@ -33,7 +33,7 @@ export class ProductviewComponent implements OnInit {
       complete: () => console.log('completed'),
     });
   }
-  onDelete(deleteid: any): void {
+  onDelete(deleteid: number): void {
     console.log(deleteid);
 
     this.productService.deleteProduct(deleteid).subscribe({

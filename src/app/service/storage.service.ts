@@ -11,11 +11,8 @@ export class StorageService {
     localStorage.setItem('loggedInUser', JSON.stringify(user));
   }
 
-  public getLoggedInUser(): number | null {
-    const loggedInUser: AppUser = JSON.parse(
-      localStorage.getItem('loggedInUser')
-    );
-    return loggedInUser ? loggedInUser.id : 0;
+  public getLoggedInUser(): AppUser {
+    return JSON.parse(localStorage.getItem('loggedInUser') || '{}');
   }
 
   public removeLoggedInUser(): void {

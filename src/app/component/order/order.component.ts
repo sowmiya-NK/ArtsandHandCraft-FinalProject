@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppUser } from 'src/app/model/appUser';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-order',
@@ -9,11 +11,14 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class OrderComponent implements OnInit {
   orderDetails: Order[] = [];
+  user: AppUser;
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService,private storageService:StorageService) {
+    this.user = storageService.getLoggedInUser();
+  }
 
   ngOnInit(): void {
-    this.orderService.fetchdata().subscribe({
+    this.orderService.fetchdata(this.user?.id).subscribe({
       next: (orders: any) => {
         this.orderDetails = orders.data;
       },
