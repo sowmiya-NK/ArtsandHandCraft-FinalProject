@@ -9,8 +9,8 @@ import { urlEndpoint } from '../utils/constant';
 })
 export class CartService {
   constructor(private http: HttpClient) {}
-  fetchdata(): Observable<Cart[]> {
-    return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/6`);
+  fetchdata(userId:number): Observable<Cart[]> {
+    return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/${userId}`);
   }
   deleteCart(id: number, productId: number): Observable<Cart[]> {
     return this.http.delete<Cart[]>(

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/model/cart';
+import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,9 +11,15 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class CartComponent implements OnInit {
   carts: Cart[] = [];
-  constructor(private cartService: CartService) {}
+  userId:number | null= this.stoargeService.getLoggedInUser();
+
+  constructor(
+    private cartService: CartService,
+    private stoargeService: StorageService
+  ) {}
+
   ngOnInit(): void {
-    this.cartService.fetchdata().subscribe({
+    this.cartService.fetchdata(this.userId).subscribe({
       next: (carts: any) => {
         let cartDetails: Cart[] = carts.data;
         console.log(carts);
@@ -24,10 +32,10 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onDelete(deleteid:any,productId:any): void {
-    console.log(deleteid,productId);
+  onDelete(deleteid: any, productId: any): void {
+    console.log(deleteid, productId);
 
-    this.cartService.deleteCart(deleteid,productId).subscribe({
+    this.cartService.deleteCart(deleteid, productId).subscribe({
       next: (cart: Cart[]) => {
         this.carts = cart;
         console.log(cart);

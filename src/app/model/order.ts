@@ -1,7 +1,7 @@
 export interface Order {
   id: number;
   date: Date;
-  title: string; // Assuming this title is for the entire order
+  title: string; 
   Total: number;
   username: string;
   orderedArtWorkList: {
@@ -10,6 +10,6 @@ export interface Order {
     description: string;
     price: number;
     count: number;
-    // Add other properties as needed
+   
   }[];
 }

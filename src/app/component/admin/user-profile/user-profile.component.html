@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-5">user</div>
     <table class="table table-striped">
-      <thead >
+      <thead>
         <tr>
           <th scope="col">userId</th>
           <th scope="col">email</th>
@@ -10,14 +10,15 @@
           <th scope="col">address</th>
         </tr>
       </thead>
-      <tbody *ngFor="let  user of profiles">
+      <tbody *ngFor="let user of profiles">
         <tr>
-          <th>{{user.id}}</th>
-          <td>{{user.username}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.address}}</td>
+          <th>{{ user.id }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.addressList.city }}</td>
         </tr>
       </tbody>
     </table>
+    <a routerLink="/admin"><button type="submit">Back</button></a>
   </div>
 </div>

@@ -1,6 +1,11 @@
 export interface UserProfile {
-    userId:number;
+    id:number;
     username:String;
     name:String;
-    address:String;
+    addressList:{
+        street:String;
+        city:String;
+        zipcode:String;
+    }
+
 }

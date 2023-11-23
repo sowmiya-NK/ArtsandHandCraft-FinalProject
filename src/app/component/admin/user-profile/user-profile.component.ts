@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from 'src/app/model/profile';
+import { UserProfile } from 'src/app/model/user-profile';
 import { UserprofileService } from 'src/app/service/userProfile.service';
 // import { UserprofileService } from 'src/app/service/userprofile.service';
 
@@ -9,13 +10,13 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  profiles: Profile[] = [];
+  profiles: UserProfile[] = [];
 
   constructor(private userProfileService: UserprofileService) {}
   ngOnInit(): void {
     this.userProfileService.fetchdata().subscribe({
       next: (profile: any) => {
-        let userDetails: Profile[] = profile.data;
+        let userDetails: UserProfile[] = profile.data;
         console.log(profile);
 
         this.profiles = userDetails;
