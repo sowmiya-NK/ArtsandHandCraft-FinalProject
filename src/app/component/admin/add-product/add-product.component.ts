@@ -11,8 +11,6 @@ import { ProductService } from 'src/app/service/product.service';
 export class AddProductComponent {
   constructor(private productService: ProductService) {}
 
-  
-
   addProduct(products: {
     product_name: string;
     product_description: string;
@@ -23,7 +21,7 @@ export class AddProductComponent {
       title: products.product_name,
       description: products.product_description,
       price: products.price,
-      categoryId:221,
+      categoryId: 221,
     };
     this.productService
       .addProduct(mappedProduct)

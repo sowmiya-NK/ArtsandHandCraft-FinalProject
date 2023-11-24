@@ -150,14 +150,15 @@
 <div class="container">
   <div class="row" *ngFor="let products of productDetails">
     <div class="col-md-4">
-      <div class="photo">
-        <a routerLink="/sproduct">
+      <div class="photo border">
+       
           <img
             src="https://m.media-amazon.com/images/I/81As0c2fDzS._AC_UL480_FMwebp_QL65_.jpg"
             alt=""
-        /></a>
+        />
         <p>{{ products.title }}</p>
         <p>{{ products.price }}</p>
+        <button type="submit" class="w-50" (click)="addToCart(products.id!)">Add to Cart</button>
       </div>
     </div>
   </div>

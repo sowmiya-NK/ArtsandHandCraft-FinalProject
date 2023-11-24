@@ -18,7 +18,11 @@ export class CartService {
     );
   }
 
-  addToCart(userId: number): Observable<Cart[]> {
-    return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, userId);
+  addToCart(userId: number,productId:number): Observable<Cart[]> {
+    const requestData = {
+      userId: userId,
+      productId: productId
+    };
+    return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 }

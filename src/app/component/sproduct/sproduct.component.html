@@ -43,15 +43,14 @@
       </div>
     </div>
     <!-- right side -->
-    <div class="col-lg-6 col-md-12 col-12">
+    <div class="col-lg-6 col-md-12 col-12" *ngFor="let product of productDetails">
       <h5 class="py-1">
-        JH Gallery Handmade Recycled Material Figurines Rajasthani Doll Couple
-        Rider Idol Showpiece, Multicolor (18 * 16 * 5cm) (Camel)
+        {{product.title}}
       </h5>
       <div class="d-flex">
         <p class="mr-3">-72%</p>
         &nbsp;
-        <h3 style="color: red; font-size: medium">₹284</h3>
+        <h3 style="color: red; font-size: medium">{{product.price}}</h3>
       </div>
       <h6>M.R.P.: <del>₹999</del></h6>
       <ul class="list-unstyled d-flex mb-0">
@@ -73,7 +72,7 @@
         </li>
       </ul>
 
-      <button (click)="addToCart()">add to cart</button>
+      <button (click)="addToCart(product.id!)">add to cart</button>
       <input type="number" value="1" /><a routerLink="/cart">
         <button class="buy-btn">Buy Now</button></a
       >

@@ -12,18 +12,18 @@ import { ProductService } from 'src/app/service/product.service';
   templateUrl: './sproduct.component.html',
   styleUrls: ['./sproduct.component.css'],
 })
-export class SproductComponent  implements OnInit{
-  productDetails:Product[]=[];
+export class SproductComponent implements OnInit {
+  productDetails: Product[] = [];
   quanity: number = 1;
   user: AppUser;
 
   constructor(
     private cartService: CartService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private productService: ProductService
   ) {
     this.user = storageService.getLoggedInUser();
   }
-
 
   ngOnInit(): void {
     this.productService.fetchdata().subscribe({
@@ -39,9 +39,11 @@ export class SproductComponent  implements OnInit{
       complete: () => console.log('completed'),
     });
   }
-  addToCart(): void {
+  addToCart(productId: number): void {
+    console.log(productId);
+
     this.cartService
-      .addToCart(this.user?.id)
+      .addToCart(this.user?.id, productId)
       .subscribe((Response) => console.log(Response));
     error: () => console.log('product not added in cart');
   }
