@@ -13,8 +13,8 @@ import { StorageService } from 'src/app/service/storage.service';
 export class CartComponent implements OnInit {
   carts: Cart[] = [];
   user: AppUser;
-  
 
+  itemCount: number = 1;
   constructor(
     private cartService: CartService,
     private stoargeService: StorageService
@@ -47,13 +47,23 @@ export class CartComponent implements OnInit {
       complete: () => console.log('deleted'),
       error: () => console.log('error'),
     });
- 
- }
+  }
 
- incrementItem(count:number){
-  this.cartService.incrementItem(count)
- }
- decrementItem(count:number){
-  this.cartService.decrementItem(count)
- }
+  increamentCount(cart: Cart) {
+    //add product only 3
+    if (cart.count != 3) {
+      cart.count += 1;
+      this.cartService
+        .cartCountUpdate(this.user.id, cart.artworkId, cart.count)
+        .subscribe((response) => console.log(response));
+    }
+  }
+  decrementCount(cart: Cart) {
+    if (cart.count != 1) {
+      cart.count -= 1;
+      this.cartService
+        .cartCountUpdate(this.user.id, cart.artworkId, cart.count)
+        .subscribe((response) => console.log(response));
+    }
+  }
 }

@@ -6,6 +6,7 @@ import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { AppUser } from 'src/app/model/appUser';
 import { StorageService } from 'src/app/service/storage.service';
+import { Cart } from 'src/app/model/cart';
 
 @Component({
   selector: 'app-home',

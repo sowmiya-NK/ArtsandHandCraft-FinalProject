@@ -20,12 +20,24 @@
               <td>{{ cart.title }}</td>
               <td>image</td>
               <td>{{ cart.price }}</td>
-              <td class="d-flex align-items-center">
-                <button class="w-25" (click)="decrementItem(1)">-</button>
-                <span class="mx-2">{{cart.quantity}}</span>
-                <button class="w-25" (click)="incrementItem(1)">+</button>
+              <td>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="decrementCount(cart)"
+                >
+                  <i class="fa fa-minus"></i>
+                </button>
+                <span>{{ cart.count }}</span>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="increamentCount(cart)"
+                >
+                  <i class="fa fa-plus"></i>
+                </button>
               </td>
-              <td>{{ cart.Total }}</td>
+              <td>{{ cart.count * cart.price }}</td>
               <td>
                 <button
                   class="btn"

@@ -29,10 +29,18 @@ export class CartService {
     return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 
-  incrementItem(count: number): void {
-    this.itemCount += count;
-  }
-  decrementItem(count: number): void {
-    this.itemCount -= count;
+  cartCountUpdate(
+    userId: number,
+    productId: number,
+    c: number
+  ): Observable<Cart[]> {
+    const requestData = {
+      userId: userId,
+      artWorkId: productId,
+      count: c,
+    };
+    console.log(requestData);
+
+    return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 }

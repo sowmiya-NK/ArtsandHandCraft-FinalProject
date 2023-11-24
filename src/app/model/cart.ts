@@ -3,7 +3,7 @@ export interface Cart {
   title: String;
   image?: File;
   price: number;
-  quantity: number;
+  count: number;
   Total: number;
   artworkId: number;
   userId: number;
