@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/service/storage.service';
 export class CartComponent implements OnInit {
   carts: Cart[] = [];
   user: AppUser;
+  totalValue: number = 0;
 
   itemCount: number = 1;
   constructor(
@@ -27,8 +28,8 @@ export class CartComponent implements OnInit {
       next: (carts: any) => {
         let cartDetails: Cart[] = carts.data;
         console.log(carts);
-
         this.carts = cartDetails;
+        this.calculateTotalValue();
       },
 
       error: () => console.log('error'),
@@ -36,7 +37,14 @@ export class CartComponent implements OnInit {
     });
   }
 
-  onDelete(deleteid: any, productId: any): void {
+  calculateTotalValue(): void {
+    this.totalValue = this.carts.reduce(
+      (acc, cart) => acc + cart.count * cart.price,
+      0
+    );
+  }
+
+  onDelete(deleteid: number, productId: number): void {
     console.log(deleteid, productId);
 
     this.cartService.deleteCart(deleteid, productId).subscribe({
