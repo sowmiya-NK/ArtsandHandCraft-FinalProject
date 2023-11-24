@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/service/storage.service';
 export class CartComponent implements OnInit {
   carts: Cart[] = [];
   user: AppUser;
+  
 
   constructor(
     private cartService: CartService,
@@ -46,5 +47,13 @@ export class CartComponent implements OnInit {
       complete: () => console.log('deleted'),
       error: () => console.log('error'),
     });
-  }
+ 
+ }
+
+ incrementItem(count:number){
+  this.cartService.incrementItem(count)
+ }
+ decrementItem(count:number){
+  this.cartService.decrementItem(count)
+ }
 }

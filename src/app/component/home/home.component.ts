@@ -13,18 +13,16 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class HomeComponent implements OnInit {
   productDetails: Product[] = [];
-  user: AppUser;
 
   constructor(
     private homeService: HomeService,
     private productService: ProductService,
     private cartService: CartService,
     private stoargeService: StorageService
-  ) {
-    homeService.getAllBooks();
-    this.user = stoargeService.getLoggedInUser();
-  }
+  ) {}
+
   ngOnInit(): void {
+    this.homeService.getAllBooks();
     this.productService.fetchdata().subscribe({
       next: (products: any) => {
         let productDetails: Product[] = products.data;
@@ -42,7 +40,7 @@ export class HomeComponent implements OnInit {
     console.log(productId);
 
     this.cartService
-      .addToCart(this.user?.id, productId)
+      .addToCart(this.stoargeService.getLoggedInUser()?.id, productId)
       .subscribe((Response) => console.log(Response));
     error: () => console.log('product not added in cart');
   }

@@ -8,6 +8,7 @@ import { urlEndpoint } from '../utils/constant';
   providedIn: 'root',
 })
 export class CartService {
+  itemCount: number = 1;
   constructor(private http: HttpClient) {}
   fetchdata(userId: number): Observable<Cart[]> {
     return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/${userId}`);
@@ -18,11 +19,20 @@ export class CartService {
     );
   }
 
-  addToCart(userId: number,productId:number): Observable<Cart[]> {
+  addToCart(userId: number, productId: number): Observable<Cart[]> {
     const requestData = {
       userId: userId,
-      productId: productId
+      artWorkId: productId,
     };
+    console.log(requestData);
+
     return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
+  }
+
+  incrementItem(count: number): void {
+    this.itemCount += count;
+  }
+  decrementItem(count: number): void {
+    this.itemCount -= count;
   }
 }

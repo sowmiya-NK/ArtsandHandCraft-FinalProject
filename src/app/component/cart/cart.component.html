@@ -20,10 +20,17 @@
               <td>{{ cart.title }}</td>
               <td>image</td>
               <td>{{ cart.price }}</td>
-              <td>{{ cart.quantity }}</td>
+              <td class="d-flex align-items-center">
+                <button class="w-25" (click)="decrementItem(1)">-</button>
+                <span class="mx-2">{{cart.quantity}}</span>
+                <button class="w-25" (click)="incrementItem(1)">+</button>
+              </td>
               <td>{{ cart.Total }}</td>
               <td>
-                <button class="btn" (click)="onDelete(cart.userId,cart.artworkId)">
+                <button
+                  class="btn"
+                  (click)="onDelete(cart.userId, cart.artworkId)"
+                >
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>
