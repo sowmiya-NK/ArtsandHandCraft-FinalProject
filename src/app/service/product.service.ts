@@ -17,5 +17,11 @@ export class ProductService {
       `${urlEndpoint.baseUrl}/admin/artWork/${id}`
     );
   }
-  // addProduct(newProducts: Product[]): Observable<Product[]> {}
+  addProduct(products: Product): Observable<any> {
+    return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>('${urlEndpoint.baseUrl}/artWork/${id}');
+  }
 }

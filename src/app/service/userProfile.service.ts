@@ -11,6 +11,14 @@ import { UserProfile } from '../model/user-profile';
 export class UserprofileService {
   constructor(private http: HttpClient) {}
   fetchdata(): Observable<UserProfile[]> {
-    return this.http.get<UserProfile[]>(`${urlEndpoint.baseUrl}/admin/user/all`);
+    return this.http.get<UserProfile[]>(
+      `${urlEndpoint.baseUrl}/admin/user/all`
+    );
+  }
+
+  getUserById(userId: number): Observable<UserProfile[]> {
+    return this.http.get<UserProfile[]>(
+      `${urlEndpoint.baseUrl}/user/${userId}`
+    );
   }
 }

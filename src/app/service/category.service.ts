@@ -19,4 +19,8 @@ export class CategoryService {
       `${urlEndpoint.baseUrl}/admin/category/${id}`
     );
   }
+
+  addCategory(categories: Category): Observable<any> {
+    return this.http.post(`${urlEndpoint.baseUrl}/admin/category`, categories);
+  }
 }

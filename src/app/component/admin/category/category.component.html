@@ -1,32 +1,24 @@
-<form class="form-horizontal min-vh-100">
-  <!-- Text input-->
+<form
+  class="form-horizontal min-vh-100"
+  #categoryForm="ngForm"
+  (ngSubmit)="addCategory(categoryForm.value)"
+>
   <div class="form-group">
     <p>ADD CATEGORY</p>
+
     <div class="form-group">
-      <label class="control-label" for="category_id">CATEGORY ID</label>
+      <label class="control-label"> CATEGORY NAME</label>
 
       <input
-        id="category_id"
-        name="category_id"
+        id="category_name"
+        name="category_name"
         class="form-control input-md"
-        required=""
+        required
         type="text"
+        ngModel
       />
     </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="control-label" for="category_name"> CATEGORY NAME</label>
-      <div class="">
-        <input
-          id="category_name"
-          name="category_name"
-          class="form-control input-md"
-          required=""
-          type="text"
-        />
-      </div>
-    </div>
-    <a routerLink="/admin/categoryview"> <button>Add Category</button></a>
+    <a routerLink="/admin/categoryview"> <button>Back</button></a>
+    <button type="submit">Add Category</button>
   </div>
 </form>

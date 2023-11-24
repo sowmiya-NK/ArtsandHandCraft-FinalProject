@@ -25,6 +25,7 @@ import { ProductviewComponent } from './component/admin/add-product/productview/
 import { CategoryviewComponent } from './component/admin/category/categoryview/categoryview.component';
 import { UserProfileComponent } from './component/admin/user-profile/user-profile.component';
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 export function playerFactory() {
   return player;
@@ -48,6 +49,7 @@ export function playerFactory() {
     CategoryviewComponent,
     UserProfileComponent,
     AdminOrderComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

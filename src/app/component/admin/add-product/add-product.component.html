@@ -1,21 +1,22 @@
-<form class="form-horizontal" (ngSubmit)="addProduct()">
-  <!-- Form Name -->
-
-  <!-- Text input-->
+<form
+  class="form-horizontal"
+  #productForm="ngForm"
+  (ngSubmit)="addProduct(productForm.value)"
+>
   <div class="left-side">
     <p>ADD PRODUCTS</p>
     <div class="form-group">
-      <label class="control-label" for="product_id">PRODUCT ID</label>
+      <label class="control-label">PRODUCT ID</label>
 
       <input
         name="product_id"
         class="form-control input-md"
-        required=""
+        required
         type="text"
+        ngModel
       />
     </div>
 
-    <!-- Text input-->
     <div class="form-group">
       <label class="control-label" for="product_name"> NAME</label>
       <div class="">
@@ -23,8 +24,9 @@
           id="product_name"
           name="product_name"
           class="form-control input-md"
-          required=""
+          required
           type="text"
+          ngModel
         />
       </div>
     </div>
@@ -39,6 +41,7 @@
           class="form-control"
           id="product_description"
           name="product_description"
+          ngModel
         ></textarea>
       </div>
     </div>
@@ -66,16 +69,16 @@
           name="price"
           class="form-control input-md"
           required=""
-          type="text"
+          type="number"
+          ngModel
         />
       </div>
     </div>
 
     <div class="form-group">
       <div class="button">
-        <a routerLink="/admin/product">
-          <button type="submit">Add product</button></a
-        >
+        <a routerLink="/admin/product"> <button>Back</button></a>
+        <button type="submit">Add product</button>
       </div>
     </div>
   </div>
@@ -84,7 +87,7 @@
   <div class="right-side">
     <div class="image-dummy">
       <i class="fas fa-cloud-upload-alt" style="height: 60px">
-        <input type="file" name="myFile" id="myFile" />
+        <input type="file" name="myFile" id="myFile" ngModel />
       </i>
     </div>
   </div>
