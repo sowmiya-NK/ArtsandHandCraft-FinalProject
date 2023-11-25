@@ -3,24 +3,37 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { urlEndpoint } from '../utils/constant';
 import { Category } from '../model/category';
+import { AppResponse } from '../model/appResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
   constructor(private http: HttpClient) {}
-  fetchdata(): Observable<Category[]> {
-    return this.http.get<Category[]>(
+
+  getCategories(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/category/all`
     );
   }
-  deleteCategory(id: number): Observable<Category[]> {
-    return this.http.delete<Category[]>(
-      `${urlEndpoint.baseUrl}/admin/category/${id}`
+
+  postCategory(category: Category): Observable<AppResponse> {
+    return this.http.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/admin/category`,
+      category
     );
   }
 
-  addCategory(categories: Category): Observable<any> {
-    return this.http.post(`${urlEndpoint.baseUrl}/admin/category`, categories);
+  putCategory(category: Category): Observable<AppResponse> {
+    return this.http.put<AppResponse>(
+      `${urlEndpoint.baseUrl}/admin/category`,
+      category
+    );
+  }
+
+  deleteCategory(id: number): Observable<AppResponse> {
+    return this.http.delete<AppResponse>(
+      `${urlEndpoint.baseUrl}/admin/category/${id}`
+    );
   }
 }

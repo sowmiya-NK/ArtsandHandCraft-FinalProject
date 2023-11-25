@@ -9,12 +9,59 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent {
+  error: string = '';
+  INITIAL_CATEGORY: Category = { id: 0, title: '' };
+
+  categories: Category[] = [];
+  categoryModel: Category = this.INITIAL_CATEGORY;
+
   constructor(private categoryService: CategoryService) {}
-  addCategory(categories: { category_name: string }) {
-    console.log(categories);
-    let mappedCategory: Category = { title: categories.category_name };
-    this.categoryService
-      .addCategory(mappedCategory)
-      .subscribe((response) => console.log(response));
+
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (response: any) => {
+        this.categories = response.data;
+      },
+    });
+  }
+
+  onSubmit(form: any) {
+    if (this.categoryModel.id === 0) {
+      this.categoryService
+        .postCategory({ title: this.categoryModel.title })
+        .subscribe({
+          next: (response: any) => {
+            this.categories = response.data;
+            this.categoryModel = this.INITIAL_CATEGORY;
+          },
+        });
+    } else {
+      this.categoryService.putCategory(this.categoryModel).subscribe({
+        next: (response: any) => {
+          this.categories = response.data;
+          this.categoryModel = this.INITIAL_CATEGORY;
+        },
+        error: (err) => {
+          console.log(err?.error?.error?.message);
+        },
+      });
+    }
+  }
+
+  getCategory(category: Category) {
+    this.categoryModel = category;
+  }
+
+  onDelete(id: number | undefined) {
+    if (id !== undefined) {
+      this.categoryService.deleteCategory(id).subscribe({
+        next: (response: any) => {
+          this.categories = response.data;
+        },
+        error: (err) => {
+          console.log(err?.error?.error?.message);
+        },
+      });
+    }
   }
 }
