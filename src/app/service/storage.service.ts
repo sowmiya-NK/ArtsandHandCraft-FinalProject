@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppUser } from '../model/appUser';
+import { Cart } from '../model/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,13 @@ export class StorageService {
 
   public removeRoute(): void {
     localStorage.removeItem('route');
+  }
+
+  //cart set
+  public setCart(cart: Cart): void {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+  public getCart(): string | null {
+    return JSON.parse(localStorage.getItem('cart') || '{}');
   }
 }

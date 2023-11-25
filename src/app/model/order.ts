@@ -4,6 +4,7 @@ export interface Order {
   title: string; 
   Total: number;
   username: string;
+  createdAt:Date;
   orderedArtWorkList: {
     id: number;
     title: string;

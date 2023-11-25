@@ -15,7 +15,7 @@ export class CartService {
   }
   deleteCart(id: number, productId: number): Observable<Cart[]> {
     return this.http.delete<Cart[]>(
-      `${urlEndpoint.baseUrl}/admin/artWork/${id}/${productId}`
+      `${urlEndpoint.baseUrl}/cart/${id}/${productId}`
     );
   }
 
@@ -34,15 +34,17 @@ export class CartService {
   cartCountUpdate(
     userId: number,
     productId: number,
-    c: number
+    c: number,
+    t: number
   ): Observable<Cart[]> {
     const requestData = {
       userId: userId,
       artWorkId: productId,
       count: c,
+      total: t,
     };
     console.log(requestData);
 
-    return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
+    return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 }

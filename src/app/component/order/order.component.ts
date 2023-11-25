@@ -13,6 +13,7 @@ export class OrderComponent implements OnInit {
   orderDetails: Order[] = [];
   user: AppUser;
   selectedItem: string | null = '';
+  totalValue: number = 0;
 
   constructor(
     private orderService: OrderService,
@@ -24,12 +25,17 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.fetchdata(this.user?.id).subscribe({
       next: (orders: any) => {
+        console.log(orders);
+
         this.orderDetails = orders.data;
       },
       error: () => console.log('error'),
       complete: () => console.log('completed'),
     });
-    this.selectedItem = localStorage.getItem('selectedItem');
+
+    this.selectedItem = this.storageService.getCart();
+    console.log(this.selectedItem);
+
     if (!this.selectedItem)
       alert(
         'No item selected. Please go back to the cart page and select an item.'

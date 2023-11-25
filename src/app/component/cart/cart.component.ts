@@ -4,6 +4,7 @@ import { AppUser } from 'src/app/model/appUser';
 import { Cart } from 'src/app/model/cart';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
+import { OrderService } from 'src/app/service/order.service';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
@@ -16,12 +17,15 @@ export class CartComponent implements OnInit {
   user: AppUser;
   totalValue: number = 0;
   selectedItem: string = '';
+  total: number = 0;
 
   itemCount: number = 1;
+
   constructor(
     private cartService: CartService,
     private stoargeService: StorageService,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {
     this.user = this.stoargeService.getLoggedInUser();
   }
@@ -29,6 +33,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.fetchdata(this.user?.id).subscribe({
       next: (carts: any) => {
+        this.stoargeService.setCart(carts.data);
         let cartDetails: Cart[] = carts.data;
         console.log(carts);
         this.carts = cartDetails;
@@ -46,6 +51,7 @@ export class CartComponent implements OnInit {
       0
     );
   }
+  //calculateParticularItemTotalValue(): void {}
 
   onDelete(deleteid: number, productId: number): void {
     console.log(deleteid, productId);
@@ -65,7 +71,7 @@ export class CartComponent implements OnInit {
     if (cart.count != 3) {
       cart.count += 1;
       this.cartService
-        .cartCountUpdate(this.user.id, cart.artworkId, cart.count)
+        .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
     }
   }
@@ -73,17 +79,16 @@ export class CartComponent implements OnInit {
     if (cart.count != 1) {
       cart.count -= 1;
       this.cartService
-        .cartCountUpdate(this.user.id, cart.artworkId, cart.count)
+        .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
     }
   }
 
-  proceedToOrder() {
-    if (this.selectedItem) {
-      localStorage.setItem('selectedItem', this.selectedItem);
-      this.router.navigate(['/order']);
-    } else {
-      alert('please select an item before proceeding to the order page.');
-    }
-  }
+  // proceedToOrder() {
+  //   if (this.selectedItem) {
+  //     this.router.navigate(['/order']);
+  //   } else {
+  //     alert('please select an item before proceeding to the order page.');
+  //   }
+  // }
 }

@@ -1,4 +1,4 @@
-<section class="h-100 h-custom">
+<!-- <section class="h-100 h-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="row" *ngFor="let order of orderDetails">
@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Date</p>
-                  <p>{{ artwork.title }}</p>
+                  <p>{{ order.createdAt }}</p>
                 </div>
                 <div class="col mb-3">
                   <p class="small text-muted mb-1">Order No.</p>
@@ -116,4 +116,44 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
+
+<div class="container mt-5">
+  <p *ngIf="orderDetails.length === 0">
+    Oops! There are no orders placed! <br />
+    <button class="btn btn-dark mt-2" routerLink="/">Shop Here</button>
+  </p>
+  <table
+    class="table table-hover shadow bg-body-tertiary rounded"
+    *ngIf="orderDetails.length !== 0"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Products</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody id="cartitems" *ngFor="let item of orderDetails">
+      <tr
+        class="shadow bg-body-tertiary rounded"
+        *ngFor="let artwrok of item.orderedArtWorkList"
+      >
+        <td class="col">{{ item.id }}</td>
+        <td class="col">{{ item.createdAt }}</td>
+        <td class="col">{{ artwrok.title }}</td>
+        <td class="col">{{ artwrok.count }}</td>
+        <td class="col">₹ {{ artwrok.price * artwrok.count }}</td>
+      </tr>
+    </tbody>
+    <tfoot >
+      <tr>
+        <td colspan="3"></td>
+        <td class="fw-bold">Total:</td>
+        <td class="fw-bold">₹ 1800</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

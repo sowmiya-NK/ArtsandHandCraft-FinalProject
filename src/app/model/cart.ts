@@ -4,7 +4,7 @@ export interface Cart {
   image?: File;
   price: number;
   count: number;
-  Total: number;
+  total: number;
   artworkId: number;
   userId: number;
 }
