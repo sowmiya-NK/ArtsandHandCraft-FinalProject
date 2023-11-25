@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppUser } from 'src/app/model/appUser';
 import { Cart } from 'src/app/model/cart';
 import { AuthService } from 'src/app/service/auth.service';
@@ -14,11 +15,13 @@ export class CartComponent implements OnInit {
   carts: Cart[] = [];
   user: AppUser;
   totalValue: number = 0;
+  selectedItem: string = '';
 
   itemCount: number = 1;
   constructor(
     private cartService: CartService,
-    private stoargeService: StorageService
+    private stoargeService: StorageService,
+    private router: Router
   ) {
     this.user = this.stoargeService.getLoggedInUser();
   }
@@ -72,6 +75,15 @@ export class CartComponent implements OnInit {
       this.cartService
         .cartCountUpdate(this.user.id, cart.artworkId, cart.count)
         .subscribe((response) => console.log(response));
+    }
+  }
+
+  proceedToOrder() {
+    if (this.selectedItem) {
+      localStorage.setItem('selectedItem', this.selectedItem);
+      this.router.navigate(['/order']);
+    } else {
+      alert('please select an item before proceeding to the order page.');
     }
   }
 }

@@ -5,6 +5,7 @@
         <div class="table table-responsive">
           <thead>
             <tr>
+              <th>selected items</th>
               <th>S.No</th>
               <th>Product Name</th>
               <th>Product Image</th>
@@ -16,6 +17,15 @@
           </thead>
           <tbody *ngFor="let cart of carts">
             <tr>
+              <td>
+                <input
+                  type="radio"
+                  name="selectedItem"
+                  [value]="cart.id"
+                  [(ngModel)]="selectedItem"
+                  id="{{ cart.id }}"
+                />
+              </td>
               <td>{{ cart.id }}</td>
               <td>{{ cart.title }}</td>
               <td>image</td>
@@ -51,10 +61,10 @@
         </div>
       </div>
     </div>
-    <p style="align-items: center;">Total:{{totalValue}}</p>
+    <p style="align-items: center">Total:{{ totalValue }}</p>
     <div class="btn d-flex">
       <button><a routerLink="">Continue to shop</a></button>
-      <button><a routerLink="/order">Order Now</a></button>
+      <button (click)="proceedToOrder()">Order Now</button>
     </div>
   </div>
 </ng-container>

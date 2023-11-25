@@ -12,8 +12,12 @@ import { StorageService } from 'src/app/service/storage.service';
 export class OrderComponent implements OnInit {
   orderDetails: Order[] = [];
   user: AppUser;
+  selectedItem: string | null = '';
 
-  constructor(private orderService: OrderService,private storageService:StorageService) {
+  constructor(
+    private orderService: OrderService,
+    private storageService: StorageService
+  ) {
     this.user = storageService.getLoggedInUser();
   }
 
@@ -25,5 +29,10 @@ export class OrderComponent implements OnInit {
       error: () => console.log('error'),
       complete: () => console.log('completed'),
     });
+    this.selectedItem = localStorage.getItem('selectedItem');
+    if (!this.selectedItem)
+      alert(
+        'No item selected. Please go back to the cart page and select an item.'
+      );
   }
 }
