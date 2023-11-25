@@ -20,9 +20,11 @@ export class CartService {
   }
 
   addToCart(userId: number, productId: number): Observable<Cart[]> {
+    let count: number = 1;
     const requestData = {
       userId: userId,
       artWorkId: productId,
+      count: count,
     };
     console.log(requestData);
 
