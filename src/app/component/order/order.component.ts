@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppUser } from 'src/app/model/appUser';
+import { Cart } from 'src/app/model/cart';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
 import { StorageService } from 'src/app/service/storage.service';
@@ -14,10 +16,12 @@ export class OrderComponent implements OnInit {
   user: AppUser;
   selectedItem: string | null = '';
   totalValue: number = 0;
+  carts: Cart[] = [];
 
   constructor(
     private orderService: OrderService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private route: ActivatedRoute
   ) {
     this.user = storageService.getLoggedInUser();
   }
@@ -32,13 +36,6 @@ export class OrderComponent implements OnInit {
       error: () => console.log('error'),
       complete: () => console.log('completed'),
     });
-
-    this.selectedItem = this.storageService.getCart();
-    console.log(this.selectedItem);
-
-    if (!this.selectedItem)
-      alert(
-        'No item selected. Please go back to the cart page and select an item.'
-      );
+    
   }
 }

@@ -84,11 +84,13 @@ export class CartComponent implements OnInit {
     }
   }
 
-  // proceedToOrder() {
-  //   if (this.selectedItem) {
-  //     this.router.navigate(['/order']);
-  //   } else {
-  //     alert('please select an item before proceeding to the order page.');
-  //   }
+  // proceedToOrder(): void {
+  //   // Pass cart data to the order page using queryParams
+  //   this.router.navigate(['/order'], {
+  //     queryParams: {
+  //       carts: JSON.stringify(this.carts),
+  //       totalValue: this.totalValue,
+  //     },
+  //   });
   // }
 }

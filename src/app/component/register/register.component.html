@@ -16,11 +16,11 @@
         >
           <!-- Username input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="name">Username</label>
+            <label class="form-label" for="name">Name</label>
             <input
               type="text"
               class="form-control"
-              name="username"
+              name="name"
               required
               ngModel
               minlength="3"
@@ -33,17 +33,17 @@
               *ngIf="modeluser.invalid && modeluser.touched"
               class="invalid-feedback"
             >
-              Username is required
+              please enter a valid user name
             </div>
           </div>
 
           <!-- email input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="email">Email</label>
+            <label class="form-label" for="Username">Username</label>
             <input
               type="email"
               class="form-control"
-              name="email"
+              name="username"
               required
               email
               ngModel
@@ -57,7 +57,7 @@
               *ngIf="modelEmail.invalid && modelEmail.touched"
               class="invalid-feedback"
             >
-              Email is required
+              Username is required
             </div>
           </div>
 
@@ -74,11 +74,17 @@
               minlength="8"
               #modelpassword="ngModel"
               [ngClass]="
-                modelpassword.invalid && modelpassword.touched ? 'is-invalid' : ''
+                modelpassword.invalid && modelpassword.touched
+                  ? 'is-invalid'
+                  : ''
               "
             />
             <div
-              *ngIf="modelpassword.invalid && modelpassword.touched ? 'is-invalid' : ''"
+              *ngIf="
+                modelpassword.invalid && modelpassword.touched
+                  ? 'is-invalid'
+                  : ''
+              "
               class="invalid-feedback"
             >
               password must contain atleast 8 charcters
@@ -124,7 +130,13 @@
 
           <!-- Submit button -->
           <div class="d-grid gap-2 mb-5">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="registerForm.invalid"
+            >
+              Register
+            </button>
           </div>
         </form>
       </div>

@@ -21,7 +21,7 @@ export class AddProductComponent {
       title: products.product_name,
       description: products.product_description,
       price: products.price,
-      categoryId: 221,
+      categoryId: 9,
     };
     this.productService
       .addProduct(mappedProduct)

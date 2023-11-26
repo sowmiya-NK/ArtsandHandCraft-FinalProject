@@ -1,42 +1,24 @@
-<div class="row m-2 my-4">
-  <p class="fs-4">Category</p>
-  <form
-    #categoryForm="ngForm"
-    (ngSubmit)="onSubmit(categoryForm)"
-    novalidate
-    class="d-flex mb-4"
-  >
-    <input type="hidden" name="id" [(ngModel)]="categoryModel.id" />
-    <div class="me-3 flex-grow-1">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Add Category"
-        name="title"
-        [(ngModel)]="categoryModel.title"
-        required
-        minlength="3"
-        #modelCategory="ngModel"
-        [ngClass]="modelCategory.touched && modelCategory.invalid ? 'is-invalid' : ''"
-      />
-      <div
-        *ngIf="modelCategory.invalid && modelCategory.dirty"
-        class="invalid-feedback"
-      >
-        please enter atleast 3 characters
-      </div>
-      
-    </div>
-    <div class="me-3">
-      <button class="btn btn-primary">
-        {{ categoryModel.id ? "Edit" : "Add" }}
-      </button>
-    </div>
-  </form>
+<form
+  class="form-horizontal min-vh-100"
+  #categoryForm="ngForm"
+  (ngSubmit)="addCategory(categoryForm.value)"
+>
+  <div class="form-group">
+    <p>ADD CATEGORY</p>
 
-  <p class="fs-5 mb-4">All Categories</p>
-  <app-categoryview>
-    [categories]="categories" (editEmitter)="getCategory($event)"
-    (deleteEmitter)="onDelete($event)"
-  </app-categoryview>
-</div>
+    <div class="form-group" >
+      <label class="control-label"> CATEGORY NAME</label>
+
+      <input
+        id="category_name"
+        name="category_name"
+        class="form-control input-md"
+        required
+        type="text"
+        ngModel
+      />
+    </div>
+    <a routerLink="/admin/categoryview"> <button>Back</button></a>
+    <button type="submit">Add Category</button>
+  </div>
+</form>

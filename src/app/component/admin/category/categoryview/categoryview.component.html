@@ -1,25 +1,29 @@
-<table class="table table-dark table-hover  table-striped">
-  <thead>
-    <tr class="">
-      <th scope="col" class="fw-semibold">Id</th>
-      <th scope="col" class="fw-semibold w-75">Title</th>
-      <th scope="col" class="fw-semibold"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let category of categories">
-      <td scope="row">{{ category.id }}</td>
-      <td class="w-50">{{ category.title }}</td>
-      <td>
-        <button
-          class="btn btn-secondary btn-sm mx-2"
-          (click)="onEdit(category)"
-        >
-          Edit</button
-        ><button class="btn btn-danger btn-sm" (click)="onDelete(category.id)">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Category ID</th>
+          <th>Category_Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let category of categories">
+        <tr>
+          <td>{{ category.id }}</td>
+          <td>{{ category.title }}</td>
+          <td>
+            <button type="submit" (click)="onDelete(category.id)">
+              Delete
+            </button>
+            <button type="submit" (click)="onDelete(category.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<a routerLink="/admin"> <button>Back</button></a>
+<a routerLink="/admin/category"> <button>Add category</button></a>
