@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   cartItemFunc() {
     let cartItems = this.storageService.getCart();
     if (cartItems != null) {
-      this.cartItem = cartItems.length;
+      // this.cartItem = cartItems.length;
       if(this.storageService.removeLoggedInUser === null)
       this.cartItem=0;
 

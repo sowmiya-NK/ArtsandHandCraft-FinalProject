@@ -5,12 +5,15 @@ import { urlEndpoint } from '../utils/constant';
 import { AppResponse } from '../model/appResponse';
 import { ProductService } from './product.service';
 import { Product } from '../model/product';
+import { Cart } from '../model/cart';
+import { AppUser } from '../model/appUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
   error: String = '';
+  
  
   constructor(private http: HttpClient,private productService:ProductService) {}
 

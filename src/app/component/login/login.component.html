@@ -5,11 +5,11 @@
         <ng-lottie [options]="options"></ng-lottie>
       </div>
       <div class="col-6">
-        <h2 class="display-4 text-primary">Login</h2>
+        <h2 class="display-4 heading">Login</h2>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <!-- Username input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="username">Username</label>
+            <label class="form-label " for="username">Username</label>
             <input
               type="text"
               class="form-control"
@@ -61,7 +61,7 @@
             <span>Not registered?</span>
             <a
               routerLink="/register"
-              class="text-primary text-decoration-none px-2"
+              class="heading text-decoration-none px-2"
               >Register here</a
             >
           </div>
@@ -70,7 +70,7 @@
           <div class="d-grid gap-2">
             <button
               type="submit"
-              class="btn btn-primary"
+              class=" heading"
               [disabled]="!loginForm.valid"
             >
               Login

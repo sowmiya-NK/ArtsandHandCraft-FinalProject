@@ -37,7 +37,7 @@ export class StorageService {
   public setCart(cart: Cart): void {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
-  public getCart(): string | null {
+  public getCart(): Cart {
     return JSON.parse(localStorage.getItem('cart') || '{}');
   }
 }

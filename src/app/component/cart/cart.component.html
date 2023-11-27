@@ -1,86 +1,33 @@
-<ng-container *ngIf="true">
-  <div class="container" class="min-vh-100">
-    <div class="cart-table">
-      <div class="cart-product">
-        <div class="table table-responsive">
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Product Name</th>
-              <th>Product Image</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let cart of carts">
-            <tr>
-              <!-- <td>
-                <input
-                  type="radio"
-                  name="selectedItem"
-                  [value]="cart"
-                  [(ngModel)]="selectedItem"
-                  id="{{ cart.id }}"
-                />
-              </td> -->
-              <td>{{ cart.id }}</td>
-              <td>{{ cart.title }}</td>
-              <td>image</td>
-              <td>{{ cart.price }}</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn"
-                  (click)="decrementCount(cart)"
-                >
-                  <i class="fa fa-minus"></i>
-                </button>
-                <span>{{ cart.count }}</span>
-                <button
-                  type="button"
-                  class="btn"
-                  (click)="increamentCount(cart)"
-                >
-                  <i class="fa fa-plus"></i>
-                </button>
-              </td>
-              <td>{{ total + cart.price * cart.count }}</td>
-              <td>
-                <button
-                  class="btn"
-                  (click)="onDelete(cart.userId, cart.artworkId)"
-                >
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </div>
+<div
+  class="modal fade"
+  id="cartModal"
+  tabindex="-1"
+  aria-labelledby="cartModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Cart details go here -->
+        <ul id="cartDetails">
+          <!-- Cart items will be dynamically added here -->
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn  btn-1">Checkout</button>
       </div>
     </div>
-    <p style="align-items: center">Total:{{ totalValue }}</p>
-    <div class="btn d-flex">
-      <button><a routerLink="">Continue to shop</a></button>
-      <button>proceed Order</button>
-    </div>
   </div>
-</ng-container>
-
-<ng-container *ngIf="false">
-  <div class="container">
-    <div class="cart">
-      <div class="cart-title">My Cart</div>
-    </div>
-
-    <div class="center">
-      <img
-        src="https://static.wixstatic.com/media/7742ef_dfe620d0354b471b8620fcb2c3a46e62~mv2.gif"
-      />
-      <h4>Your cart is empty!!!</h4>
-      <h6>Add item to it now</h6>
-      <button class="btn">Shop now</button>
-    </div>
-  </div>
-</ng-container>
+</div>

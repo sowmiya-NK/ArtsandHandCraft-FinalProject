@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
 :root {
   --primary-50: #f5d4e5;
   --primary-100: #efc8db;
-  --primary-300: #ea85b7;
+  --primary-300: #ee94c1;
   --primary-500: #dc418f;
   --primary-600: #bb216e;
   --primary-700: #753957;
@@ -22,14 +24,13 @@
 body {
   font-family: "Exo 2", sans-serif;
   background-color: var(--primary-50);
+  overflow-x: hidden;
 }
 
-.btn {
-  border-radius: var(--border-radius);
-}
 .navbar {
   background-color: var(--primary-300);
   margin-top: 2px;
+  position: fixed;
 }
 .navbar a {
   font-size: small;
@@ -42,4 +43,73 @@ body {
 .icon-item {
   margin-right: 20px;
   color: var(--black-500);
+}
+.parallex-home {
+  margin-top: 2px;
+  min-height: 100vh;
+  background-size: 1600px;
+  background-position: 50% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://th.bing.com/th/id/OIP.spgkm45OnKMLeergkp6DwwHaEK?rs=1&pid=ImgDetMain");
+  opacity: 0.2;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #010000;
+}
+.about {
+  color: #010000;
+  font-size: 15px;
+  font-weight: 10%;
+}
+.item img {
+  margin-top: 5px;
+  height: 300px;
+  width: 250px;
+  opacity: 1;
+  position: relative;
+  display: block;
+}
+button {
+  align-items: center;
+
+  border-radius: 4px;
+  background-color: #b84b83;
+  padding: 8px;
+  width: 240px;
+}
+footer {
+  background-color: var(--primary-300);
+}
+.btn-1 {
+  background-color: #b75787;
+}
+.btn-1:hover {
+  background: var(--primary-100);
+  font-weight: 900;
+  /* letter-spacing: 1px; */
+
+  rect {
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+hr {
+  margin-bottom: 0;
+}
+.modal-backdrop.show {
+  opacity: 0;
+}
+.heading {
+  color: #801147;
+}
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust this based on your design */
 }

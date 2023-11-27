@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 import { Cart } from '../model/cart';
 import { Observable } from 'rxjs';
 import { urlEndpoint } from '../utils/constant';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   itemCount: number = 1;
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService
+  ) {}
   fetchdata(userId: number): Observable<Cart[]> {
     return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/${userId}`);
   }
@@ -47,4 +51,7 @@ export class CartService {
 
     return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
+  // getCartCount() {
+  //   console.log(this.storageService.getCart());
+  // }
 }

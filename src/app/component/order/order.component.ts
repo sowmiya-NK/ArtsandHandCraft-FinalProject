@@ -38,4 +38,16 @@ export class OrderComponent implements OnInit {
     });
     
   }
+  currentStep: string = 'address';
+  completedSteps: string[] = [];
+
+  showStep(step: string): void {
+    this.currentStep = step;
+  }
+
+  markStepAsComplete(step: string): void {
+    if (!this.completedSteps.includes(step)) {
+      this.completedSteps.push(step);
+    }
+  }
 }
