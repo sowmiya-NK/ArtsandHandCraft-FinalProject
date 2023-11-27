@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -17,7 +18,7 @@ export class ProductviewComponent implements OnInit {
   //   category: '',
   // };
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private router:Router) {}
 
   ngOnInit(): void {
     this.productService.fetchdata().subscribe({
@@ -44,5 +45,10 @@ export class ProductviewComponent implements OnInit {
       complete: () => console.log('deleted'),
       error: (err) => console.log('error', err),
     });
+  }
+  onEdit(editId:number){
+    
+    this.router.navigate(['/admin/addproduct'],{queryParams:{'id':editId}})
+    
   }
 }

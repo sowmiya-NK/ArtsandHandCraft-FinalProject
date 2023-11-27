@@ -43,4 +43,16 @@ export class StorageService {
   public removeCart():void{
     localStorage.removeItem('cart');
   }
+
+  setAuthData(authData: string) {
+    localStorage.setItem("authData", authData);
+  }
+
+  public getAuthData(): string | null {
+    return localStorage.getItem("authData");
+  }
+  
+  public removeAuthData(): void {
+    localStorage.removeItem("authData");
+  }
 }

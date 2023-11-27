@@ -1,5 +1,5 @@
 <div *ngIf="!isLoggedIn">
-  <router-outlet />
+  <router-outlet></router-outlet>
 </div>
 
 <div *ngIf="isLoggedIn" class="container-fluid vh-100 d-flex flex-column">
@@ -47,7 +47,7 @@
     </header>
   </div>
 
-  <div *ngIf="isAdmin" class="row flex-grow-1">
+<div *ngIf="isAdmin" class="row flex-grow-1">
     <div class="sidebar border border-right col-2 p-0">
       <div class="bg-body-tertiary h-100" tabindex="-1">
         <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
@@ -75,7 +75,7 @@
     <main class="col-10 px-4">
       <router-outlet></router-outlet>
     </main>
-  </div>
+  </div> 
   <div *ngIf="!isAdmin">
     <router-outlet></router-outlet>
   </div>

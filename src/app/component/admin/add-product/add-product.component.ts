@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -9,7 +10,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private router:ActivatedRoute) {}
 
   addProduct(products: {
     product_name: string;
@@ -26,5 +27,15 @@ export class AddProductComponent {
     this.productService
       .addProduct(mappedProduct)
       .subscribe((response) => console.log(response));
+  }
+
+  id:number=0;
+  ngOnInit():void{
+    this.router.queryParams.subscribe((param)=>{
+      this.id = param['id'];
+      console.log(this.id);
+      
+      
+    })
   }
 }

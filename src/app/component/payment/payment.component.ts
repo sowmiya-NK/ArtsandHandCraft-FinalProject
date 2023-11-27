@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,15 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent {
-  constructor(private router: Router) {
-    console.log("Cons");
-    
-  }
+  // paymentForm: FormGroup;
 
-  proceedToPay() {
-    console.log('not navigated');
+  // constructor(private fb: FormBuilder) { }
 
-    this.router.navigate(['/receipt']);
-    console.log('navigated');
-  }
+  // ngOnInit(): void {
+  //   this.paymentForm = this.fb.group({
+  //     cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
+  //     expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
+  //     cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
+  //   });
+  // }
+
+  // submitPaymentForm() {
+  //   if (this.paymentForm.valid) {
+  //     // Process the payment or perform other actions
+  //     console.log('Payment form submitted successfully!');
+  //   } else {
+  //     // Handle form validation errors
+  //     console.log('Invalid form. Please check the errors.');
+  //   }
+  // }
 }

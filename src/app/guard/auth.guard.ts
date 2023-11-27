@@ -8,9 +8,16 @@ export const authGuard: CanActivateFn = (route, state) => {
   const storageService = inject(StorageService);
   const router = inject(Router);
 
-  console.log(route.routeConfig?.path);
+  const url = new URL(window.location.href);
+
+  console.log(loginService.isLoggedIn());
+  
   storageService.setRoute(
     route.routeConfig?.path !== undefined?  route.routeConfig.path : null);
+
+
+  console.log(route.routeConfig?.path);
+  
   
 
   if (!loginService.isLoggedIn()) {
