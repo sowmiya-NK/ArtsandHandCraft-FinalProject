@@ -10,7 +10,19 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  userDetails: UserProfile[] = [];
+  // userDetails: UserProfile = null;
+  userprofile: UserProfile = {
+    id: 0,
+    username: '',
+    name: '',
+    addressList: [
+      {
+        street: '',
+        city: '',
+        zipcode: '',
+      },
+    ],
+  };
 
   user: AppUser;
   constructor(
@@ -22,11 +34,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userProfileService.getUserById(this.user?.id).subscribe({
-      next: (userProfile: any) => {
-        let userDetail: UserProfile[] = userProfile.data;
-        console.log(userProfile);
-        // console.log(this.user.id);
-        this.userDetails = userDetail;
+      next: (response: any) => {
+        this.userprofile = response.data;
+        console.log(response);
+        console.log(this.userprofile.id);
       },
 
       error: (err) => console.log('error', err),

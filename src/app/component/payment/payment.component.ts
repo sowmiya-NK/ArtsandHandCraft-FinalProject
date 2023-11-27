@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,4 +6,16 @@ import { Router } from '@angular/router';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
 })
-export class PaymentComponent {}
+export class PaymentComponent {
+  constructor(private router: Router) {
+    console.log("Cons");
+    
+  }
+
+  proceedToPay() {
+    console.log('not navigated');
+
+    this.router.navigate(['/receipt']);
+    console.log('navigated');
+  }
+}

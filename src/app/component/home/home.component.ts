@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
-  selector: 'app-home' ,
+  selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
@@ -36,19 +36,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.homeService.getAllBooks();
     this.productService.fetchdata().subscribe({
       next: (products: any) => {
         let productDetails: Product[] = products.data;
         console.log(products);
-
         this.productDetails = productDetails;
-        // this.productDetail = productDetails[0];
       },
-
       error: (err) => console.log('error', err),
-      complete: () => console.log('completed'),
+      complete: () => console.log('productcompleted'),
     });
+    console.log('started');
+
     this.cartService.fetchdata(this.user?.id).subscribe({
       next: (carts: any) => {
         this.stoargeService.setCart(carts.data);
@@ -62,6 +60,7 @@ export class HomeComponent implements OnInit {
       complete: () => console.log('completed'),
     });
   }
+
   addToCart(productId: number): void {
     console.log(productId);
 
@@ -75,7 +74,7 @@ export class HomeComponent implements OnInit {
       (acc, cart) => acc + cart.count * cart.price,
       0
     );
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
   onDelete(deleteid: number, productId: number): void {
@@ -109,5 +108,11 @@ export class HomeComponent implements OnInit {
         .subscribe((response) => console.log(response));
     }
   }
-  
+  proceedToPay() {
+    // this.showLottie = true;
+    this.router.navigate(['/payment']);
+    // setTimeout(() => {
+    //   this.router.navigate(['/payment']);
+    // }, 1000);
+  }
 }

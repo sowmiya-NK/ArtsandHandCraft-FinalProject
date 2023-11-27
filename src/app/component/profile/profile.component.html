@@ -1,5 +1,5 @@
-<div class="page-content page-container" id="page-content"  *ngFor="let u of userDetails">
-  <div class="padding">
+ <div class="page-content page-container mt-5" id="page-content"  >
+  <div class="padding" *ngFor="let u of userprofile.addressList">
     <div class="row container d-flex justify-content-center" >
       <div class="col-xl-6 col-md-12">
         <div class="card user-card-full" >
@@ -13,7 +13,7 @@
                     alt="User-Profile-Image"
                   />
                 </div>
-                <h6 class="f-w-600">{{u.username}}</h6>
+                <h6 class="f-w-600">{{userprofile.username}}</h6>
                 <p>user</p>
                 <i
                   class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
@@ -48,4 +48,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
+

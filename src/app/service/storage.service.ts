@@ -40,4 +40,7 @@ export class StorageService {
   public getCart(): Cart {
     return JSON.parse(localStorage.getItem('cart') || '{}');
   }
+  public removeCart():void{
+    localStorage.removeItem('cart');
+  }
 }
