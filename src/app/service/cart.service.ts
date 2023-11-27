@@ -73,7 +73,15 @@ export class CartService {
         ],
       });
     }
-    this.orderService.createOrder(this.orders);
+    this.orderService.createOrder(this.orders).subscribe({
+      next: (response: Order[]) => {
+        console.log(response);
+
+        this.orders = response;
+      },
+      complete: () => console.log('deleted'),
+      error: () => console.log('error'),
+    });
     this.storageService.setOrder(this.orders);
     return this.orders;
   }
