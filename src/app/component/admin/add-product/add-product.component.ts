@@ -10,7 +10,15 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
-  constructor(private productService: ProductService,private router:ActivatedRoute) {}
+  productName: String = '';
+  description: String = '';
+  price: number = 0;
+  productDetails: Product[] = [];
+
+  constructor(
+    private productService: ProductService,
+    private router: ActivatedRoute
+  ) {}
 
   addProduct(products: {
     product_name: string;
@@ -29,13 +37,27 @@ export class AddProductComponent {
       .subscribe((response) => console.log(response));
   }
 
-  id:number=0;
-  ngOnInit():void{
-    this.router.queryParams.subscribe((param)=>{
+  id: number = 0;
+  ngOnInit(): void {
+    this.router.queryParams.subscribe((param) => {
       this.id = param['id'];
-      console.log(this.id);
-      
-      
-    })
+      this.productService.fetchdata().subscribe({
+        next: (products: any) => {
+          let productDetails: Product[] = products.data;
+          console.log(productDetails);
+          this.productDetails = productDetails;
+
+          // this.productDetail = productDetails[0];
+        },
+      });
+    });
+  }
+  edit() {
+    let newproduct: Product = this.productDetails.find(
+      (product) => product.id === this.id
+    )!;
+    this.productName = newproduct.title;
+    this.description = newproduct.description;
+    this.price = newproduct.price;
   }
 }

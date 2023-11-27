@@ -26,7 +26,7 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>('${urlEndpoint.baseUrl}/artWork/${id}');
   }
-  editProduct(id:number):Observable<Product>{
-    return this.http.put<Product>('${urlEndpoint.baseUrl}/admin/artWork/${id}')
-  }
+  // editProduct(id:number):Observable<Product>{
+  //   return this.http.put<Product>('${urlEndpoint.baseUrl}/admin/artWork/${id}')
+  // }
 }

@@ -36,4 +36,6 @@ export class CategoryviewComponent implements OnInit {
       error: () => console.log('error'),
     });
   }
+
+ 
 }

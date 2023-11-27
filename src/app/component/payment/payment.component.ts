@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,25 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent {
-  // paymentForm: FormGroup;
+  // paymentForm!: FormGroup;
 
-  // constructor(private fb: FormBuilder) { }
-
-  // ngOnInit(): void {
-  //   this.paymentForm = this.fb.group({
-  //     cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
-  //     expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
-  //     cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
-  //   });
+  // constructor(private fb: FormGroup) {
+  //   // this.createForm();
   // }
 
-  // submitPaymentForm() {
+  // // createForm() {
+  // //   this.paymentForm = this.fb.group({
+  // //     cardNumber: ['', [Validators.required, Validators.pattern('[0-9]{16}')]],
+  // //     cardHolder: ['', [Validators.required]],
+  // //     expirationDate: ['', [Validators.required, Validators.pattern('(0[1-9]|1[0-2])/(1[9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])')]],
+  // //     cvv: ['', [Validators.required, Validators.pattern('[0-9]{3,4}')]],
+  // //   });
+  // }
+
+  // onSubmit() {
   //   if (this.paymentForm.valid) {
-  //     // Process the payment or perform other actions
-  //     console.log('Payment form submitted successfully!');
+  //     console.log('Form submitted:', this.paymentForm.value);
+  //     // Perform the payment processing logic here
   //   } else {
-  //     // Handle form validation errors
-  //     console.log('Invalid form. Please check the errors.');
+  //     console.log('Form is invalid. Please check the fields.');
   //   }
   // }
+  
+  
 }

@@ -54,7 +54,6 @@ export function playerFactory() {
     ProfileComponent,
     StatsuChekingComponent,
     ReceiptPageComponent,
-    
   ],
   imports: [
     BrowserModule,

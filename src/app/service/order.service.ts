@@ -15,4 +15,8 @@ export class OrderService {
   getAllOrderDetails(): Observable<Order[]> {
     return this.http.get<Order[]>(`${urlEndpoint.baseUrl}/admin/order/all`);
   }
+
+  createOrder(orders:Order[]):Observable<Order[]>{
+    return this.http.post<Order[]>(`${urlEndpoint.baseUrl}/order`,orders)
+  }
 }

@@ -9,6 +9,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { Cart } from 'src/app/model/cart';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/service/order.service';
+import { Order } from 'src/app/model/order';
 
 @Component({
   selector: 'app-home',
@@ -114,5 +115,9 @@ export class HomeComponent implements OnInit {
     // setTimeout(() => {
     //   this.router.navigate(['/payment']);
     // }, 1000);
+  }
+  proceedToOrder() {
+    let cartItems: Order[] = this.cartService.checkOut();
+    this.router.navigate(['/order']);
   }
 }

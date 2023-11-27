@@ -15,6 +15,7 @@
           class="form-control input-md"
           required
           type="text"
+          [(ngModel)]="productName"
           ngModel
         />
       </div>
@@ -30,6 +31,7 @@
           class="form-control"
           id="product_description"
           name="product_description"
+          [(ngModel)]="description"
           ngModel
         ></textarea>
       </div>
@@ -59,6 +61,7 @@
           class="form-control input-md"
           required=""
           type="number"
+          [(ngModel)]="price"
           ngModel
         />
       </div>

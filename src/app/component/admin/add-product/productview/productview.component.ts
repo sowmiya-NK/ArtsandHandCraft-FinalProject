@@ -47,8 +47,9 @@ export class ProductviewComponent implements OnInit {
     });
   }
   onEdit(editId:number){
-    
+  
+   
     this.router.navigate(['/admin/addproduct'],{queryParams:{'id':editId}})
-    
-  }
+  
+}
 }

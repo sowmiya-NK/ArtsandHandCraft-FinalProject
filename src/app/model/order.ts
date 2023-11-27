@@ -1,16 +1,13 @@
 export interface Order {
   id: number;
-  date: Date;
-  title: string; 
-  Total: number;
-  username: string;
-  createdAt:Date;
+  total: number;
+  username: String;
+  createdAt?: Date;
   orderedArtWorkList: {
-    id: number;
-    title: string;
-    description: string;
+    id?: number;
+    title: String;
+    description?: string;
     price: number;
-    count: number;
-   
+    count?: number;
   }[];
 }
