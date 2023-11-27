@@ -54,35 +54,4 @@ export class CartService {
 
     return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
-  cartItem: Cart[] = this.storageService.getCart()!;
-  orders: Order[] = [];
-
-  checkOut(): Order[] {
-    for (let item of this.cartItem) {
-      this.orders.push({
-        id: 0,
-        total: item.total,
-        username: this.storageService.getLoggedInUser().username,
-        orderedArtWorkList: [
-          {
-            id: item.artworkId,
-            title: item.title,
-            price: item.price,
-            count: item.count,
-          },
-        ],
-      });
-    }
-    this.orderService.createOrder(this.orders).subscribe({
-      next: (response: Order[]) => {
-        console.log(response);
-
-        this.orders = response;
-      },
-      complete: () => console.log('deleted'),
-      error: () => console.log('error'),
-    });
-    this.storageService.setOrder(this.orders);
-    return this.orders;
-  }
 }

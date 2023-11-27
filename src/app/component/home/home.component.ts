@@ -109,15 +109,41 @@ export class HomeComponent implements OnInit {
         .subscribe((response) => console.log(response));
     }
   }
+
   proceedToPay() {
-    // this.showLottie = true;
     this.router.navigate(['/payment']);
-    // setTimeout(() => {
-    //   this.router.navigate(['/payment']);
-    // }, 1000);
   }
-  proceedToOrder() {
-    let cartItems: Order[] = this.cartService.checkOut();
-    this.router.navigate(['/order']);
+
+  cartItem: Cart[] = this.stoargeService.getCart()!;
+  orders: Order[] = [];
+
+  checkOut(): Order[] {
+    for (let item of this.cartItem) {
+      this.orders.push({
+        id: 0,
+        total: item.total,
+        username: this.stoargeService.getLoggedInUser().username,
+        orderedArtWorkList: [
+          {
+            id: item.artworkId,
+            title: item.title,
+            price: item.price,
+            count: item.count,
+          },
+        ],
+      });
+    }
+    //console.log('order', this.orders);
+
+    this.orderService.createOrder(this.orders).subscribe({
+      next: (response: Order[]) => {
+        console.log('response', response);
+        this.orders = response;
+      },
+      complete: () => console.log('deleted'),
+      error: () => console.log('error'),
+    });
+    this.stoargeService.setOrder(this.orders);
+    return this.orders;
   }
 }
