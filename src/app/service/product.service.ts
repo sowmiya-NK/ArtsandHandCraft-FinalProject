@@ -23,7 +23,7 @@ export class ProductService {
     if (editId === 0) {
       return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
     } else {
-      return this.http.put(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+      return this.http.put(`${urlEndpoint.baseUrl}/admin/artWork/${editId}`, products);
     }
   }
 

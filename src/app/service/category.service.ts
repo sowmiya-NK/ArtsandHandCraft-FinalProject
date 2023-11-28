@@ -20,17 +20,23 @@ export class CategoryService {
     );
   }
 
-  addCategory(categories: Category): Observable<Category[]> {
-    return this.http.post<Category[]>(
-      `${urlEndpoint.baseUrl}/admin/category`,
-      categories
-    );
+  addCategory(categories: Category, editId: number): Observable<Category[]> {
+    if (editId === 0) {
+      return this.http.post<Category[]>(
+        `${urlEndpoint.baseUrl}/admin/category`,
+        categories
+      );
+    } else {
+      return this.http.put<Category[]>(
+        `${urlEndpoint.baseUrl}/admin/category/${editId}`,
+        categories
+      );
+    }
   }
 
-  putCategory(category: Category): Observable<Category[]> {
-    return this.http.put<Category[]>(
-      `${urlEndpoint.baseUrl}/admin/category`,
-      category
+  findCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(
+      `${urlEndpoint.baseUrl}/admin/category/${id}`
     );
   }
 }

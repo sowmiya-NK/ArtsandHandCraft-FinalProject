@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
 
@@ -9,7 +11,10 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class CategoryviewComponent implements OnInit {
   categories: Category[] = [];
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.categoryService.fetchdata().subscribe({
@@ -36,6 +41,7 @@ export class CategoryviewComponent implements OnInit {
       error: () => console.log('error'),
     });
   }
-
- 
+  onEdit(editId: number) {
+    this.router.navigate(['/admin/category'], { queryParams: { id: editId } });
+  }
 }

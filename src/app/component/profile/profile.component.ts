@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppUser } from 'src/app/model/appUser';
 import { Order } from 'src/app/model/order';
 import { UserProfile } from 'src/app/model/user-profile';
+import { AddressService } from 'src/app/service/address.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { UserprofileService } from 'src/app/service/userProfile.service';
 
@@ -12,13 +13,14 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 })
 export class ProfileComponent implements OnInit {
   // userDetails: UserProfile = null;
-  userprofile : UserProfile[] = [];
-  orderDetails:Order[]=[];
+  userprofile: UserProfile[] = [];
+ 
 
   user: AppUser;
   constructor(
     private userProfileService: UserprofileService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private addressService:AddressService
   ) {
     this.user = storageService.getLoggedInUser();
   }
@@ -26,14 +28,19 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getUserById(this.user?.id).subscribe({
       next: (response: any) => {
-        let  profile=response.data;
+        let profile = response.data;
         this.userprofile = [profile];
-        console.log(response);
-        // console.log(this.userprofile.id);
+        console.log(this.userprofile);
       },
 
       error: (err) => console.log('error', err),
       complete: () => console.log('completed'),
     });
+  }
+
+  deleteAddress(deleteId:number){
+    this.addressService.deleteAddress(deleteId).subscribe((response)=>console.log(response)
+    )
+    
   }
 }

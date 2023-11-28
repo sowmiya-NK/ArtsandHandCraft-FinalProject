@@ -28,14 +28,19 @@ export class AddProductComponent {
   }) {
     console.log(products);
     let mappedProduct: Product = {
+      id: this.editId,
       title: products.product_name,
       description: products.product_description,
       price: products.price,
       categoryId: 9,
     };
     this.productService
-      .addProduct(mappedProduct,this.editId)
+      .addProduct(mappedProduct, this.editId)
       .subscribe((response) => console.log(response));
+    this.editId = 0;
+    this.productName = '';
+    this.description = '';
+    this.price = 0;
   }
 
   ngOnInit(): void {
@@ -44,20 +49,15 @@ export class AddProductComponent {
       this.editId = id;
       this.productService.findProductById(id).subscribe({
         next: (products: any) => {
-          
-
           console.log(products.data);
-          console.log('befor',this.productName)
+          console.log('befor', this.productName);
           this.productDetails = products.data;
-          this.productName=products.data.title
-          this.description=products.data.description
-          this.price=products.data.price
-          console.log('after',this.productName)
-
-          
+          this.productName = products.data.title;
+          this.description = products.data.description;
+          this.price = products.data.price;
+          console.log('after', this.productName);
         },
       });
     });
   }
- 
 }

@@ -4,8 +4,10 @@ export interface UserProfile {
   name: String;
   addressList: 
     [{
+      id?:number;
       street: String;
       city: String;
+      state?:string;
       zipcode: String;
     }];
 }

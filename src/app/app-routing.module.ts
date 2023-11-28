@@ -18,6 +18,7 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
 import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
+import { AddressComponent } from './component/address/address.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -33,10 +34,15 @@ const routes: Routes = [
   { path: 'admin/categoryview', component: CategoryviewComponent },
   { path: 'admin/user', component: UserProfileComponent },
   { path: 'admin/order', component: AdminOrderComponent },
-  { path: 'user/profile', component: ProfileComponent, canActivate: [authGuard] },
+  {
+    path: 'user/profile',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+  },
   { path: 'payment', component: PaymentComponent },
   { path: 'statuschecking', component: StatsuChekingComponent },
   { path: 'receipt', component: ReceiptPageComponent },
+  { path: 'user/address', component: AddressComponent },
 ];
 
 @NgModule({

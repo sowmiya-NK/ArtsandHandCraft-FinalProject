@@ -8,10 +8,23 @@ img {
   width: 400px;
   margin-top: 50px;
 }
-h4{
-    color:  palevioletred;
-    font-weight: 2px;
+h4 {
+  color: palevioletred;
+  font-weight: 2px;
 }
-.profile{
-    margin-left: 6px;
+.profile {
+  margin-left: 6px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.card1 {
+  margin-left: 2px;
+  width: 350px;
+  padding: 2px;
+  background-color: rgb(227, 141, 193);
+}
+.btn{
+  background-color: rgb(222, 92, 175);
 }

@@ -28,6 +28,7 @@ import { AdminOrderComponent } from './component/admin/admin-order/admin-order.c
 import { ProfileComponent } from './component/profile/profile.component';
 import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
 import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
+import { AddressComponent } from './component/address/address.component';
 
 export function playerFactory() {
   return player;
@@ -54,6 +55,7 @@ export function playerFactory() {
     ProfileComponent,
     StatsuChekingComponent,
     ReceiptPageComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,
