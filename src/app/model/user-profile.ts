@@ -1,12 +1,11 @@
 export interface UserProfile {
-  id: number;
+  id?: number;
   username: String;
   name: String;
-  addressList: [
-    {
+  addressList: 
+    [{
       street: String;
       city: String;
       zipcode: String;
-    }
-  ];
+    }];
 }

@@ -16,7 +16,12 @@ export class OrderService {
     return this.http.get<Order[]>(`${urlEndpoint.baseUrl}/admin/order/all`);
   }
 
-  createOrder(orders:Order[]):Observable<Order[]>{
-    return this.http.post<Order[]>(`${urlEndpoint.baseUrl}/order`,orders)
+  createOrder(userId:number,artworkId:number,addressId:number):Observable<Order[]>{
+    let orderdata={
+      userId:userId,
+      artWorkId:artworkId,
+      addressId:addressId
+    }
+    return this.http.post<Order[]>(`${urlEndpoint.baseUrl}/order`,orderdata)
   }
 }

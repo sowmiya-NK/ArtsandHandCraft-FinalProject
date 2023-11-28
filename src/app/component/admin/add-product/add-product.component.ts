@@ -14,6 +14,7 @@ export class AddProductComponent {
   description: String = '';
   price: number = 0;
   productDetails: Product[] = [];
+  editId: number = 0;
 
   constructor(
     private productService: ProductService,
@@ -33,31 +34,30 @@ export class AddProductComponent {
       categoryId: 9,
     };
     this.productService
-      .addProduct(mappedProduct)
+      .addProduct(mappedProduct,this.editId)
       .subscribe((response) => console.log(response));
   }
 
-  id: number = 0;
   ngOnInit(): void {
     this.router.queryParams.subscribe((param) => {
-      this.id = param['id'];
-      this.productService.fetchdata().subscribe({
+      let id = param['id'];
+      this.editId = id;
+      this.productService.findProductById(id).subscribe({
         next: (products: any) => {
-          let productDetails: Product[] = products.data;
-          console.log(productDetails);
-          this.productDetails = productDetails;
+          
 
-          // this.productDetail = productDetails[0];
+          console.log(products.data);
+          console.log('befor',this.productName)
+          this.productDetails = products.data;
+          this.productName=products.data.title
+          this.description=products.data.description
+          this.price=products.data.price
+          console.log('after',this.productName)
+
+          
         },
       });
     });
   }
-  edit() {
-    let newproduct: Product = this.productDetails.find(
-      (product) => product.id === this.id
-    )!;
-    this.productName = newproduct.title;
-    this.description = newproduct.description;
-    this.price = newproduct.price;
-  }
+ 
 }

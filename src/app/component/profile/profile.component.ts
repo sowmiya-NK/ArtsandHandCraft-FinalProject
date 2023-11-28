@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppUser } from 'src/app/model/appUser';
+import { Order } from 'src/app/model/order';
 import { UserProfile } from 'src/app/model/user-profile';
 import { StorageService } from 'src/app/service/storage.service';
 import { UserprofileService } from 'src/app/service/userProfile.service';
@@ -11,18 +12,8 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 })
 export class ProfileComponent implements OnInit {
   // userDetails: UserProfile = null;
-  userprofile: UserProfile = {
-    id: 0,
-    username: '',
-    name: '',
-    addressList: [
-      {
-        street: '',
-        city: '',
-        zipcode: '',
-      },
-    ],
-  };
+  userprofile : UserProfile[] = [];
+  orderDetails:Order[]=[];
 
   user: AppUser;
   constructor(
@@ -35,9 +26,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getUserById(this.user?.id).subscribe({
       next: (response: any) => {
-        this.userprofile = response.data;
+        let  profile=response.data;
+        this.userprofile = [profile];
         console.log(response);
-        console.log(this.userprofile.id);
+        // console.log(this.userprofile.id);
       },
 
       error: (err) => console.log('error', err),

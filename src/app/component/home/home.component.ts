@@ -116,6 +116,7 @@ export class HomeComponent implements OnInit {
 
   cartItem: Cart[] = this.stoargeService.getCart()!;
   orders: Order[] = [];
+  addressId: number = 64;
 
   checkOut(): Order[] {
     for (let item of this.cartItem) {
@@ -132,17 +133,20 @@ export class HomeComponent implements OnInit {
           },
         ],
       });
-    }
-    //console.log('order', this.orders);
 
-    this.orderService.createOrder(this.orders).subscribe({
-      next: (response: Order[]) => {
-        console.log('response', response);
-        this.orders = response;
-      },
-      complete: () => console.log('deleted'),
-      error: () => console.log('error'),
-    });
+      //console.log('order', this.orders);
+
+      this.orderService
+        .createOrder(item.userId, item.artworkId, this.addressId)
+        .subscribe({
+          next: (response: Order[]) => {
+            console.log('response', response);
+            this.orders = response;
+          },
+          complete: () => console.log('orderCreated'),
+          error: () => console.log('error'),
+        });
+    }
     this.stoargeService.setOrder(this.orders);
     return this.orders;
   }

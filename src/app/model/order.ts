@@ -3,11 +3,12 @@ export interface Order {
   total: number;
   username: String;
   createdAt?: Date;
+  addressId?:number;
   orderedArtWorkList: {
     id?: number;
     title: String;
     description?: string;
     price: number;
-    count?: number;
+    count: number;
   }[];
 }

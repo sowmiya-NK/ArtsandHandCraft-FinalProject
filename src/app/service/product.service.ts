@@ -18,15 +18,21 @@ export class ProductService {
       `${urlEndpoint.baseUrl}/admin/artWork/${id}`
     );
   }
-  
-  addProduct(products: Product): Observable<any> {
-    return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+
+  addProduct(products: Product, editId: number): Observable<any> {
+    if (editId === 0) {
+      return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+    } else {
+      return this.http.put(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+    }
   }
 
   getProductById(id: number): Observable<Product> {
-    return this.http.get<Product>('${urlEndpoint.baseUrl}/artWork/${id}');
+    return this.http.get<Product>(`${urlEndpoint.baseUrl}/artWork/${id}`);
   }
-  // editProduct(id:number):Observable<Product>{
-  //   return this.http.put<Product>('${urlEndpoint.baseUrl}/admin/artWork/${id}')
-  // }
+  findProductById(editId: number): Observable<Product> {
+    return this.http.get<Product>(
+      `${urlEndpoint.baseUrl}/admin/artWork/${editId}`
+    );
+  }
 }
