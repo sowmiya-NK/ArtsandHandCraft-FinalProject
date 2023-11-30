@@ -1,24 +1,35 @@
-<div class="container">
-  <div class="row">
-    <div class="col-5">user</div>
-    <table class="table table-striped">
+<div class="container mt-3">
+  <div class="row m-2 my-4">
+    <div class="fs-4 mb-4">USER DETAILS</div>
+    <div class="row">
+      <div class="col-4 card" *ngFor="let user of profiles">
+        <p style="color: red">user-Id: {{ user.id }}</p>
+        <p>username: {{ user.username }}</p>
+        <p>name: {{ user.name }}</p>
+        <p *ngFor="let address of user.addressList">
+          Address:{{ address.city }}
+        </p>
+        <p>createdAt:{{}}</p>
+      </div>
+    </div>
+    <!-- <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">userId</th>
-          <th scope="col">email</th>
-          <th scope="col">username</th>
-          <th scope="col">address</th>
+          <th scope="col" class="fw-semibold">userId</th>
+          <th scope="col" lass="fw-semibold w-55">email</th>
+          <th scope="col" lass="fw-semibold w-25">username</th>
+          <th scope="col" lass="fw-semibold w-25">Address</th>
         </tr>
       </thead>
-      <tbody *ngFor="let user of profiles">
-        <tr>
+      <tbody>
+        <tr *ngFor="let user of profiles" >
           <th>{{ user.id }}</th>
           <td>{{ user.username }}</td>
           <td>{{ user.name }}</td>
-          <td *ngFor="let address of user.addressList">{{address.city}}</td>
+           <td *ngFor="let address of user.addressList">{{ address.city }}</td> 
         </tr>
       </tbody>
-    </table>
-    <a routerLink="/admin"><button type="submit">Back</button></a>
+    </table> -->
+    <!-- <a routerLink="/admin"><button type="submit">Back</button></a> -->
   </div>
 </div>

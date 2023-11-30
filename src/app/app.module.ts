@@ -29,6 +29,8 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
 import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
 import { AddressComponent } from './component/address/address.component';
+import { ContactPageComponent } from './component/contact-page/contact-page.component';
+('./app.component');
 
 export function playerFactory() {
   return player;
@@ -56,6 +58,7 @@ export function playerFactory() {
     StatsuChekingComponent,
     ReceiptPageComponent,
     AddressComponent,
+    ContactPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [

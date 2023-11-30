@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppUser } from 'src/app/model/appUser';
 import { Cart } from 'src/app/model/cart';
+import { Order } from 'src/app/model/order';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 import { OrderService } from 'src/app/service/order.service';
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
   totalValue: number = 0;
   selectedItem: string = '';
   total: number = 0;
-
+  
   itemCount: number = 1;
 
   constructor(
@@ -84,13 +85,43 @@ export class CartComponent implements OnInit {
     }
   }
 
-  // proceedToOrder(): void {
-  //   // Pass cart data to the order page using queryParams
-  //   this.router.navigate(['/order'], {
-  //     queryParams: {
-  //       carts: JSON.stringify(this.carts),
-  //       totalValue: this.totalValue,
-  //     },
-  //   });
-  // }
+  cartItem: Cart[] = this.stoargeService.getCart()!;
+  orders: Order[] = [];
+  addressId: number = 118
+  
+  
+
+  checkOut(): Order[] {
+    console.log('addressid',this.addressId);
+    for (let item of this.cartItem) {
+      this.orders.push({
+        id: 0,
+        total: item.total,
+        username: this.stoargeService.getLoggedInUser().username,
+        orderedArtWorkList: [
+          {
+            id: item.artworkId,
+            title: item.title,
+            price: item.price,
+            count: item.count,
+          },
+        ],
+      });
+
+      //console.log('order', this.orders);
+
+      this.orderService
+        .createOrder(item.userId, item.artworkId, this.addressId)
+        .subscribe({
+          next: (response: Order[]) => {
+            console.log('response', response);
+            this.orders = response;
+          },
+          complete: () => console.log('orderCreated'),
+          error: () => console.log('error'),
+        });
+    }
+    this.stoargeService.setOrder(this.orders);
+    return this.orders;
+  }
 }

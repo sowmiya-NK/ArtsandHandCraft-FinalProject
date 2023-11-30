@@ -19,6 +19,7 @@ import { PaymentComponent } from './component/payment/payment.component';
 import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
 import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
 import { AddressComponent } from './component/address/address.component';
+import { ContactPageComponent } from './component/contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'statuschecking', component: StatsuChekingComponent },
   { path: 'receipt', component: ReceiptPageComponent },
   { path: 'user/address', component: AddressComponent },
+  { path: 'contactPage', component: ContactPageComponent },
 ];
 
 @NgModule({

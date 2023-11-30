@@ -1,13 +1,14 @@
 export interface UserProfile {
   id?: number;
-  username: String;
-  name: String;
+  username: string;
+  name:string;
+  createdAt:Date;
   addressList: 
     [{
       id?:number;
-      street: String;
-      city: String;
+      street: string;
+      city: string;
       state?:string;
-      zipcode: String;
+      zipcode: string;
     }];
 }

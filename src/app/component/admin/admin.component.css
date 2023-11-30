@@ -10,22 +10,24 @@ body {
   display: flex;
 }
 
+
+
+
 .sidebar {
   position: sticky;
-  top: 0;
+  top: 30px;
   left: 0;
-  background-color:#ee94c1;
+  background-color: #ee94c1;
   bottom: 0;
-  width: 90px;
+  width: 60px;
   height: 100vh;
-  /* padding: 0 2rem; */
+  padding: 0;
   overflow: hidden;
   transition: all 0.5s linear;
- 
 }
 .logo {
   height: 90px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .menu {
   height: 88%;
@@ -45,7 +47,7 @@ body {
 }
 .menu a {
   color: rgb(7, 7, 77);
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -56,7 +58,7 @@ body {
 }
 
 .menu a i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .sidebar:hover {
@@ -66,19 +68,18 @@ body {
 }
 
 .main-content {
-  
   height: 140px;
   width: 900px;
+  top:0
 }
 img {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-right: 0.5rem;
 }
 header {
-  
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -116,7 +117,7 @@ header {
   display: flex;
   align-items: center;
 }
-.user--wrapper small{
+.user--wrapper small {
   display: inline-block;
   color: grey;
 }

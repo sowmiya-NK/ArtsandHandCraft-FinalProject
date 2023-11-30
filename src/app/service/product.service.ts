@@ -10,7 +10,7 @@ import { urlEndpoint } from '../utils/constant';
 export class ProductService {
   constructor(private http: HttpClient) {}
   fetchdata(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${urlEndpoint.baseUrl}/artWork/all`);
+    return this.http.get<Product[]>(`${urlEndpoint.baseUrl}/admin/artWork/all`);
   }
 
   deleteProduct(id: number): Observable<Product[]> {
@@ -19,8 +19,12 @@ export class ProductService {
     );
   }
 
-  addProduct(products: Product, editId: number): Observable<any> {
+  addProduct(products: FormData, editId: number): Observable<any> {
+    console.log(editId);
+    
     if (editId === 0) {
+      console.log('post');
+      
       return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
     } else {
       return this.http.put(`${urlEndpoint.baseUrl}/admin/artWork/${editId}`, products);

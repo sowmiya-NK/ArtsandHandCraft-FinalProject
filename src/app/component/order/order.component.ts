@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class OrderComponent implements OnInit {
   orderDetails: Order[] = [];
+  date: Date;
   user: AppUser;
   selectedItem: string | null = '';
   totalValue: number = 0;
@@ -24,6 +25,7 @@ export class OrderComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.user = storageService.getLoggedInUser();
+    this.date = new Date();
   }
 
   ngOnInit(): void {
@@ -36,11 +38,7 @@ export class OrderComponent implements OnInit {
       error: () => console.log('error'),
       complete: () => console.log('completed'),
     });
-    
   }
   currentStep: string = 'address';
   completedSteps: string[] = [];
-
- 
-
-  }
+}

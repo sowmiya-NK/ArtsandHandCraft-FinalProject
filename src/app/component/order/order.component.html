@@ -1,45 +1,71 @@
-<div class="container mt-5">
+ <div class="container " style="margin-top: 100px;">
   <p *ngIf="orderDetails.length === 0" class="center-content">
     Oops! There are no orders placed! <br />
     <img
       src="https://static.wixstatic.com/media/7742ef_dfe620d0354b471b8620fcb2c3a46e62~mv2.gif"
     />
     <button class="btn btn-dark mt-2" routerLink="/">Shop Here</button>
-</p>
+  </p>
 
-  <table
-    class="table table-hover shadow bg-body-tertiary rounded"
+  <div
+    class="container-fluid my-5 d-sm-flex justify-content-center"
     *ngIf="orderDetails.length !== 0"
   >
-    <thead>
-      <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Products</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-      </tr>
-    </thead>
-    <tbody id="cartitems" *ngFor="let item of orderDetails">
-      <tr
-        class="shadow bg-body-tertiary rounded"
-        *ngFor="let artwrok of item.orderedArtWorkList"
-      >
-        <td class="col">{{ item.id }}</td>
-        <td class="col">{{artwrok.title}}</td>
-        <td class="col">{{ item.createdAt }}</td>
-        <td class="col">{{ artwrok.title }}</td>
-        <td class="col">{{ artwrok.count }}</td>
-        <td class="col">₹ {{ artwrok.price*artwrok.count}}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3"></td>
-        <td class="fw-bold">Total:</td>
-        <td class="fw-bold">₹ 1800</td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+    <div class="card px-2 w-100" *ngFor="let item of orderDetails">
+      <div class="card-header bg-white">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p class="text-muted">
+              Order ID
+              <span class="font-weight-bold text-dark">{{ item.id }}</span>
+            </p>
+            <p class="text-muted">
+              Place On
+              <span class="font-weight-bold text-dark">{{
+                item.createdAt | date:'mediumDate'
+              }}</span>
+            </p>
+          </div>
+          <div class="flex-col my-auto"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row col-12">
+          <div class="col-6" *ngFor="let artwrok of item.orderedArtWorkList">
+            <p class="text-success fs-4">Product Details</p>
+            <p>Product:{{ artwrok.title }}</p>
+            <p>Quantity:{{ artwrok.count }}</p>
+            <p style="color: red">₹Price:{{ artwrok.price * artwrok.count }}</p>
+            <span class="small text-muted"> via (COD) </span>
+
+            <p class="text-muted">
+              Tracking Status on:
+              <span class="Today">{{ date | date : "mediumDate" }}</span>
+            </p>
+            <button type="button" class="btn btn-outline-primary d-flex">
+              Reached Hub,Chennai
+            </button>
+          </div>
+          <div class="col-6">
+            <img
+              class="align-self-center img-fluid"
+              src="https://m.media-amazon.com/images/I/81As0c2fDzS._AC_UL480_FMwebp_QL65_.jpg"
+              style="width:100px; height:150px;margin-top: 10px;"
+              
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row px-3">
+        <div class="col">
+          <ul id="progressbar">
+            <li class="step0 active" id="step1">PLACED</li>
+            <li class="step0 active text-center" id="step2">SHIPPED</li>
+            <li class="step0 text-muted text-right" id="step3">DELIVERED</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -38,16 +38,15 @@
     </div>
     <!-- Select Basic -->
     <div class="form-group">
-      <label class="control-label" for="product_categorie"
+      <label class="control-label" for="product_category"
         >PRODUCT CATEGORY</label
       >
-      <select name="dropdown" id="">
-        <option></option>
-        <option>abc</option>
-        <option>abc</option>
-        <option>abc</option>
-        <option>abc</option>
-        <option>abc</option>
+      <select
+        name="dropdown"
+        id="product_category"
+        [(ngModel)]="selectedCategoryId"
+      >
+        <option *ngFor="let c of category" [value]="c.id">{{ c.id }}</option>
       </select>
     </div>
 
@@ -62,15 +61,15 @@
           required=""
           type="number"
           [(ngModel)]="price"
-          ngModel
         />
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group row btn">
       <div class="button">
-        <a routerLink="/admin/product"> <button>Back</button></a>
-        <button type="submit">Add product</button>
+        <a routerLink="/admin/product">
+          <button type="submit ">Add product</button>
+        </a>
       </div>
     </div>
   </div>
@@ -79,7 +78,13 @@
   <div class="right-side">
     <div class="image-dummy">
       <i class="fas fa-cloud-upload-alt" style="height: 60px">
-        <input type="file" name="myFile" id="myFile" ngModel />
+        <input
+          type="file"
+          name="myFile"
+          id="myFile"
+          [(ngModel)]="file"
+          (change)="onFileChange($event)"
+        />
       </i>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppUser } from '../model/appUser';
 import { Cart } from '../model/cart';
 import { Order } from '../model/order';
+import { Address } from '../model/address';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,20 @@ export class StorageService {
   public removeOrder():void{
     localStorage.removeItem('order');
   }
+
+  //set addressdetails
+  public setAddress(address:Address): void {
+    localStorage.setItem('address', JSON.stringify(address));
+  }
+  public getAddress(): Order {
+    return JSON.parse(localStorage.getItem('address') || '{}');
+  }
+  public removeAddress():void{
+    localStorage.removeItem('address');
+  }
+
+
+  //setauth data
   setAuthData(authData: string) {
     localStorage.setItem("authData", authData);
   }

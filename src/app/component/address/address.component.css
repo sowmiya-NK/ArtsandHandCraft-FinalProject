@@ -1,4 +1,18 @@
 .card {
-  padding: 2;
-  margin-left: 70px;
+  /* padding: 2; */
+  margin-left: 170px;
+  margin-top: 90px;
+  width: 750px;
+}
+.header,label{
+ text-align: center;
+ color:black;
+}
+p{
+  color: rgb(10, 7, 8);
+}
+button{
+  background-color: rgb(12, 9, 9);
+  margin-top: 10px;
+  gap: 20px;
 }

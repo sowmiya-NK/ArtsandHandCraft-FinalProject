@@ -11,13 +11,14 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 })
 export class UserProfileComponent implements OnInit {
   profiles: UserProfile[] = [];
+  error: string = '';
 
   constructor(private userProfileService: UserprofileService) {}
   ngOnInit(): void {
     this.userProfileService.fetchdata().subscribe({
-      next: (profile: any) => {
-        let userDetails: UserProfile[] = profile.data;
-        console.log(profile);
+      next: (response: any) => {
+        let userDetails: UserProfile[] = response.data;
+        console.log(response);
 
         this.profiles = userDetails;
       },

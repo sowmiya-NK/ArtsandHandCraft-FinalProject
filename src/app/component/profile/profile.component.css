@@ -3,13 +3,14 @@ img {
   height: 100px;
   width: 100px;
 }
+
 .card {
   margin-left: 300px;
   width: 400px;
-  margin-top: 50px;
+  margin-top: 90px;
 }
 h4 {
-  color: palevioletred;
+  color: black;
   font-weight: 2px;
 }
 .profile {
@@ -20,11 +21,18 @@ a {
   color: black;
 }
 .card1 {
-  margin-left: 2px;
+  margin-left: 5px;
   width: 350px;
   padding: 2px;
-  background-color: rgb(227, 141, 193);
+  background-color: rgb(245, 242, 244);
 }
-.btn{
-  background-color: rgb(222, 92, 175);
+.card1 div {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.btn {
+  color: white;
+  margin-bottom: 10px;
+  width: 300px;
+  background-color: black;
 }

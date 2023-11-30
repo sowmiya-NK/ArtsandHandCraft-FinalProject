@@ -47,19 +47,6 @@ export class HomeComponent implements OnInit {
       complete: () => console.log('productcompleted'),
     });
     console.log('started');
-
-    this.cartService.fetchdata(this.user?.id).subscribe({
-      next: (carts: any) => {
-        this.stoargeService.setCart(carts.data);
-        let cartDetails: Cart[] = carts.data;
-        console.log(carts);
-        this.carts = cartDetails;
-        this.calculateTotalValue();
-      },
-
-      error: () => console.log('error'),
-      complete: () => console.log('completed'),
-    });
   }
 
   addToCart(productId: number): void {
@@ -69,85 +56,5 @@ export class HomeComponent implements OnInit {
       .addToCart(this.stoargeService.getLoggedInUser()?.id, productId)
       .subscribe((Response) => console.log(Response));
     error: () => console.log('product not added in cart');
-  }
-  calculateTotalValue(): void {
-    this.totalValue = this.carts.reduce(
-      (acc, cart) => acc + cart.count * cart.price,
-      0
-    );
-    // this.ngOnInit();
-  }
-
-  onDelete(deleteid: number, productId: number): void {
-    console.log(deleteid, productId);
-
-    this.cartService.deleteCart(deleteid, productId).subscribe({
-      next: (cart: Cart[]) => {
-        this.carts = cart;
-        console.log(cart);
-      },
-      complete: () => console.log('deleted'),
-      error: () => console.log('error'),
-    });
-    this.ngOnInit();
-  }
-
-  increamentCount(cart: Cart) {
-    //add product only 3
-    if (cart.count != 3) {
-      cart.count += 1;
-      this.cartService
-        .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
-        .subscribe((response) => console.log(response));
-    }
-  }
-  decrementCount(cart: Cart) {
-    if (cart.count != 1) {
-      cart.count -= 1;
-      this.cartService
-        .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
-        .subscribe((response) => console.log(response));
-    }
-  }
-
-  proceedToPay() {
-    this.router.navigate(['/payment']);
-  }
-
-  cartItem: Cart[] = this.stoargeService.getCart()!;
-  orders: Order[] = [];
-  addressId: number = 64;
-
-  checkOut(): Order[] {
-    for (let item of this.cartItem) {
-      this.orders.push({
-        id: 0,
-        total: item.total,
-        username: this.stoargeService.getLoggedInUser().username,
-        orderedArtWorkList: [
-          {
-            id: item.artworkId,
-            title: item.title,
-            price: item.price,
-            count: item.count,
-          },
-        ],
-      });
-
-      //console.log('order', this.orders);
-
-      this.orderService
-        .createOrder(item.userId, item.artworkId, this.addressId)
-        .subscribe({
-          next: (response: Order[]) => {
-            console.log('response', response);
-            this.orders = response;
-          },
-          complete: () => console.log('orderCreated'),
-          error: () => console.log('error'),
-        });
-    }
-    this.stoargeService.setOrder(this.orders);
-    return this.orders;
   }
 }

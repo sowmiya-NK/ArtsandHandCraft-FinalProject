@@ -10,15 +10,15 @@ export class NavbarComponent implements OnInit {
   cartItem: number = 0;
   constructor(private storageService: StorageService) {}
   ngOnInit(): void {
-    this.cartItemFunc();
+    // this.cartItemFunc();
   }
-  cartItemFunc() {
-    let cartItems = this.storageService.getCart();
-    if (cartItems != null) {
-      // this.cartItem = cartItems.length;
-      if(this.storageService.removeLoggedInUser === null)
-      this.cartItem=0;
+  // cartItemFunc() {
+  //   let cartItems = this.storageService.getCart();
+  //   if (cartItems != null) {
+  //     // this.cartItem = cartItems.length;
+  //     if(this.storageService.removeLoggedInUser === null)
+  //     this.cartItem=0;
 
-    }
-  }
+  //   }
+  // }
 }

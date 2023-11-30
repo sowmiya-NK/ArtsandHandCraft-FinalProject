@@ -1,65 +1,74 @@
-<p class="mt-5" style="align-items: center">Payment Process</p>
+<div class="card" >
+  
+ 
+    <div *ngFor="let c of cartDetails" >
+      <p>orderId:</p>
+      <p>username:</p>
+    </div>
+    <form class="was-validated"></form> 
+    <div class="form-check mb-3">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="validationFormCheck1"
+        required
+      />
+      <label class="form-check-label" for="validationFormCheck1"
+        >Check this checkbox</label
+      >
+      <div class="invalid-feedback">Example invalid feedback text</div>
+    </div>
 
-<!-- <div class="container">
-  <div class="card col-6">
-    <h1 style="align-items: center">Card Details</h1>
-    <form>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Account Holder Name" />
-        <label for="cardHolderName">Account Holder Name</label>
-      </div>
-      <div class="form-group">
-        
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Password"
-        />
-        <label for="exampleInputPassword1">Password</label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-</div> -->
+    <div class="form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="validationFormCheck2"
+        name="radio-stacked"
+        required
+      />
+      <label class="form-check-label" for="validationFormCheck2"
+        >Toggle this radio</label
+      >
+    </div>
+    <div class="form-check mb-3">
+      <input
+        type="radio"
+        class="form-check-input"
+        id="validationFormCheck3"
+        name="radio-stacked"
+        required
+      />
+      <label class="form-check-label" for="validationFormCheck3"
+        >Or toggle this other radio</label
+      >
+      <div class="invalid-feedback">More example invalid feedback text</div>
+    </div>
 
-<!-- <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="cardNumber">Card Number:</label>
-      <input type="text" id="cardNumber" formControlName="cardNumber" />
-      <div *ngIf="paymentForm.get('cardNumber').hasError('pattern') && paymentForm.get('cardNumber').touched">
-        Invalid card number format.
-      </div>
+    <div class="mb-3">
+      <select class="form-select" required aria-label="select example">
+        <option value="">Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <div class="invalid-feedback">Example invalid select feedback</div>
     </div>
-  
-    <div>
-      <label for="cardHolder">Card Holder:</label>
-      <input type="text" id="cardHolder" formControlName="cardHolder" />
-      <div *ngIf="paymentForm.get('cardHolder').hasError('required') && paymentForm.get('cardHolder').touched">
-        Card holder is required.
-      </div>
+
+    <div class="mb-3">
+      <input
+        type="file"
+        class="form-control"
+        aria-label="file example"
+        required
+      />
+      <div class="invalid-feedback">Example invalid form file feedback</div>
     </div>
-  
-    <div>
-      <label for="expirationDate">Expiration Date (MM/DD):</label>
-      <input type="text" id="expirationDate" formControlName="expirationDate" />
-      <div *ngIf="paymentForm.get('expirationDate').hasError('pattern') && paymentForm.get('expirationDate').touched">
-        Invalid expiration date format (MM/DD).
-      </div>
+
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit" disabled>
+        Submit form
+      </button>
     </div>
-  
-    <div>
-      <label for="cvv">CVV:</label>
-      <input type="text" id="cvv" formControlName="cvv" />
-      <div *ngIf="paymentForm.get('cvv').hasError('pattern') && paymentForm.get('cvv').touched">
-        Invalid CVV format (3 or 4 digits).
-      </div>
-    </div>
-  
-    <button type="submit" [disabled]="!paymentForm.valid">Submit Payment</button>
-  </form>
-   -->
+ 
+</div>

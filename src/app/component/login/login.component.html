@@ -1,15 +1,12 @@
-<section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-6 w-25 h-100">
-        <ng-lottie [options]="options"></ng-lottie>
-      </div>
+<section class="vh-100 mt-5 ">
+  <div class="container py-5  loginPage ">
+    <div class="row d-flex align-items-center justify-content-center h-100  ">
       <div class="col-6">
         <h2 class="display-4 heading">Login</h2>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <!-- Username input -->
           <div class="form-outline mb-3">
-            <label class="form-label " for="username">Username</label>
+            <label class="form-label" for="username">Username</label>
             <input
               type="text"
               class="form-control"
@@ -59,20 +56,14 @@
 
           <div class="d-flex align-items-center mb-4">
             <span>Not registered?</span>
-            <a
-              routerLink="/register"
-              class="heading text-decoration-none px-2"
+            <a routerLink="/register" class="heading text-decoration-none px-2"
               >Register here</a
             >
           </div>
 
           <!-- Submit button -->
           <div class="d-grid gap-2">
-            <button
-              type="submit"
-              class=" heading"
-              [disabled]="!loginForm.valid"
-            >
+            <button type="submit" class="heading" [disabled]="!loginForm.valid" style="color: white;">
               Login
             </button>
           </div>

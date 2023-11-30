@@ -6,7 +6,7 @@
   <div class="form-group">
     <p>ADD CATEGORY</p>
 
-    <div class="form-group" >
+    <div class="form-group">
       <label class="control-label"> CATEGORY NAME</label>
 
       <input
@@ -18,7 +18,9 @@
         [(ngModel)]="categoryName"
       />
     </div>
-    <a routerLink="/admin/categoryview"> <button>Back</button></a>
-    <button type="submit">Add Category</button>
+
+    <a routerLink="/admin/categoryview"
+      ><button type="submit">Add Category</button></a
+    >
   </div>
 </form>

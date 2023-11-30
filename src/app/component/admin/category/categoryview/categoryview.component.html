@@ -5,7 +5,8 @@
         <tr>
           <th>Category ID</th>
           <th>Category_Name</th>
-          <th>Action</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody *ngFor="let category of categories">
@@ -13,11 +14,13 @@
           <td>{{ category.id }}</td>
           <td>{{ category.title }}</td>
           <td>
-            <button type="submit" (click)="onEdit(category.id!)">
-              Edit
+            <button type="submit" (click)="onEdit(category.id!)" class="btn w-50">
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <button type="submit" (click)="onDelete(category.id)">
-              Delete
+            </td>
+            <td>
+            <button type="submit" (click)="onDelete(category.id)" class="btn w-50">
+              <i class="fa-solid fa-trash"></i>
             </button>
           </td>
         </tr>

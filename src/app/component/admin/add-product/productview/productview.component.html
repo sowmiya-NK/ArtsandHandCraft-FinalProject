@@ -9,7 +9,8 @@
           <th>category</th>
           <th>price</th>
           <th>image</th>
-          <th>Action</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody *ngFor="let product of productDetails">
@@ -19,9 +20,26 @@
           <td>{{ product.description }}</td>
           <td>{{ product.categoryId }}</td>
           <td>{{ product.price }}</td>
-          <td>image</td>
-          <td><button (click)="onDelete(product.id!)">Delete</button></td>
-          <td><button (click)="onEdit(product.id!)">Edit</button></td>
+          <td>
+            <img
+              src="{{
+                'http://localhost:8080/api/downloadFile/' +
+                  product.id
+              }}"
+              alt=""
+              style="height: 100px; width: 150px"
+            />
+          </td>
+          <td>
+            <button (click)="onEdit(product.id!)" class="btn w-50">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </td>
+          <td>
+            <button (click)="onDelete(product.id!)" class="btn w-50">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

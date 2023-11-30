@@ -17,9 +17,11 @@ export class CartService {
     private storageService: StorageService,
     private orderService: OrderService
   ) {}
+
   fetchdata(userId: number): Observable<Cart[]> {
     return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/${userId}`);
   }
+
   deleteCart(id: number, productId: number): Observable<Cart[]> {
     return this.http.delete<Cart[]>(
       `${urlEndpoint.baseUrl}/cart/${id}/${productId}`
@@ -53,5 +55,26 @@ export class CartService {
     console.log(requestData);
 
     return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
+  }
+
+  getCartCount() {
+    let userId = this.storageService.getLoggedInUser();
+    let cartArr = this.storageService
+      .getCart()
+      .filter((item: Cart) => item.userId === userId.id);
+    // console.log(userId);
+    // console.log(cartArr);
+    if (cartArr) {
+      let count: number;
+      count = cartArr.reduce((a: number, c: Cart) => {
+        if (c.userId === userId.id) {
+          a += c.count;
+        }
+        return a;
+      }, 0);
+      return count;
+    } else {
+      return 0;
+    }
   }
 }

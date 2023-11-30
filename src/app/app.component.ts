@@ -44,15 +44,13 @@ export class AppComponent implements OnInit {
     
   }
 
-  // isAdmin():boolean{
-  //   return this.authService.isAdmin();
-  // }
+ 
 
   logout(): void {
     this.authService.logout();
   }
-  // getCartCoun(){
-  //   this.cartService.getCartCount();
-  // }
-  
+  getCartCount():number{
+    return  this.cartService.getCartCount();
+
+  }
 }
