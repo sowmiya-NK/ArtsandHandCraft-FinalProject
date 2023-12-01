@@ -4,7 +4,7 @@ import { AppUser } from 'src/app/model/appUser';
 import { Cart } from 'src/app/model/cart';
 import { StorageService } from 'src/app/service/storage.service';
 import { Product } from 'src/app/model/product';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -16,35 +16,46 @@ export class SproductComponent implements OnInit {
   productDetails: Product[] = [];
   quanity: number = 1;
   user: AppUser;
+  productId: number = 0;
+  singleProductDetails:Product[]=[];
 
   constructor(
     private cartService: CartService,
     private storageService: StorageService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: ActivatedRoute
   ) {
     this.user = storageService.getLoggedInUser();
   }
 
   ngOnInit(): void {
-    this.productService.fetchdata().subscribe({
-      next: (products: any) => {
-        let productDetails: Product[] = products.data;
-        console.log(products);
+    this.router.queryParams.subscribe((param) => {
+      let id = param['id'];
+      this.productId = id;
+      console.log(this.productId);
 
-        this.productDetails = productDetails;
-        // this.productDetail = productDetails[0];
-      },
+      this.productService.fetchdata().subscribe({
+        next: (products: any) => {
+          let productDetails: Product[] = products.data;
+          console.log(products);
 
-      error: (err) => console.log('error', err),
-      complete: () => console.log('completed'),
+          this.productDetails = productDetails;
+          // this.productDetail = productDetails[0];
+        },
+
+        error: (err) => console.log('error', err),
+        complete: () => console.log('completed'),
+      });
+
+      this.productService.findProductById(this.productId).subscribe({
+        next: (products: any) => {
+          console.log(products.data);
+          this.singleProductDetails=products.data;
+          console.log(this.singleProductDetails);
+          
+          
+        },
+      });
     });
-  }
-  addToCart(productId: number): void {
-    console.log(productId);
-
-    this.cartService
-      .addToCart(this.user?.id, productId)
-      .subscribe((Response) => console.log(Response));
-    error: () => console.log('product not added in cart');
   }
 }

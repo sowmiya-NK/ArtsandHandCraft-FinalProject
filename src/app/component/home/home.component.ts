@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   totalValue: number = 0;
   selectedItem: string = '';
   total: number = 0;
-
+  showIcons: boolean = false;
   itemCount: number = 1;
 
   constructor(
@@ -56,5 +56,10 @@ export class HomeComponent implements OnInit {
       .addToCart(this.stoargeService.getLoggedInUser()?.id, productId)
       .subscribe((Response) => console.log(Response));
     error: () => console.log('product not added in cart');
+  }
+  viewProducts(id: number) {
+    this.router.navigate(['/sproduct'], {
+      queryParams: { id: id },
+    });
   }
 }

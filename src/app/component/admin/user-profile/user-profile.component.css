@@ -2,4 +2,9 @@
     background-color: aliceblue;
     border-radius: 2%;
     margin-bottom: 3px;
+    padding: 2px;
+    margin-left: 12px;
+}
+.card p{
+    margin-left: 10px;
 }

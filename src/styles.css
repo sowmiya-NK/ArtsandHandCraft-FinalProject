@@ -112,10 +112,10 @@ hr {
   color: #3961b0;
 }
 .loginPage {
-  border: 1px solid #ced4da; /* Set the border color */
+  border: #eff2f5; /* Set the border color */
   padding: 15px;
   border-radius: 10px;
-  width: 50%; /* Set the border radius if needed */
+  width: 45%; /* Set the border radius if needed */
 }
 .center-content {
   display: flex;
@@ -146,9 +146,8 @@ marquee {
   width: 100%;
 }
 .product {
-  margin-left: 30px;
+  margin-left: 1px;
   margin-right: 15px;
-  border: hidden;
 }
 
 .image-content {
@@ -156,17 +155,21 @@ marquee {
   margin-right: 10px;
   margin-top: 15px;
 }
+.image-content:hover {
+  transform: scale(1);
+  z-index: 2;
+}
 /* .image-content img {
   margin-left: 70px;
   margin-right: 50px;
   margin-top: 15px;
 } */
-.image-content img {
+/* .image-content img {
   align-items: center;
   margin-top: 10px;
   margin-left: 10px;
   margin-bottom: 10px;
-}
+} */
 .signin-content {
   text-align: center;
   margin-top: 6px;

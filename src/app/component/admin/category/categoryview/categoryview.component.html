@@ -1,12 +1,22 @@
-<div class="container mt-1">
+<div class="contaciner mt-5">
+  <div class="row">
+    <h4 class="col-8" style="color: rgb(14, 14, 141)">CATEGORY DETAILS</h4>
+    <div class="col-4" style="float: left">
+      <a routerLink="/admin/category">
+        <button type="submit" class="w-25">+Add</button></a
+      >
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
   <div class="row">
     <table class="table">
       <thead>
         <tr>
-          <th>Category ID</th>
-          <th>Category_Name</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th>Categoryid</th>
+          <th>Categoryname</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody *ngFor="let category of categories">
@@ -14,12 +24,19 @@
           <td>{{ category.id }}</td>
           <td>{{ category.title }}</td>
           <td>
-            <button type="submit" (click)="onEdit(category.id!)" class="btn w-50">
+            <button
+              type="submit"
+              (click)="onEdit(category.id!)"
+              class="btn w-25"
+            >
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            </td>
-            <td>
-            <button type="submit" (click)="onDelete(category.id)" class="btn w-50">
+
+            <button
+              type="submit"
+              (click)="onDelete(category.id)"
+              class="btn w-25"
+            >
               <i class="fa-solid fa-trash"></i>
             </button>
           </td>
@@ -28,5 +45,3 @@
     </table>
   </div>
 </div>
-<a routerLink="/admin"> <button>Back</button></a>
-<a routerLink="/admin/category"> <button>Add category</button></a>

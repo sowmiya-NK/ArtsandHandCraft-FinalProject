@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
@@ -12,6 +13,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
+  id: number = 0;
   productName: String = '';
   description: String = '';
   price: number = 0;
@@ -19,8 +21,16 @@ export class AddProductComponent {
   productDetails: Product[] = [];
   editId: number = 0;
   file = '';
-  category:Category[]=[];
-  selectedCategoryId: number=0;
+  category: Category[] = [];
+  selectedCategoryId: number = 0;
+
+  product: Product = {
+    id: 0,
+    title: this.productName,
+    description: this.description,
+    category: this.selectedCategoryId,
+    price: this.price,
+  };
 
   constructor(
     private productService: ProductService,
@@ -28,30 +38,21 @@ export class AddProductComponent {
     private categoryService: CategoryService
   ) {}
 
-  addProduct(products: {
-    product_name: string;
-    product_description: string;
-    price: number;
-  }) {
-    console.log(products);
-    let mappedProduct: Product = {
-      id: 0,
-      title: products.product_name,
-      description: products.product_description,
-      price: products.price,
-      categoryId:this.selectedCategoryId,
-    };
-    console.log(mappedProduct);
+  onCategoryChange() {}
+  addProduct(productForm: NgForm) {
+    console.log(productForm.value);
+
     const formData = new FormData();
     formData.append('image', this.file);
-    formData.append('id', mappedProduct.id.toString());
-    formData.append('title', mappedProduct.title.toString());
-    formData.append('description', mappedProduct.description.toString());
-    formData.append('categoryId', mappedProduct.categoryId.toString());
-    formData.append('price', mappedProduct.price.toString());
+    formData.append('id', productForm.value.id);
+    formData.append('title', productForm.value.title);
+    formData.append('description', productForm.value.description);
+    formData.append('categoryId', productForm.value.category);
+    formData.append('price', productForm.value.price);
+console.log(formData);
 
     this.productService
-      .addProduct(formData, this.editId)
+      .addProduct(formData)
       .subscribe((response) => console.log(response));
     this.editId = 0;
     this.productName = '';
@@ -75,11 +76,10 @@ export class AddProductComponent {
           console.log('after', this.productName);
         },
       });
-      this.categoryService.fetchdata().subscribe((response:any) => {
-          console.log('category',response);
-          this.categoryid = response.id;
-          this.category=response.data
-        
+      this.categoryService.fetchdata().subscribe((response: any) => {
+        console.log('category', response);
+        this.categoryid = response.id;
+        this.category = response.data;
       });
     });
   }

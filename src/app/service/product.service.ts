@@ -19,16 +19,18 @@ export class ProductService {
     );
   }
 
-  addProduct(products: FormData, editId: number): Observable<any> {
-    console.log(editId);
-    
-    if (editId === 0) {
-      console.log('post');
-      
-      return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
-    } else {
-      return this.http.put(`${urlEndpoint.baseUrl}/admin/artWork/${editId}`, products);
-    }
+  addProduct(products: FormData): Observable<any> {
+    return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+    // if (editId === 0) {
+    //   console.log('post');
+
+    //   return this.http.post(`${urlEndpoint.baseUrl}/admin/artWork`, products);
+    // } else {
+    //   return this.http.put(
+    //     `${urlEndpoint.baseUrl}/admin/artWork/${editId}`,
+    //     products
+    //   );
+    // }
   }
 
   getProductById(id: number): Observable<Product> {

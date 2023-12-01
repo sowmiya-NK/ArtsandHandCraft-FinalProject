@@ -1,20 +1,25 @@
-<table class="table">
+<div class="contaciner mt-5">
+  <div class="row">
+    <h4 class="col-8" style="color: rgb(14, 14, 141)">ORDER DETAILS</h4>
+  </div>
+</div>
+
+<table class="table mt-4">
   <thead>
     <tr>
       <th scope="col">userId</th>
       <th scope="col">username</th>
-      <th scope="col">orderDetails</th>
-      <th scope="col">price</th>
+      <th scope="col">Art</th>
       <th scope="col">orderStatus</th>
     </tr>
   </thead>
+
   <tbody *ngFor="let order of orderDetails">
-    <tr>
-      <th>{{ order.id }}</th>
+    <tr *ngFor="let item of order.orderedArtWorkList">
+      <td>{{ order.id }}</td>
       <td>{{ order.username }}</td>
 
-      <td *ngFor="let item of order.orderedArtWorkList">{{ item.title }}</td>
-      <td *ngFor="let item of order.orderedArtWorkList">{{ item.price }}</td>
+      <td>{{ item.title }}- Rs{{ item.price }}</td>
       <td>
         <select name="status">
           <option value="status">status</option>

@@ -1,4 +1,15 @@
-<div class="container">
+<div class="contaciner mt-5">
+  <div class="row">
+    <h4 class="col-8" style="color: rgb(14, 14, 141)">PRODUCTS DETAILS</h4>
+    <div class="col-4" style="float: left">
+      <a routerLink="/admin/addproduct">
+        <button type="submit" class="w-25">+Add</button></a
+      >
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
   <div class="row">
     <table class="table">
       <thead>
@@ -9,8 +20,7 @@
           <th>category</th>
           <th>price</th>
           <th>image</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody *ngFor="let product of productDetails">
@@ -18,14 +28,11 @@
           <td>{{ product.id }}</td>
           <td>{{ product.title }}</td>
           <td>{{ product.description }}</td>
-          <td>{{ product.categoryId }}</td>
-          <td>{{ product.price }}</td>
+          <td>{{ product.category.title}}</td>
+          <td>₹{{ product.price }}</td>
           <td>
             <img
-              src="{{
-                'http://localhost:8080/api/downloadFile/' +
-                  product.id
-              }}"
+              src="{{ 'http://localhost:8080/api/downloadFile/' + product.id }}"
               alt=""
               style="height: 100px; width: 150px"
             />
@@ -34,8 +41,7 @@
             <button (click)="onEdit(product.id!)" class="btn w-50">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
-          </td>
-          <td>
+
             <button (click)="onDelete(product.id!)" class="btn w-50">
               <i class="fa-solid fa-trash"></i>
             </button>
@@ -45,7 +51,3 @@
     </table>
   </div>
 </div>
-<a routerLink="/admin"> <button type="submit">Back</button></a>
-<a routerLink="/admin/addproduct">
-  <button type="submit">Add new Product</button></a
->

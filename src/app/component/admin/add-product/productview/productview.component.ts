@@ -38,14 +38,15 @@ export class ProductviewComponent implements OnInit {
     console.log(deleteid);
 
     this.productService.deleteProduct(deleteid).subscribe({
-      next: (product: Product[]) => {
-        this.productDetails = product;
-        console.log(product);
+      next: (response: any) => {
+        this.productDetails = response.data;
+        console.log(response.data);
       },
       complete: () => console.log('deleted'),
       error: (err) => console.log('error', err),
     });
   }
+
   onEdit(editId: number) {
     this.router.navigate(['/admin/addproduct'], {
       queryParams: { id: editId },

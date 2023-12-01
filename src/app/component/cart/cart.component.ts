@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   totalValue: number = 0;
   selectedItem: string = '';
   total: number = 0;
-  
+
   itemCount: number = 1;
 
   constructor(
@@ -36,7 +36,6 @@ export class CartComponent implements OnInit {
       next: (carts: any) => {
         this.stoargeService.setCart(carts.data);
         let cartDetails: Cart[] = carts.data;
-        console.log(carts);
         this.carts = cartDetails;
         this.calculateTotalValue();
       },
@@ -52,7 +51,6 @@ export class CartComponent implements OnInit {
       0
     );
   }
-  //calculateParticularItemTotalValue(): void {}
 
   onDelete(deleteid: number, productId: number): void {
     console.log(deleteid, productId);
@@ -87,12 +85,10 @@ export class CartComponent implements OnInit {
 
   cartItem: Cart[] = this.stoargeService.getCart()!;
   orders: Order[] = [];
-  addressId: number = 118
-  
-  
+  addressId: number = 118;
 
   checkOut(): Order[] {
-    console.log('addressid',this.addressId);
+    console.log('addressid', this.addressId);
     for (let item of this.cartItem) {
       this.orders.push({
         id: 0,

@@ -8,7 +8,7 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class AdminComponent {
   options: AnimationOptions = {
-    path: '/assets/admin.json',
+    path: '/assets/adminpage.json',
   };
 
 }

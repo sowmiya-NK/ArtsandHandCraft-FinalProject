@@ -4,7 +4,7 @@
     <div class="col-lg-6 col-md-12 col-12">
       <img
         class="img-fluid w-100"
-        src="https://m.media-amazon.com/images/I/81As0c2fDzS._AC_UL480_FMwebp_QL65_.jpg"
+        src="{{ 'http://localhost:8080/api/downloadFile/' + productId }}"
         alt=""
       />
       <div class="small-img-group">
@@ -43,14 +43,12 @@
       </div>
     </div>
     <!-- right side -->
-    <div class="col-lg-6 col-md-12 col-12" *ngFor="let product of productDetails">
-      <h5 class="py-1">
-        {{product.title}}
-      </h5>
+    <div class="col-lg-6 col-md-12 col-12">
+      <h5 class="py-1"></h5>
       <div class="d-flex">
         <p class="mr-3">-72%</p>
         &nbsp;
-        <h3 style="color: red; font-size: medium">{{product.price}}</h3>
+        <h3 style="color: red; font-size: medium"></h3>
       </div>
       <h6>M.R.P.: <del>₹999</del></h6>
       <ul class="list-unstyled d-flex mb-0">
@@ -72,10 +70,10 @@
         </li>
       </ul>
 
-      <button (click)="addToCart(product.id!)">add to cart</button>
+      <!-- <button (click)="addToCart(product.id!)">add to cart</button>
       <input type="number" value="1" /><a routerLink="/cart">
         <button class="buy-btn">Buy Now</button></a
-      >
+      > -->
       <hr />
 
       <!-- product information -->

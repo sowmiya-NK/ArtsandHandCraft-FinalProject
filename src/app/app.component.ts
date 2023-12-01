@@ -22,13 +22,13 @@ export class AppComponent implements OnInit {
   carts: Cart[] = [];
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  user:AppUser;
+  user: AppUser;
 
   constructor(
     private authService: AuthService,
     public loaderService: LoaderService,
     private cartService: CartService,
-    private storageService:StorageService
+    private storageService: StorageService
   ) {
     this.user = this.storageService.getLoggedInUser();
   }
@@ -41,16 +41,12 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
-    
   }
-
- 
 
   logout(): void {
     this.authService.logout();
   }
-  getCartCount():number{
-    return  this.cartService.getCartCount();
-
+  getCartCount(): number {
+    return this.cartService.getCartCount();
   }
 }

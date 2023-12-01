@@ -96,33 +96,31 @@
 </marquee>
 
 <!-- product -->
-<div class="row d-flex product">
-  <div
-    class="col-3 border mt-5 product-item"
-    *ngFor="let products of productDetails"
-  >
+<div class="row d-flex mt-4 product">
+  <div class="col-3 product-item" *ngFor="let products of productDetails">
     <div class="image-content">
-      <img
-        src="{{ 'http://localhost:8080/api/downloadFile/' + products.id }}"
-        alt=""
-        style="height: 200px; width: 220px"
-      />
+      <a (click)="viewProducts(products.id!)">
+        <img
+          src="{{ 'http://localhost:8080/api/downloadFile/' + products.id }}"
+          alt=""
+          style="height: 200px; width: 200px"
+        />
+      </a>
     </div>
 
-    <p style="text-align: center;">{{ products.title }}</p>
+    <p style="margin-left: 40px;">{{ products.title }}</p>
     <!-- <p>{{ products.description }}</p> -->
 
-    <p style="color: black;font-size: 25px; text-align: center;">₹{{ products.price }}</p>
+    <p style="color: black; font-size: 25px;margin-left: 100px; ">₹{{ products.price }}</p>
     <button
       type="submit"
       (click)="addToCart(products.id!)"
       style="
         width: 150px;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         border-radius: 10px;
         margin-left: 50px;
         padding: 3px;
-        
       "
     >
       <i class="fas fa-cart-plus"></i>

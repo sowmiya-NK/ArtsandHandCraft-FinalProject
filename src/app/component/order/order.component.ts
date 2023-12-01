@@ -41,4 +41,6 @@ export class OrderComponent implements OnInit {
   }
   currentStep: string = 'address';
   completedSteps: string[] = [];
+  
 }
+
