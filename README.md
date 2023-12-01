@@ -33,7 +33,7 @@ handmade crafts.
 
 **Screenshots**
 
-  ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/4201455a-442e-4d1c-9fdd-3b6baa79d3b3)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/4201455a-442e-4d1c-9fdd-3b6baa79d3b3)
 
 
 
