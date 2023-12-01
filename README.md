@@ -33,7 +33,8 @@ handmade crafts.
 
 **Screenshots**
 
-    🔗 Links
+  ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/4201455a-442e-4d1c-9fdd-3b6baa79d3b3)
+
 
 
 **Challenges**
@@ -64,13 +65,13 @@ handmade crafts.
 
 **MySQL Schema**
 
-    👉 ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/66881509-d063-417a-bdde-4a1d573cb323)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/66881509-d063-417a-bdde-4a1d573cb323)
 
 
 
 Demo Video Url
   
-    🔗 url of demo video
+    🔗 [url of demo video](https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing)https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing
   
   
   
