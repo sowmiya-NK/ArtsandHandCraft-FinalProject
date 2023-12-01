@@ -3,8 +3,7 @@
 
 **Description**
 
-    ➡️Created a online marketplace for artists and crafters to list and sell their artwork and
-handmade crafts.
+    ➡️Created a online marketplace for artists and crafters to list and sell their artwork and handmade crafts.
     ➡️ user can view the artwork 
     ➡️ update the user profile and add or delete their address
     ➡️add artwork to cart page and increament or decrement that artwork 
