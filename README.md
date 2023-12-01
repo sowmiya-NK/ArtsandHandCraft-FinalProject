@@ -15,7 +15,7 @@ handmade crafts.
      
 
 
-**Credentials**
+➡️ **Credentials**
 
     👉 Role -Admin
         📧username = "admin" | 🔐Password = "admin"
@@ -24,20 +24,26 @@ handmade crafts.
         📧username = "sowmiya123@user.com" | 🔐Password = "sowmiya123"
 
 
-**Technologies used**
+➡️ **Technologies used**
 
     👉 '💻-Spring Boot Java' for Back end
     👉 '💻-Angular' for Front end 
     👉 '🗃️-MySql' for Database 
 
 
-**Screenshots**
+➡️ **Screenshots**
 
  ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/4201455a-442e-4d1c-9fdd-3b6baa79d3b3)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/59558df9-dfa5-47c4-9737-956699237485)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/998166dd-5fad-44a3-8d95-4635292f744f)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/44134ae2-2fcb-4fc3-93a0-24c16d668c5a)
 
 
 
-**Challenges**
+
+
+
+➡️ **Challenges**
 
     🔴 Faced challenges in creating and mapping the entites.
     🔴While integrating front end and back end 
@@ -47,7 +53,7 @@ handmade crafts.
    
 
 
-**Hardest Errors** 
+➡️**Hardest Errors** 
 
     🚩 Internal server error for java persisitance exception for date - Solved it by converting the date format.
     🚩 Internal server error hibernate nested exception - Solved it by reworking on the modal mapping.
@@ -56,22 +62,23 @@ handmade crafts.
    
 
 
-**Repository Link**
 
-    🔗 Front end-https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject
-    🔗 Back end-https://github.com/sowmiya-NK/ArtsandHandCraftprojectBackend
+➡️ **Repository Link**
+ 
+🔗 Front end - [Repo link](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject) 
+🔗 Back end - [Repo link](https://github.com/sowmiya-NK/ArtsandHandCraftprojectBackend)
 
 
 
-**MySQL Schema**
+➡️ **MySQL Schema**
 
  ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/66881509-d063-417a-bdde-4a1d573cb323)
 
 
 
-Demo Video Url
-  
-    🔗 [url of demo video](https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing)https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing
+➡️ Demo Video Url
+[Video link](https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing) 
+ 
   
   
   
