@@ -40,46 +40,44 @@ export class StorageService {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
   public getCart(): Cart[] {
-    return JSON.parse(localStorage.getItem('cart') || '{}');
+    return JSON.parse(localStorage.getItem('cart') || '[]');
   }
-  public removeCart():void{
+  public removeCart(): void {
     localStorage.removeItem('cart');
   }
 
-
   //order
-  public setOrder(order:Order[]): void {
+  public setOrder(order: Order[]): void {
     localStorage.setItem('order', JSON.stringify(order));
   }
   public getOrder(): Order {
     return JSON.parse(localStorage.getItem('order') || '{}');
   }
-  public removeOrder():void{
+  public removeOrder(): void {
     localStorage.removeItem('order');
   }
 
   //set addressdetails
-  public setAddress(address:Address): void {
+  public setAddress(address: Address): void {
     localStorage.setItem('address', JSON.stringify(address));
   }
   public getAddress(): Order {
     return JSON.parse(localStorage.getItem('address') || '{}');
   }
-  public removeAddress():void{
+  public removeAddress(): void {
     localStorage.removeItem('address');
   }
 
-
   //setauth data
   setAuthData(authData: string) {
-    localStorage.setItem("authData", authData);
+    localStorage.setItem('authData', authData);
   }
 
   public getAuthData(): string | null {
-    return localStorage.getItem("authData");
+    return localStorage.getItem('authData');
   }
-  
+
   public removeAuthData(): void {
-    localStorage.removeItem("authData");
+    localStorage.removeItem('authData');
   }
 }

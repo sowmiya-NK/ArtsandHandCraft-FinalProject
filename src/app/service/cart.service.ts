@@ -61,7 +61,7 @@ export class CartService {
     let userId = this.storageService.getLoggedInUser();
     let cartArr = this.storageService
       .getCart()
-      .filter((item: Cart) => item.userId === userId.id);
+      ?.filter((item: Cart) => item.userId === userId.id);
     // console.log(userId);
     // console.log(cartArr);
     if (cartArr) {
