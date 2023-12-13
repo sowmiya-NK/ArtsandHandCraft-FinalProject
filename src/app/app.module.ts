@@ -66,7 +66,6 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [

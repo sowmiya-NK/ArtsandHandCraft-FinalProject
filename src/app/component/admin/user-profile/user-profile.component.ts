@@ -13,7 +13,7 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 })
 export class UserProfileComponent implements OnInit {
   profiles: UserProfile[] = [];
-  createdAtFromDB: string = '2023-11-29T12:58:43.725448';
+  // createdAtFromDB: string = '2023-11-29T12:58:43.725448';
   createdAt: Date;
 
   formattedDate: string;
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
     private dataPipe: DatePipe
   ) {
     // Convert the string from the database to a Date object
-    this.createdAt = new Date(this.createdAtFromDB);
+    this.createdAt = new Date();
 
     // Format the Date object using DatePipe
     this.formattedDate = dataPipe.transform(this.createdAt, 'yyyy-MM-dd ')!;

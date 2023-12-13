@@ -68,7 +68,7 @@ export class StorageService {
     localStorage.removeItem('address');
   }
 
-  //setauth data
+  //setauth data(username,password binding and store)
   setAuthData(authData: string) {
     localStorage.setItem('authData', authData);
   }

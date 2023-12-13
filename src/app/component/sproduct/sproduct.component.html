@@ -43,8 +43,8 @@
       </div>
     </div>
     <!-- right side -->
-    <div class="col-lg-6 col-md-12 col-12">
-      <h5 class="py-1"></h5>
+    <div class="col-lg-6 col-md-12 col-12" *ngFor="let p of productDetails">
+      <h5 class="py-1">{{p.title}}</h5>
       <div class="d-flex">
         <p class="mr-3">-72%</p>
         &nbsp;

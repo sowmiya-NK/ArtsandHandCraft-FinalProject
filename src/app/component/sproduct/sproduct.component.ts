@@ -17,7 +17,7 @@ export class SproductComponent implements OnInit {
   quanity: number = 1;
   user: AppUser;
   productId: number = 0;
-  singleProductDetails:Product[]=[];
+  singleProductDetails: Product[] = [];
 
   constructor(
     private cartService: CartService,
@@ -50,10 +50,8 @@ export class SproductComponent implements OnInit {
       this.productService.findProductById(this.productId).subscribe({
         next: (products: any) => {
           console.log(products.data);
-          this.singleProductDetails=products.data;
+          this.singleProductDetails = products.data;
           console.log(this.singleProductDetails);
-          
-          
         },
       });
     });

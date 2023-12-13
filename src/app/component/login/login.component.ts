@@ -29,7 +29,6 @@ export class LoginComponent {
 
   login(_loginForm: NgForm): void {
     console.log(_loginForm.value);
-
     this.authService.login(_loginForm.value).subscribe({
       next: (response: AppResponse) => {
         this.authService.setLoggedIn(response.data);

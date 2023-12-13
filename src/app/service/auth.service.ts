@@ -51,6 +51,8 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     this.storageService.removeLoggedInUser();
     this.storageService.removeRoute();
+    this.storageService.removeCart();
+    this.storageService.removeOrder();
     this.router.navigate(['/login'], { replaceUrl: true });
   }
 
