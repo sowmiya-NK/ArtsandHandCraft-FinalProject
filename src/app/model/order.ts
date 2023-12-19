@@ -11,4 +11,5 @@ export interface Order {
     price: number;
     count: number;
   }[];
+  orderStatus?:string;
 }

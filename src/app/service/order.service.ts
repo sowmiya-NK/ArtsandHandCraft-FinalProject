@@ -35,4 +35,18 @@ export class OrderService {
       `${urlEndpoint.baseUrl}/admin/order/status`
     );
   }
+
+  changeOrderStatus(
+    orderId: number,
+    statusId: string
+  ): Observable<Orderstatus[]> {
+    let orderstatus = {
+      orderId: orderId,
+      statusId: statusId,
+    };
+    return this.http.put<Orderstatus[]>(
+      `${urlEndpoint.baseUrl}/admin/order/status`,
+      orderstatus
+    );
+  }
 }

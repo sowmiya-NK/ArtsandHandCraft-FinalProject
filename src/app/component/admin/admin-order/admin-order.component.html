@@ -10,7 +10,8 @@
       <th scope="col">userId</th>
       <th scope="col">username</th>
       <th scope="col">Art</th>
-      <th scope="col">orderStatus</th>
+      <th>Order Status</th>
+      <!-- <th>Action</th>  -->
     </tr>
   </thead>
 
@@ -21,14 +22,15 @@
 
       <td>{{ item.title }}- Rs{{ item.price }}</td>
       <td>
-        <select name="status">
-          <option value="status">status</option>
-          <option>pending</option>
-          <option>out of delivery</option>
-          <option>confirmed</option>
-          <option>delivered</option>
+        <select name="status"  [(ngModel)]="order.orderStatus" (change)="onStatusChange(order)" >
+         
+          <option value="1">pending</option>
+          <option value="2">confirmed</option>
+          <option value="3">out of delivery</option>
+          <option value="4">delivered</option>
         </select>
       </td>
+    
     </tr>
   </tbody>
 </table>

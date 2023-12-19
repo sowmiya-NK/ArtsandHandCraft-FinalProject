@@ -10,7 +10,7 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class AdminOrderComponent implements OnInit {
   orderDetails: Order[] = [];
-  orderStatus: Orderstatus[] = [];
+  selectedStatus: string = '';
 
   constructor(private orderService: OrderService) {}
   ngOnInit(): void {
@@ -26,8 +26,12 @@ export class AdminOrderComponent implements OnInit {
       error: () => console.log('error'),
       complete: () => console.log('completed'),
     });
-    this.orderService
-      .getorderStatus()
-      .subscribe((response) => console.log('status', response));
+  }
+
+  onStatusChange(order: Order) {
+    console.log(order.orderStatus);
+    this.orderService.changeOrderStatus(order.id, order.orderStatus!).subscribe({
+      next: (response: any) => console.log(response.data),
+    });
   }
 }

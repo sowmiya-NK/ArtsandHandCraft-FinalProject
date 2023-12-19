@@ -6,7 +6,7 @@
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <!-- Username input -->
           <div class="form-outline mb-3">
-            <label class="form-label" >Username</label>
+            <label class="form-label">Username</label>
             <input
               type="text"
               class="form-control"
@@ -56,6 +56,7 @@
 
           <p
             class="error"
+            style="color: red"
             [ngClass]="error.length > 0 ? 'visible' : 'invisible'"
           >
             {{ error }}

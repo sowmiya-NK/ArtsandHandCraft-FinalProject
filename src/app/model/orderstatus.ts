@@ -1,4 +1,5 @@
 export interface Orderstatus {
-    id:number;
-    status:string;
+  orderId?: number;
+  statusId: number;
+  status:string;
 }

@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
     });
     console.log('started');
   }
-
   addToCart(productId: number): void {
     console.log(productId);
 
