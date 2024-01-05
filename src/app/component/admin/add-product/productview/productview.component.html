@@ -23,12 +23,19 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody *ngFor="let product of productDetails">
+      <tbody
+        *ngFor="
+          let product of productDetails.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+          )
+        "
+      >
         <tr>
           <td>{{ product.id }}</td>
           <td>{{ product.title }}</td>
           <td>{{ product.description }}</td>
-          <td>{{ product.category.title}}</td>
+          <td>{{ product.category.title }}</td>
           <td>₹{{ product.price }}</td>
           <td>
             <img
@@ -49,5 +56,27 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Pagination for Customer Bookings -->
+    <ul
+      class="pagination justify-content-center mt-3 custom-pagination"
+      *ngIf="productDetails.length > 0"
+    >
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="currentPage = currentPage - 1"
+          >Previous</a
+        >
+      </li>
+      <li
+        class="page-item text-danger"
+        *ngFor="let page of getPageNumbers()"
+        [class.active]="currentPage === page"
+      >
+        <a class="page-link" (click)="currentPage = page">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+        <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+      </li>
+    </ul>
   </div>
 </div>

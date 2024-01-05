@@ -11,6 +11,8 @@ import { OrderService } from 'src/app/service/order.service';
 export class AdminOrderComponent implements OnInit {
   orderDetails: Order[] = [];
   selectedStatus: string = '';
+  itemsPerPage:number=5;
+  currentPage:number=1;
 
   constructor(private orderService: OrderService) {}
   ngOnInit(): void {
@@ -34,4 +36,15 @@ export class AdminOrderComponent implements OnInit {
       next: (response: any) => console.log(response.data),
     });
   }
+
+  //returns total no of pages based on total no of items
+ getPageNumbers(): number[] {
+  const pageCount = Math.ceil(this.orderDetails.length / this.itemsPerPage);
+  return Array.from({ length: pageCount }, (_, index) => index + 1);
+}
+
+ //returns last page
+getLastPage(): number {
+  return this.getPageNumbers().slice(-1)[0] || 1;
+}
 }

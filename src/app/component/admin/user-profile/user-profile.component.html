@@ -10,7 +10,10 @@
           <th>joineddate</th>
           <th>Address</th>
         </thead>
-        <tbody *ngFor="let user of profiles">
+        <tbody *ngFor="let user of profiles .slice(
+          (currentPage - 1) * itemsPerPage,
+          currentPage * itemsPerPage
+        )">
           <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
@@ -21,5 +24,26 @@
         </tbody>
       </table>
     </div>
+     <!-- Pagination for Customer Bookings -->
+     <ul
+     class="pagination justify-content-center mt-3 custom-pagination"
+     *ngIf="profiles.length > 0"
+   >
+     <li class="page-item" [class.disabled]="currentPage === 1">
+       <a class="page-link" (click)="currentPage = currentPage - 1"
+         >Previous</a
+       >
+     </li>
+     <li
+       class="page-item text-danger"
+       *ngFor="let page of getPageNumbers()"
+       [class.active]="currentPage === page"
+     >
+       <a class="page-link" (click)="currentPage = page">{{ page }}</a>
+     </li>
+     <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+       <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+     </li>
+   </ul>
   </div>
 </div>

@@ -19,6 +19,8 @@ export class UserProfileComponent implements OnInit {
   formattedDate: string;
 
   error: string = '';
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
 
   constructor(
     private userProfileService: UserprofileService,
@@ -35,12 +37,21 @@ export class UserProfileComponent implements OnInit {
       next: (response: any) => {
         let userDetails: UserProfile[] = response.data;
         console.log(response);
-
         this.profiles = userDetails;
       },
 
       error: (err) => console.log('error', err),
       complete: () => console.log('completed'),
     });
+  }
+  //returns total no of pages based on total no of items
+  getPageNumbers(): number[] {
+    const pageCount = Math.ceil(this.profiles.length / this.itemsPerPage);
+    return Array.from({ length: pageCount }, (_, index) => index + 1);
+  }
+
+  //returns last page
+  getLastPage(): number {
+    return this.getPageNumbers().slice(-1)[0] || 1;
   }
 }

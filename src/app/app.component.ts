@@ -6,6 +6,7 @@ import { Cart } from './model/cart';
 import { CartService } from './service/cart.service';
 import { AppUser } from './model/appUser';
 import { StorageService } from './service/storage.service';
+import { Product } from './model/product';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit {
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   user: AppUser;
+
+
 
   constructor(
     private authService: AuthService,
@@ -49,4 +52,9 @@ export class AppComponent implements OnInit {
   getCartCount(): number {
     return this.cartService.getCartCount();
   }
+
+//  get filteredItems():any[]{
+//     return this.products.filter(item=>item.name.toLowerCase().includes(this.searchItem.toLowerCase()));
+
+//   }
 }

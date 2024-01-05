@@ -10,13 +10,13 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductviewComponent implements OnInit {
   productDetails: Product[] = [];
-  // productDetail: Product = {
-  //   id: 0,
-  //   title: '',
-  //   description: '',
-  //   price: 0,
-  //   category: '',
-  // };
+  itemsPerPage:number=3;
+  currentPage:number=1;
+  totalItems:string[]=[];
+  displayedItems:string[]=[];
+
+
+ 
 
   constructor(private productService: ProductService, private router: Router) {}
 
@@ -33,6 +33,7 @@ export class ProductviewComponent implements OnInit {
       error: (err) => console.log('error', err),
       complete: () => console.log('completed'),
     });
+    
   }
   onDelete(deleteid: number): void {
     console.log(deleteid);
@@ -52,4 +53,15 @@ export class ProductviewComponent implements OnInit {
       queryParams: { id: editId },
     });
   }
+
+ //returns total no of pages based on total no of items
+ getPageNumbers(): number[] {
+  const pageCount = Math.ceil(this.productDetails.length / this.itemsPerPage);
+  return Array.from({ length: pageCount }, (_, index) => index + 1);
+}
+
+ //returns last page
+getLastPage(): number {
+  return this.getPageNumbers().slice(-1)[0] || 1;
+}
 }

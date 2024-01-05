@@ -95,6 +95,23 @@
   ABUFRS12 to get discount
 </marquee>
 
+<!--search-->
+
+<div class="row d-flex mt-3">
+  <div class="col-6 "><h3 style="margin-left: 50px; ">All Products</h3></div>
+  <div class="col-6 search_button">
+    <input
+      class="form-control rounded"
+
+      type="search"
+      placeholder=" Search Product By Name"
+      aria-label="Search"
+      [(ngModel)]="search"
+      (ngModelChange)="filterArray()"
+    />
+  </div>
+</div>
+
 <!-- product -->
 <div class="row d-flex mt-4 product">
   <div class="col-3 product-item" *ngFor="let products of productDetails">
@@ -108,10 +125,12 @@
       </a>
     </div>
 
-    <p style="margin-left: 40px;">{{ products.title }}</p>
+    <p style="margin-left: 40px">{{ products.title }}</p>
     <!-- <p>{{ products.description }}</p> -->
 
-    <p style="color: black; font-size: 25px;margin-left: 100px; ">₹{{ products.price }}</p>
+    <p style="color: black; font-size: 25px; margin-left: 100px">
+      ₹{{ products.price }}
+    </p>
     <button
       type="submit"
       (click)="addToCart(products.id!)"

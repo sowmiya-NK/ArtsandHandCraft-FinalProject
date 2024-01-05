@@ -14,6 +14,7 @@ import { Order } from 'src/app/model/order';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   productDetails: Product[] = [];
@@ -24,6 +25,8 @@ export class HomeComponent implements OnInit {
   total: number = 0;
   showIcons: boolean = false;
   itemCount: number = 1;
+  search:string='';
+  totalProducts:Product[]=[];
 
   constructor(
     private homeService: HomeService,
@@ -39,9 +42,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.fetchdata().subscribe({
       next: (products: any) => {
-        let productDetails: Product[] = products.data;
+
         console.log(products);
-        this.productDetails = productDetails;
+        this.productDetails = products.data;
+        this.totalProducts=products.data;
       },
       error: (err) => console.log('error', err),
       complete: () => console.log('productcompleted'),
@@ -61,4 +65,12 @@ export class HomeComponent implements OnInit {
       queryParams: { id: id },
     });
   }
+    //filter function for search feature
+    filterArray() {
+      this.productDetails = this.totalProducts.filter((e: any) => {
+        return (
+          e.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        );
+      });
+    }
 }
