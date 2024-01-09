@@ -21,11 +21,7 @@ export class LoginComponent {
   password: String = '';
   error: String = '';
 
-  constructor(
-    private authService: AuthService,
-    private storageService: StorageService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService) {}
 
   login(_loginForm: NgForm): void {
     console.log(_loginForm.value);
