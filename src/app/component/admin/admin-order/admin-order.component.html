@@ -12,6 +12,7 @@
       <th scope="col">username</th>
       <th scope="col">Art</th>
       <th>Order Status</th>
+      <th>current status</th>
       <!-- <th>Action</th>  -->
     </tr>
   </thead>
@@ -34,6 +35,7 @@
           <option value="4">delivered</option>
         </select>
       </td>
+      <td [ngStyle]="{'color':getStatusColor(order.orderStatus)}">{{order.orderStatus}}</td>
     
     </tr>
   </tbody>

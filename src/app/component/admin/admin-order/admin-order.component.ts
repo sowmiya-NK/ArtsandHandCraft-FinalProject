@@ -47,4 +47,15 @@ export class AdminOrderComponent implements OnInit {
 getLastPage(): number {
   return this.getPageNumbers().slice(-1)[0] || 1;
 }
+
+getStatusColor(status:number):string{
+  switch(status){
+    case 1: return 'orange'; 
+    case 2: return 'blue';  
+    case 3: return 'green';  
+    case 4: return 'black'; 
+    default: return 'black';
+  }
 }
+}
+
