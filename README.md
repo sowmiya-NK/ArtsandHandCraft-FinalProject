@@ -1,27 +1,85 @@
-# ArtsandHandCraftProject
+# **Art and Handmade Crafts Marketplace**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
-## Development server
+**Description**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    ➡️Created a online marketplace for artists and crafters to list and sell their artwork and handmade crafts.
+    ➡️ user can view the artwork 
+    ➡️ update the user profile and add or delete their address
+    ➡️add artwork to cart page and increament or decrement that artwork 
+    ➡️after going to place the order   please fill the payment and then give checkout
+    ➡️The admin can Add/Edit/Delete the product and category
+    ➡️admin can also view user profile and user order history
 
-## Code scaffolding
+     
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+➡️ **Credentials**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    👉 Role -Admin
+        📧username = "admin" | 🔐Password = "admin"
+        
+    👉 Role -User
+        📧username = "sowmiya123@user.com" | 🔐Password = "sowmiya123"
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+➡️ **Technologies used**
 
-## Running end-to-end tests
+    👉 '💻-Spring Boot Java' for Back end
+    👉 '💻-Angular' for Front end 
+    👉 '🗃️-MySql' for Database 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+➡️ **Screenshots**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/4201455a-442e-4d1c-9fdd-3b6baa79d3b3)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/59558df9-dfa5-47c4-9737-956699237485)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/998166dd-5fad-44a3-8d95-4635292f744f)
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/44134ae2-2fcb-4fc3-93a0-24c16d668c5a)
+
+
+
+
+
+
+➡️ **Challenges**
+
+    🔴 Faced challenges in creating and mapping the entites.
+    🔴While integrating front end and back end 
+    🔴  Uploading image to the server and downloading image from the server.
+    🔴 415 - unsupported media file
+    🔴 some logic missing
+   
+
+
+➡️**Hardest Errors** 
+
+    🚩 Internal server error for java persisitance exception for date - Solved it by converting the date format.
+    🚩 Internal server error hibernate nested exception - Solved it by reworking on the modal mapping.
+    🚩 Internal server error for delete nested entities - Solved it by adding cascade type ALL.
+    🚩 Altering the entity and updating it.
+   
+
+
+
+➡️ **Repository Link**
+ 
+🔗 Front end - [Repo link](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject) 
+🔗 Back end - [Repo link](https://github.com/sowmiya-NK/ArtsandHandCraftprojectBackend)
+
+
+
+➡️ **MySQL Schema**
+
+ ![image](https://github.com/sowmiya-NK/ArtsandHandCraft-FinalProject/assets/145537923/66881509-d063-417a-bdde-4a1d573cb323)
+
+
+
+➡️ Demo Video Url
+[Video link](https://drive.google.com/file/d/1hzKQreIwyzOLB36vQG7YrnnLhph70Igz/view?usp=sharing) 
+ 
+  
+  
+  
+  
+
