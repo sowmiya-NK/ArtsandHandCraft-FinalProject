@@ -19,22 +19,20 @@ export class RegisterComponent {
   error: string = '';
 
   constructor(
-    private storage: StorageService,
-    private authService: AuthService,
     private router: Router,
     private registerService: RegisterService
   ) {}
-  onSubmit(registerForm: NgForm) {
+  
+  onSubmit(registerForm: NgForm) :void{
     let formValue: Register = registerForm.value;
     console.log(formValue);
-    console.log("registered");
-    
+    console.log('registered');
 
     this.registerService.register(formValue).subscribe({
       next: (response: AppResponse) => {
-         console.log(response.data);
+        console.log(response.data);
         // registerForm.resetForm();
-        
+
         this.router.navigate(['/login']);
       },
       complete: () => {},

@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
   deleteAddress(deleteId:number){
     this.addressService.deleteAddress(deleteId).subscribe((response)=>console.log(response)
     )
+    this.ngOnInit()
     
   }
 }

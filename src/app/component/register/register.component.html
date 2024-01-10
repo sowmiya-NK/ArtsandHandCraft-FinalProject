@@ -5,9 +5,7 @@
         <ng-lottie [options]="options"></ng-lottie>
       </div>
       <div class="col-6">
-        <h2 class="display-4 heading" >
-          Register
-        </h2>
+        <h2 class="display-4 heading">Register</h2>
         <!-- validation -->
         <form
           class=""
@@ -121,13 +119,11 @@
 
           <div class="d-flex align-items-center mb-4">
             <span>Already registered?</span>
-            <a
-              routerLink="/login"
-              class="heading text-decoration-none px-2"
+            <a routerLink="/login" class="heading text-decoration-none px-2"
               >Login here</a
             >
           </div>
-
+          <div>{{ error }}</div>
           <!-- Submit button -->
           <div class="d-grid gap-2 mb-5">
             <button
