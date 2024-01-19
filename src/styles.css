@@ -236,3 +236,11 @@ marquee {
   transition: 0.5s;
   color: white;
 }
+
+.pagination {
+  --bs-pagination-color: #2c2e4b;
+  --bs-pagination-hover-color: #a8add6;
+  --bs-pagination-focus-color: #212529;
+  --bs-pagination-active-bg: #212529;
+  --bs-pagination-active-border-color: #212529;
+}

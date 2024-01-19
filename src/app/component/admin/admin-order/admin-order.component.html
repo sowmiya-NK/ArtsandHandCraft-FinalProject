@@ -35,7 +35,7 @@
           <option value="4">delivered</option>
         </select>
       </td>
-      <td [ngStyle]="{'color':getStatusColor(order.orderStatus)}">{{order.orderStatus}}</td>
+      <td [ngStyle]="{'color':getStatusColor(order.orderStatus!)}">{{order.orderStatus}}</td>
     
     </tr>
   </tbody>

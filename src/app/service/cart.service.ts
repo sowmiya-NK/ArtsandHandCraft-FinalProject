@@ -15,7 +15,6 @@ export class CartService {
   constructor(
     private http: HttpClient,
     private storageService: StorageService,
-    private orderService: OrderService
   ) {}
 
   fetchdata(userId: number): Observable<Cart[]> {

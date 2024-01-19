@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { AppUser } from 'src/app/model/appUser';
 import { Cart } from 'src/app/model/cart';
 import { Order } from 'src/app/model/order';
+import { UserProfile } from 'src/app/model/user-profile';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
 import { OrderService } from 'src/app/service/order.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { UserprofileService } from 'src/app/service/userProfile.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,20 +17,25 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class CartComponent implements OnInit {
   carts: Cart[] = [];
+  userprofile: UserProfile[] = [];
   user: AppUser;
   totalValue: number = 0;
   selectedItem: string = '';
   total: number = 0;
-
+  cartItem: Cart[] = this.stoargeService.getCart()!;
+  orders: Order[] = [];
+  addressId: number = 0;
   itemCount: number = 1;
 
   constructor(
     private cartService: CartService,
     private stoargeService: StorageService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private userProfileService: UserprofileService
   ) {
     this.user = this.stoargeService.getLoggedInUser();
+    console.log(this.user, 'ddlldl');
   }
 
   ngOnInit(): void {
@@ -41,6 +48,17 @@ export class CartComponent implements OnInit {
       },
 
       error: () => console.log('error'),
+      complete: () => console.log('completed'),
+    });
+
+    this.userProfileService.getUserById(this.user?.id).subscribe({
+      next: (response: any) => {
+        let profile = response.data;
+        this.userprofile = [profile];
+        console.log(this.userprofile,"newww");
+      },
+
+      error: (err) => console.log('error', err),
       complete: () => console.log('completed'),
     });
   }
@@ -72,7 +90,9 @@ export class CartComponent implements OnInit {
       this.cartService
         .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
+        this.calculateTotalValue();
     }
+    
   }
   decrementCount(cart: Cart) {
     if (cart.count != 1) {
@@ -80,12 +100,9 @@ export class CartComponent implements OnInit {
       this.cartService
         .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
+        this.calculateTotalValue();
     }
   }
-
-  cartItem: Cart[] = this.stoargeService.getCart()!;
-  orders: Order[] = [];
-  addressId: number = 118;
 
   checkOut(): Order[] {
     console.log('addressid', this.addressId);
@@ -103,9 +120,9 @@ export class CartComponent implements OnInit {
           },
         ],
       });
-
-      //console.log('order', this.orders);
-
+      this.addressId = this.userprofile[0].addressList[0].id!;
+      console.log(this.addressId,"check");
+      
       this.orderService
         .createOrder(item.userId, item.artworkId, this.addressId)
         .subscribe({
@@ -118,6 +135,7 @@ export class CartComponent implements OnInit {
         });
     }
     this.stoargeService.setOrder(this.orders);
+    this.carts=[];
     return this.orders;
   }
 }

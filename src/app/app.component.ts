@@ -4,9 +4,6 @@ import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
 import { Cart } from './model/cart';
 import { CartService } from './service/cart.service';
-import { AppUser } from './model/appUser';
-import { StorageService } from './service/storage.service';
-import { Product } from './model/product';
 
 @Component({
   selector: 'app-root',
@@ -20,21 +17,15 @@ export class AppComponent implements OnInit {
       className: 'lottie-loader',
     },
   };
-  carts: Cart[] = [];
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  user: AppUser;
-
-
+  cartCount = 0;
 
   constructor(
     private authService: AuthService,
     public loaderService: LoaderService,
-    private cartService: CartService,
-    private storageService: StorageService
-  ) {
-    this.user = this.storageService.getLoggedInUser();
-  }
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.authService.isAdmin$.subscribe((isAdmin) => {
@@ -44,17 +35,15 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.getCartCount();
   }
 
   logout(): void {
     this.authService.logout();
+    window.location.reload();
   }
   getCartCount(): number {
-    return this.cartService.getCartCount();
+    this.cartCount = this.cartService.getCartCount();
+    return this.cartCount;
   }
-
-//  get filteredItems():any[]{
-//     return this.products.filter(item=>item.name.toLowerCase().includes(this.searchItem.toLowerCase()));
-
-//   }
 }

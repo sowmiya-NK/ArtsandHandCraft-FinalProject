@@ -38,7 +38,7 @@
         <td>{{ artwrok.count }}</td>
         <td>{{ artwrok.price }}</td>
         <td>{{ artwrok.price * artwrok.count }}</td>
-        <td >{{item.orderStatus}}</td>
+        <td [ngStyle]="{'color':getStatusColor(item.orderStatus!)}" >{{item.orderStatus}}</td>
       </tr>
     </tbody>
   </table>

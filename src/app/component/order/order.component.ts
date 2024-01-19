@@ -41,6 +41,17 @@ export class OrderComponent implements OnInit {
   }
   currentStep: string = 'address';
   completedSteps: string[] = [];
+
+  
+getStatusColor(status:string):string{
+  switch(status){
+    case "pending": return 'orange'; 
+    case "confirmed": return 'blue';  
+    case "out of delivery": return 'red';  
+    case "delivered": return 'green'; 
+    default: return 'black';
+  }
+}
   
 }
 

@@ -48,12 +48,12 @@ getLastPage(): number {
   return this.getPageNumbers().slice(-1)[0] || 1;
 }
 
-getStatusColor(status:number):string{
+getStatusColor(status:string):string{
   switch(status){
-    case 1: return 'orange'; 
-    case 2: return 'blue';  
-    case 3: return 'green';  
-    case 4: return 'black'; 
+    case "pending": return 'orange'; 
+    case "confirmed": return 'blue';  
+    case "out of delivery": return 'red';  
+    case "delivered": return 'green'; 
     default: return 'black';
   }
 }
