@@ -30,7 +30,7 @@ import { StatsuChekingComponent } from './component/statsu-cheking/statsu-chekin
 import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
 import { AddressComponent } from './component/address/address.component';
 import { ContactPageComponent } from './component/contact-page/contact-page.component';
-('./app.component');
+import { CommonModule } from '@angular/common';
 
 export function playerFactory() {
   return player;
@@ -58,7 +58,7 @@ export function playerFactory() {
     StatsuChekingComponent,
     ReceiptPageComponent,
     AddressComponent,
-    ContactPageComponent,
+    ContactPageComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +66,7 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [

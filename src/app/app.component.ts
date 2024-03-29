@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
-import { Cart } from './model/cart';
 import { CartService } from './service/cart.service';
 
 @Component({

@@ -1,138 +1,153 @@
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-6">
+      <div class="col-6" id="lottie-container">
         <ng-lottie [options]="options"></ng-lottie>
       </div>
-      <div class="col-6">
-        <h2 class="display-4 heading">Register</h2>
-        <!-- validation -->
+ 
+      <div class="col-6" id="login-form">
         <form
-          class=""
-          (ngSubmit)="onSubmit(registerForm)"
           #registerForm="ngForm"
+          (ngSubmit)="onSubmit(registerForm)"
+          class="mx-5 container h-75 w-100 px-5"
         >
+          <h2 class="display-3 fs-1 text-primary">REGISTER PAGE</h2>
+ 
           <!-- Username input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="name">Name</label>
+            <label class="form-label display-3 fs-4" for="username">Name</label>
             <input
               type="text"
-              class="form-control"
-              name="name"
-              required
+              id="Name"
+              class="form-control w-75"
+              placeholder="Enter a valid Username"
+              name="person"
+              [(ngModel)]="person"
               ngModel
+              required
               minlength="3"
-              #modeluser="ngModel"
+              maxlength="15"
+              #UserNamevaild="ngModel"
               [ngClass]="
-                modeluser.touched && modeluser.invalid ? 'is-invalid' : ''
+                UserNamevaild.invalid && UserNamevaild.dirty
+                  ? 'is-invalid '
+                  : ''
               "
             />
-            <div
-              *ngIf="modeluser.invalid && modeluser.touched"
-              class="invalid-feedback"
-            >
-              please enter a valid user name
+            <div *ngIf="UserNamevaild.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
             </div>
           </div>
-
-          <!-- email input -->
+ 
+          <!-- Name input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="Username">Username</label>
+            <label class="form-label display-3 fs-4" for="name">UserName</label>
             <input
-              type="email"
-              class="form-control"
-              name="username"
-              required
-              email
+              type="text"
+              id="name"
+              class="form-control w-75"
+              placeholder="Enter a valid username"
+              name="name"
               ngModel
+              required
               minlength="3"
-              #modelEmail="ngModel"
+              maxlength="15"
+              #Namevaild="ngModel"
+              [(ngModel)]="nameRef"
               [ngClass]="
-                modelEmail.touched && modelEmail.invalid ? 'is-invalid' : ''
+                Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
               "
             />
-            <div
-              *ngIf="modelEmail.invalid && modelEmail.touched"
-              class="invalid-feedback"
-            >
-              Username is required
+            <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
             </div>
           </div>
-
+ 
           <!-- Password input -->
           <div class="form-outline mb-3">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label display-3 fs-4" for="password"
+              >Password</label
+            >
             <input
               type="password"
-              class="form-control"
+              id="password"
+              class="form-control w-75"
+              placeholder="Enter password"
               name="password"
-              required
-              password
               ngModel
-              minlength="8"
-              #modelpassword="ngModel"
+              [(ngModel)]="password"
+              required
+              minlength="3"
+              maxlength="10"
+              #passwordvaild="ngModel"
               [ngClass]="
-                modelpassword.invalid && modelpassword.touched
-                  ? 'is-invalid'
-                  : ''
+                passwordvaild.invalid && passwordvaild.dirty ? 'is-invalid' : ''
               "
             />
-            <div
-              *ngIf="
-                modelpassword.invalid && modelpassword.touched
-                  ? 'is-invalid'
-                  : ''
-              "
-              class="invalid-feedback"
-            >
-              password must contain atleast 8 charcters
+            <div *ngIf="passwordvaild.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
             </div>
           </div>
-
-          <!-- Confirm Password input -->
-          <div class="form-outline mb-3">
-            <label class="form-label" for="confirmPassword"
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label display-3 fs-4"
               >Confirm Password</label
             >
             <input
               type="password"
-              class="form-control"
-              name="confirmpassword"
+              class="form-control w-75"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Re-Enter password"
               ngModel
               required
-              password
-              minlength="8"
-              #modelrepeatpassword="ngModel"
+              pattern="{{ passwordvaild.value }}"
+              #confpass="ngModel"
               [ngClass]="
-                modelrepeatpassword.invalid && modelrepeatpassword.touched
+                confpass.value !== passwordvaild.value && confpass.dirty
                   ? 'is-invalid'
                   : ''
               "
             />
-            <div
-              *ngIf="modelpassword.value !== modelrepeatpassword.value"
-              class="text-danger"
-            >
-              Password Mismatch
+            <div *ngIf="confpass.invalid" class="invalid-feedback">
+              Password is mismatch
             </div>
           </div>
-
+ 
+          <div class="form-outline mb-3">
+            <label class="form-label" for="dropdown">Select Option</label>
+            <select
+              id="dropdown"
+              class="form-select w-75"
+              name="role"
+              [(ngModel)]="role"
+              ngModel
+              required
+              #dropdownValid="ngModel"
+              [ngClass]="
+                dropdownValid.invalid && dropdownValid.dirty ? 'is-invalid' : ''
+              "
+            >
+              <option value="" disabled selected>Select an option</option>
+ 
+              <option value="option2">User</option>
+            </select>
+            <div *ngIf="dropdownValid.invalid" class="invalid-feedback">
+              Please select an option.
+            </div>
+          </div>
+ 
           <div class="d-flex align-items-center mb-4">
             <span>Already registered?</span>
-            <a routerLink="/login" class="heading text-decoration-none px-2"
+            <a
+              routerLink="/login"
+              class="text-primary text-decoration-none px-2"
               >Login here</a
             >
           </div>
-          <div>{{ error }}</div>
+ 
           <!-- Submit button -->
           <div class="d-grid gap-2 mb-5">
-            <button
-              type="submit"
-              class="heading"
-              [disabled]="registerForm.invalid"
-            >
-              Register
-            </button>
+            <button type="submit" class="btn btn-primary w-75">Register</button>
           </div>
         </form>
       </div>

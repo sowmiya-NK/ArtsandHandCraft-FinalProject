@@ -68,13 +68,13 @@
           type="text"
           [(ngModel)]="street"
           minlength="3"
-          #modelatreet="ngModel"
+          #modelstreet="ngModel"
           [ngClass]="
-            modelatreet.touched && modelatreet.invalid ? 'is-invalid' : ''
+            modelstreet.touched && modelstreet.invalid ? 'is-invalid' : ''
           "
         />
         <div
-          *ngIf="modelatreet.invalid && modelatreet.dirty"
+          *ngIf="modelstreet.invalid && modelstreet.dirty"
           class="invalid-feedback"
         >
           please enter atleast 3 characters
