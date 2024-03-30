@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
   orders: Order[] = [];
   addressId: number = 0;
   itemCount: number = 1;
+  cartEmptyMessage="Oops! Your cart is Empty!"
 
   constructor(
     private cartService: CartService,

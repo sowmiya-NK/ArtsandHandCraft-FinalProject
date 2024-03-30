@@ -112,12 +112,16 @@
 </div>
 
 <!-- product -->
-<div class="row d-flex mt-4 product">
-  <div class="col-3 product-item" *ngFor="let products of productDetails.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  )
-">
+<div class="row d-flex mt-4 product" id="testDiv">
+  <div
+    class="col-3 product-item"
+    *ngFor="
+      let products of productDetails.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    "
+  >
     <div class="image-content">
       <a (click)="viewProducts(products.id!)">
         <img
@@ -135,6 +139,7 @@
       ₹{{ products.price }}
     </p>
     <button
+      class="btn btn-dark"
       type="submit"
       (click)="addToCart(products.id!)"
       id="addToCartButton"

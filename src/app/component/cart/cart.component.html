@@ -1,10 +1,10 @@
 <div class="container px-4 py-5 mx-auto" style="margin-top: 35px">
   <div class="row d-flex justify-content-center">
     <div
-      class="model-body d-flex flex-column align-items-center"
+      class="model-body d-flex flex-column align-items-center "
       *ngIf="carts.length === 0"
     >
-      <p class="mt-3 mx-6">Oops! Your cart is Empty!</p>
+      <p class="mt-3 mx-6 cart-empty">{{cartEmptyMessage}}</p>
       <img
         src="https://static.wixstatic.com/media/7742ef_dfe620d0354b471b8620fcb2c3a46e62~mv2.gif"
       />
@@ -61,7 +61,7 @@
           <td class="mt-3">₹ {{ total + cart.price * cart.count }}</td>
           <td>
             <button
-              class="btn w-50"
+              class="btn w-50 deleteItem"
               (click)="onDelete(cart.userId, cart.artworkId)"
             >
               <i class="fa-solid fa-trash"></i>
@@ -185,7 +185,7 @@
           </div>
         </div>
         <div class="col-lg-4 mt-2">
-          <div class="row d-flex justify-content-between px-4">
+          <div class="row d-flex justify-content-between px-4 totalvalue">
             <p class="mb-1 text-left">Subtotal</p>
             <h6 class="mb-1 text-right">₹{{ totalValue }}</h6>
           </div>

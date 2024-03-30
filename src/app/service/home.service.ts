@@ -22,7 +22,7 @@ export class HomeService {
 
     this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/ArtWork/all`).subscribe({
       next: (response) => {
-        console.log(response.data);
+        console.log('getProduct',response.data);
         return response;
       },
       error: (err) => {

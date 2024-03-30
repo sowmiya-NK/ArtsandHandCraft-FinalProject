@@ -17,7 +17,6 @@ import { AdminOrderComponent } from './component/admin/admin-order/admin-order.c
 import { ProfileComponent } from './component/profile/profile.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
-import { ReceiptPageComponent } from './component/receipt-page/receipt-page.component';
 import { AddressComponent } from './component/address/address.component';
 import { ContactPageComponent } from './component/contact-page/contact-page.component';
 
@@ -42,7 +41,6 @@ const routes: Routes = [
   },
   { path: 'payment', component: PaymentComponent },
   { path: 'statuschecking', component: StatsuChekingComponent },
-  { path: 'receipt', component: ReceiptPageComponent },
   { path: 'user/address', component: AddressComponent },
   { path: 'contactPage', component: ContactPageComponent },
 ];

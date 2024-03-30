@@ -22,7 +22,6 @@ export class OrderComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private storageService: StorageService,
-    private route: ActivatedRoute
   ) {
     this.user = storageService.getLoggedInUser();
     this.date = new Date();

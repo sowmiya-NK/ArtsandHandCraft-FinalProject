@@ -41,10 +41,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.fetchdata().subscribe({
-      next: (products: any) => {
-        console.log(products);
-        this.productDetails = products.data;
-        this.totalProducts = products.data;
+      next: (response: any) => {
+        console.log('product return', response);
+        this.productDetails = response.data;
+        this.totalProducts =response.data;
       },
       error: (err) => console.log('error', err),
       complete: () => console.log('productcompleted'),
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
     return Array.from({ length: pageCount }, (_, index) => index + 1);
   }
 
-  getLastPage():number{
-  return this.getPageNumbers().slice(-1)[0] || 1;
+  getLastPage(): number {
+    return this.getPageNumbers().slice(-1)[0] || 1;
   }
 }
