@@ -1,6 +1,6 @@
 export interface AppResponse {
   status: number;
-  timestamp: String;
+  timestamp: any;
   data: any;
   error: any;
 }

@@ -52,6 +52,8 @@ export class HomeComponent implements OnInit {
     console.log('started');
   }
   addToCart(productId: number): void {
+    console.log('add to cart method was callled');
+    
     console.log(productId);
 
     this.cartService

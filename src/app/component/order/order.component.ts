@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.fetchdata(this.user?.id).subscribe({
       next: (orders: any) => {
-        console.log(orders);
+        console.log(orders,'orderdetails');
 
         this.orderDetails = orders.data;
       },

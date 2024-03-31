@@ -3,13 +3,14 @@ export interface Order {
   total: number;
   username: String;
   createdAt?: Date;
-  addressId?:number;
+  addressId?: number;
   orderedArtWorkList: {
-    id?: number;
+    id?: number | undefined;
     title: String;
-    description?: string;
+    description?: string | undefined;
     price: number;
     count: number;
+   
   }[];
-  orderStatus?:string;
+  orderStatus?: string; // Optional, if you want it at the top level of Order
 }

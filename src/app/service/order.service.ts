@@ -10,6 +10,7 @@ import { Orderstatus } from '../model/orderstatus';
 })
 export class OrderService {
   constructor(private http: HttpClient) {}
+  
   fetchdata(userId: number): Observable<Order[]> {
     return this.http.get<Order[]>(`${urlEndpoint.baseUrl}/order/${userId}`);
   }

@@ -12,6 +12,7 @@
               class="form-control"
               name="username"
               placeholder="username or email"
+              id="username"
               ngModel
               required
               minlength="3"
@@ -35,6 +36,7 @@
               type="password"
               class="form-control"
               name="password"
+              id="password"
               ngModel
               required
               minlength="3"
@@ -76,6 +78,7 @@
               class="heading"
               [disabled]="!loginForm.valid"
               style="color: white"
+              id="loginButton"
             >
               Login
             </button>
