@@ -20,7 +20,7 @@ import { StatsuChekingComponent } from './component/statsu-cheking/statsu-chekin
 import { AddressComponent } from './component/address/address.component';
 import { ContactPageComponent } from './component/contact-page/contact-page.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

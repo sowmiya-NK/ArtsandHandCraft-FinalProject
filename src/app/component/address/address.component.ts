@@ -24,7 +24,7 @@ export class AddressComponent {
     street: string;
     city: string;
     state: string;
-    zipcode: string;
+    zipcode: number;
   }) {
     console.log(details);
     this.addressService

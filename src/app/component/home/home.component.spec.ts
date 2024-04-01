@@ -3,6 +3,10 @@ import { HomeComponent } from './home.component';
 import { DebugElement, NgModule } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { HomeService } from 'src/app/service/home.service';
@@ -12,24 +16,26 @@ import { Product } from 'src/app/model/product';
 import { of } from 'rxjs';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { CartService } from 'src/app/service/cart.service';
+import { urlEndpoint } from 'src/app/utils/constant';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let debugElement: DebugElement;
+  let debug: DebugElement;
   let productService: ProductService;
   let cartService: CartService;
+  let httpMock: HttpTestingController;
 
   beforeEach(waitForAsync(() => {
-    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']); 
+    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
 
     TestBed.configureTestingModule({
-      declarations: [HomeComponent,FooterComponent],
-      imports: [FormsModule,HttpClientModule],
+      declarations: [HomeComponent, FooterComponent],
+      imports: [FormsModule, HttpClientModule, HttpClientTestingModule],
       providers: [
         ProductService,
-        { provide: CartService, useValue: cartServiceSpy } 
-      ]
+        { provide: CartService, useValue: cartServiceSpy },
+      ],
     }).compileComponents();
   }));
 
@@ -37,7 +43,8 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     productService = TestBed.inject(ProductService);
-    cartService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>; 
+    cartService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>;
+    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -45,40 +52,28 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should trigger addToCart button', () => {
-  //   const btn = fixture.debugElement.query(By.css('#testDiv'));
-  //   expect(btn).toBeTruthy();
+  it('should trigger addToCart button', () => {
+    const btn = fixture.debugElement.query(By.css('#testDiv'));
+    expect(btn).toBeTruthy();
 
-  //   if (btn) {
-  //     btn.nativeElement.click();
-  //   }
+    if (btn) {
+      btn.nativeElement.click();
+    }
 
-  //   fixture.detectChanges();
-  //   expect(cartService.addToCart).toHaveBeenCalled();
-  // });
+    fixture.whenStable().then(() => {
+      expect(cartService.addToCart).toHaveBeenCalled();
+    });
+  });
 
-  // it('should call fetchdata method of ProductService on initialization', fakeAsync(() => {
-  //   const testData: Product[] = [
-  //     {
-  //       id: 21,
-  //       title: 'Door & Wall Hanging Home Decor',
-  //       description: 'handcrafted Rajasthani Door & Wall Hanging Home Decor',
-  //       price: 650,
-  //     },
-  //   ];
-  //   const spy = spyOn(productService, 'fetchdata').and.returnValue(
-  //     of(testData)
-  //   );
-  //   console.log('componentdetails',component.productDetails);
+  it('should check get method was called', () => {
+    const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/admin/artWork/all`);
+    expect(req.request.method).toEqual('GET');
+  });
 
-  //   component.ngOnInit();
-  //   expect(spy).toHaveBeenCalled();
-  // fixture.whenStable().then(()=>{
-  //   expect(component.productDetails).toEqual(testData);
-
-  // })
-  //   expect(component.productDetails).toEqual(testData);
-  // }));
+  it('should render product details', () => {
+    const products = fixture.debugElement.queryAll(By.css('.product'));
+    expect(products.length).toBeGreaterThan(0);
+  });
 
   it('should call service method', () => {
     spyOn(productService, 'fetchdata').and.callThrough();
