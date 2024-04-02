@@ -15,9 +15,6 @@ export class ProductviewComponent implements OnInit {
   totalItems:string[]=[];
   displayedItems:string[]=[];
 
-
- 
-
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {

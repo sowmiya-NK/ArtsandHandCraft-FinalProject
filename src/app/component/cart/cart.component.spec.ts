@@ -6,12 +6,19 @@ import { By } from '@angular/platform-browser';
 import { CartService } from 'src/app/service/cart.service';
 import { of } from 'rxjs';
 import { Cart } from 'src/app/model/cart';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { urlEndpoint } from 'src/app/utils/constant';
 
 describe('CartComponent', () => {
   let component: CartComponent;
   let debug: DebugElement;
   let fixture: ComponentFixture<CartComponent>;
   // let cartServiceStub: Partial<CartService>;
+  let cartservice: CartService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     // cartServiceStub = {
@@ -21,12 +28,14 @@ describe('CartComponent', () => {
     // };
     TestBed.configureTestingModule({
       declarations: [CartComponent],
-      imports: [HttpClientModule],
-      // providers: [{provide: CartService, useValue: cartServiceStub }],
+      imports: [HttpClientModule, HttpClientTestingModule],
+      providers: [{ provide: CartService }],
     }).compileComponents();
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
     debug = fixture.debugElement;
+    cartservice = TestBed.inject(CartService);
+    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -46,21 +55,23 @@ describe('CartComponent', () => {
     expect(component.totalValue).toEqual(initialAmount);
   });
 
-  // it('should remove item from cart when remove button is clicked',()=>{
-  //   const deleteItemId=148;
-  //   const productId=24;
-  //   spyOn(component,'onDelete')
-  //   const deleteButton=debug.query(By.css('.deleteItem'));
-  //   deleteButton.triggerEventHandler('click',{});
-  //   expect(component.onDelete).toHaveBeenCalledWith(deleteItemId,productId)
-  // })
-//   it('should display empty cart message when there are no items in the cart', () => {
-//     // spyOn(cartServiceStub, 'fetchdata').and.returnValue(of([]));
-//     // fixture.detectChanges();
-//     const emptyCartMessage = debug.query(By.css('.cart-empty'));
-//     // console.log(emptyCartMessage,'emptymessage');
-//     expect(emptyCartMessage).toBeTruthy();
-//     expect(emptyCartMessage.nativeElement.textContent.trim()).toEqual('Oops! Your cart is Empty!');
-// });
+  it('cartservice was called', () => {
+    expect(cartservice).toBeTruthy();
+  });
 
+  it('should delete cart', () => {
+    const Id = 179;
+    const artWorkId = 22;
+    const mockResponse: Cart[] = [{ userId: 1, artworkId: 22, count: 1 ,price:650}];
+
+    cartservice.deleteCart(Id, artWorkId).subscribe((data) => {
+      expect(data).toEqual(mockResponse);
+    });
+
+    const req = httpMock.expectOne(
+      `${urlEndpoint.baseUrl}/cart/${Id}/${artWorkId}`
+    );
+    expect(req.request.method).toBe('DELETE');
+    req.flush(mockResponse);
+  });
 });

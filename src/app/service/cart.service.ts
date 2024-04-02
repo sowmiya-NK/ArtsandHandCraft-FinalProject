@@ -34,8 +34,7 @@ export class CartService {
       artWorkId: productId,
       count: count,
     };
-    console.log(requestData);
-
+  
     return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 
@@ -51,8 +50,6 @@ export class CartService {
       count: c,
       total: t,
     };
-    console.log(requestData);
-
     return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 

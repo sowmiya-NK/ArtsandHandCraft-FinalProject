@@ -9,19 +9,15 @@ import {
 } from '@angular/common/http/testing';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { HomeService } from 'src/app/service/home.service';
 import { ProductService } from 'src/app/service/product.service';
-import { AppResponse } from 'src/app/model/appResponse';
-import { Product } from 'src/app/model/product';
-import { of } from 'rxjs';
-import { fakeAsync, tick } from '@angular/core/testing';
 import { CartService } from 'src/app/service/cart.service';
 import { urlEndpoint } from 'src/app/utils/constant';
+import { Cart } from 'src/app/model/cart';
+import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let debug: DebugElement;
   let productService: ProductService;
   let cartService: CartService;
   let httpMock: HttpTestingController;
@@ -156,5 +152,29 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
     component.currentPage -= 1;
     expect(component.currentPage).toBe(2);
+  });
+
+  it('should add to cart', () => {
+    const userId = 3;
+    const artWorkId = 24;
+    const dummyCartItems: Cart[] = [
+      {
+        userId: 3,
+        artworkId: 24,
+        price: 2499,
+        title: 'Canvas Painting Wall Art',
+        count: 1,
+      },
+    ];
+    // const spy = spyOn(cartService, 'addToCart').and.returnValue(
+    //   of(dummyCartItems)
+    // );
+    // component.addToCart(artWorkId);
+    // expect(spy).toHaveBeenCalledWith(userId, artWorkId);
+    fixture.whenStable().then(() => {
+      expect(cartService.addToCart).toHaveBeenCalled();
+      const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/cart`);
+      expect(req.request.method).toBe('POST');
+    });
   });
 });

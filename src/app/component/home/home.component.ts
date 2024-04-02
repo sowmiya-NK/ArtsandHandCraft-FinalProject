@@ -49,13 +49,9 @@ export class HomeComponent implements OnInit {
       error: (err) => console.log('error', err),
       complete: () => console.log('productcompleted'),
     });
-    console.log('started');
+    
   }
   addToCart(productId: number): void {
-    console.log('add to cart method was callled');
-    
-    console.log(productId);
-
     this.cartService
       .addToCart(this.stoargeService.getLoggedInUser()?.id, productId)
       .subscribe((Response) => console.log(Response));

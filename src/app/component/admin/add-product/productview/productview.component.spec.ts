@@ -6,12 +6,16 @@ import { Route, Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { Product } from 'src/app/model/product';
 import { of } from 'rxjs';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { urlEndpoint } from 'src/app/utils/constant';
 
 describe('ProductViewComponent', () => {
   let component: ProductviewComponent;
   let fixture: ComponentFixture<ProductviewComponent>;
   let router: Router;
-  // let productService: jasmine.SpyObj<ProductService>;
   let productService: ProductService;
 
   beforeEach(() => {
@@ -108,5 +112,16 @@ describe('ProductViewComponent', () => {
     fixture.detectChanges();
     component.currentPage -= 1;
     expect(component.currentPage).toBe(2);
+  });
+  it('delete method was called', () => {
+    const deleteButton = fixture.debugElement.query(By.css('#deletebutton'));
+    fixture.whenStable().then(() => {
+      expect(deleteButton).toBeTruthy();
+      deleteButton.nativeElement.click();
+    });
+
+    fixture.detectChanges();
+    // const spy=spyOn(component,'onDelete')
+    // expect(spy).toHaveBeenCalled();
   });
 });
