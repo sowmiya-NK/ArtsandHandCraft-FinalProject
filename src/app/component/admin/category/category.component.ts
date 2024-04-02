@@ -14,7 +14,7 @@ export class CategoryComponent {
   editId: number = 0;
   constructor(
     private categoryService: CategoryService,
-    private router: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   addCategory(categories: NgForm) {
@@ -29,15 +29,17 @@ export class CategoryComponent {
   }
 
   ngOnInit(): void {
-    this.router.queryParams.subscribe((param) => {
+    this.route.queryParams.subscribe((param) => {
       let id = param['id'];
-      // console.log(id);
       this.editId = id;
       this.categoryService.findCategoryById(id).subscribe({
         next: (response: any) => {
-          console.log(response);
-          this.category_name= response.data.title;
-          // console.log('category name',this.categoryName);
+          console.log(response, 'edit catgeory');
+          this.category_name = response.data.title;
+          console.log('catgeory name', this.category_name);
+        },
+        error: (error: any) => {
+          console.error('Error fetching category:', error);
         },
       });
     });

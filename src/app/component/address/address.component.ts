@@ -26,11 +26,9 @@ export class AddressComponent {
     state: string;
     zipcode: number;
   }) {
-    console.log(details);
     this.addressService
       .postAddress(details, this.storageService.getLoggedInUser().id)
       .subscribe((response) => {
-        console.log(response);
         this.storageService.setAddress(response);
       });
   }

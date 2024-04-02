@@ -3,12 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
-  styleUrls: ['./contact-page.component.css']
+  styleUrls: ['./contact-page.component.css'],
 })
 export class ContactPageComponent {
-  constructor(){}
-  onSubmit(){
-    alert('Your feedback has been submited successfuly!!!\uD83D\uDE05')
+  onSubmit() {
+    alert('Your feedback has been submited successfuly!!!\uD83D\uDE05');
   }
-
 }

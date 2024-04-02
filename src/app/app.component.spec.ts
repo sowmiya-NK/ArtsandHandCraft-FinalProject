@@ -17,7 +17,7 @@ import { authGuard } from './guard/auth.guard';
 import { FooterComponent } from './component/footer/footer.component';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { find } from 'rxjs';
+import { find, findIndex } from 'rxjs';
 import { CartService } from './service/cart.service';
 
 describe('AppComponent', () => {
@@ -77,34 +77,71 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-//   it('should render HomeComponent when user is not logged in', () => {
-//     router.navigate(['']).then(() => {
-//       expect(router.url).toBeNull();
-//     });
-//     // fixture.detectChanges();
-//     // await fixture.whenStable();
-//     // const homeComponent = fixture.debugElement.query(By.css('app-home'));
-//     // expect(homeComponent).toBeTruthy();
-//   });
+  it('should navigate to cart page after clicking cart icon', () => {
+    fixture.detectChanges();
+    const cartLink = fixture.debugElement.query(By.css('a[routerink="/cart"]'));
 
-//   it('should navigate to cart page after clicking cart icon', () => {
-//     const cartLink = fixture.debugElement.query(
-//       By.css('a[routerlink="/cart"]')
-//     );
-//     expect(cartLink).toBeTruthy();
-//   });
+    if (cartLink) {
+      expect(cartLink).toBeTruthy();
+      cartLink.nativeElement.click();
+      let spyNavigate = spyOn(router, 'navigateByUrl');
+      fixture.whenStable();
+      expect(spyNavigate).toHaveBeenCalledWith('/cart');
+    }
+  });
 
-it('should increase cart count when clicking on cart button', async () => {
-  component.isLoggedIn=true;
-  component.isAdmin=false;
-  fixture.detectChanges();
-  await fixture.whenStable(); 
-  const cartButton = fixture.nativeElement.querySelector('.cartButton');
-  console.log('Cart Button:', cartButton);
-  cartButton.click(); 
-  console.log(component.cartCount,'cartValue');
-  expect(cartServiceStub.getCartCount).toHaveBeenCalled();
-  expect(component.cartCount).toBeGreaterThan(0);
-});
+  it('should navigate to user profile page after clicking user icon', () => {
+    fixture.detectChanges();
+    const userprofileLink = fixture.debugElement.query(
+      By.css('a[routerLink="/user/profile"]')
+    );
+    if (userprofileLink) {
+      expect(userprofileLink).toBeTruthy();
+      userprofileLink.nativeElement.click();
+      const spyNavigate = spyOn(router, 'navigateByUrl');
+      fixture.whenStable().then(() => {
+        expect(spyNavigate).toHaveBeenCalledWith('/user/profile');
+      });
+    }
+  });
 
+  it('should navigate to order page after clicking order icon', () => {
+    fixture.detectChanges();
+    const orderLink = fixture.debugElement.query(
+      By.css('a[routerLink="/order"]')
+    );
+    if (orderLink) {
+      expect(orderLink).toBeTruthy();
+      orderLink.nativeElement.click();
+      const spyNavigate = spyOn(router, 'navigateByUrl');
+      fixture.whenStable().then(() => {
+        expect(spyNavigate).toHaveBeenCalledWith('/order');
+      });
+    }
+  });
+
+  it('should increase cart count when clicking on cart button', async () => {
+    component.isLoggedIn = true;
+    component.isAdmin = false;
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const cartButton = fixture.nativeElement.querySelector('.cartButton');
+    console.log('Cart Button:', cartButton);
+    cartButton.click();
+    console.log(component.cartCount, 'cartValue');
+    expect(cartServiceStub.getCartCount).toHaveBeenCalled();
+    expect(component.cartCount).toBeGreaterThan(0);
+  });
+
+  it('should count the cart value', () => {
+    const cartClick = fixture.debugElement.query(By.css('#cartButton'));
+    if (cartClick) {
+      expect(cartClick).toBeTruthy();
+      cartClick.nativeElement.click();
+    }
+    fixture.detectChanges();
+    let cartCount = component.cartCount;
+    expect(cartServiceStub.getCartCount).toHaveBeenCalled();
+    expect(cartCount).toEqual(1);
+  });
 });

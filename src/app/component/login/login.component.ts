@@ -29,11 +29,6 @@ export class LoginComponent {
       next: (response: AppResponse) => {
         this.authService.setLoggedIn(response.data);
       },
-      error: (err) => {
-        let message: String = err.error.error.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
-      },
-      complete: () => console.log('There are no more action happen.'),
     });
   }
 }
