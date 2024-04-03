@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile.component';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +18,7 @@ import {
 } from '@angular/common/http/testing';
 import { urlEndpoint } from 'src/app/utils/constant';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserProfile } from 'src/app/model/user-profile';
 
 describe('profileComponent', () => {
   let component: ProfileComponent;
@@ -73,12 +79,14 @@ describe('profileComponent', () => {
   it('should delete an address', () => {
     const deleteId = 273;
     const mockAddress: Address = {
-      userId: 9,
+      id: 9,
+
       street: 'abc',
       city: 'abc',
       state: 'abc',
       zipcode: 123456,
     };
+
     addressService.deleteAddress(deleteId).subscribe((data) => {
       expect(data).toEqual(mockAddress);
     });
@@ -87,6 +95,5 @@ describe('profileComponent', () => {
     expect(req.request.method).toBe('DELETE');
 
     req.flush(mockAddress);
-    // httpMock.verify();
   });
 });

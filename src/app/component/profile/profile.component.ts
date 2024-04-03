@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'src/app/model/address';
 import { AppUser } from 'src/app/model/appUser';
 import { Order } from 'src/app/model/order';
 import { UserProfile } from 'src/app/model/user-profile';
@@ -14,13 +15,12 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 export class ProfileComponent implements OnInit {
   // userDetails: UserProfile = null;
   userprofile: UserProfile[] = [];
- 
 
   user: AppUser;
   constructor(
     private userProfileService: UserprofileService,
     private storageService: StorageService,
-    private addressService:AddressService
+    private addressService: AddressService
   ) {
     this.user = storageService.getLoggedInUser();
   }
@@ -30,18 +30,14 @@ export class ProfileComponent implements OnInit {
       next: (response: any) => {
         let profile = response.data;
         this.userprofile = [profile];
-        console.log(this.userprofile);
       },
-
-      error: (err) => console.log('error', err),
-      complete: () => console.log('completed'),
     });
   }
 
-  deleteAddress(deleteId:number){
-    this.addressService.deleteAddress(deleteId).subscribe((response)=>console.log(response)
-    )
-    this.ngOnInit()
-    
+  deleteAddress(deleteId: number) {
+    this.addressService
+      .deleteAddress(deleteId)
+      .subscribe((response) => console.log(response));
+    this.ngOnInit();
   }
 }
