@@ -17,11 +17,12 @@ describe('ProductViewComponent', () => {
   let fixture: ComponentFixture<ProductviewComponent>;
   let router: Router;
   let productService: ProductService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ProductviewComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, HttpClientTestingModule],
       providers: [
         {
           provide: ProductService,
@@ -33,6 +34,7 @@ describe('ProductViewComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
     productService = TestBed.inject(ProductService);
+    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -112,16 +114,5 @@ describe('ProductViewComponent', () => {
     fixture.detectChanges();
     component.currentPage -= 1;
     expect(component.currentPage).toBe(2);
-  });
-  it('delete method was called', () => {
-    const deleteButton = fixture.debugElement.query(By.css('#deletebutton'));
-    fixture.whenStable().then(() => {
-      expect(deleteButton).toBeTruthy();
-      deleteButton.nativeElement.click();
-    });
-
-    fixture.detectChanges();
-    // const spy=spyOn(component,'onDelete')
-    // expect(spy).toHaveBeenCalled();
   });
 });

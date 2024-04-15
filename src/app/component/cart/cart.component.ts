@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   orders: Order[] = [];
   addressId: number = 0;
   itemCount: number = 1;
-  cartEmptyMessage="Oops! Your cart is Empty!"
+  cartEmptyMessage = 'Oops! Your cart is Empty!';
 
   constructor(
     private cartService: CartService,
@@ -40,35 +40,40 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartService.fetchdata(this.user?.id).subscribe({
-      next: (carts: any) => {
-        this.stoargeService.setCart(carts.data);
-        let cartDetails: Cart[] = carts.data;
-        this.carts = cartDetails;
-        this.calculateTotalValue();
-      },
+    this.user = this.stoargeService.getLoggedInUser();
+    if (this.user) {
+      this.cartService.fetchdata(this.user.id).subscribe({
+        next: (carts: any) => {
+          this.stoargeService.setCart(carts.data);
+          let cartDetails: Cart[] = carts.data;
+          this.carts = cartDetails;
+          this.calculateTotalValue();
+        },
+        error: () => console.log('error'),
+        complete: () => console.log('completed'),
+      });
 
-      error: () => console.log('error'),
-      complete: () => console.log('completed'),
-    });
-
-    this.userProfileService.getUserById(this.user?.id).subscribe({
-      next: (response: any) => {
-        let profile = response.data;
-        this.userprofile = [profile];
-        console.log(this.userprofile,"newww");
-      },
-
-      error: (err) => console.log('error', err),
-      complete: () => console.log('completed'),
-    });
+      this.userProfileService.getUserById(this.user.id).subscribe({
+        next: (response: any) => {
+          let profile = response.data;
+          this.userprofile = profile
+          console.log(this.userprofile, 'newww');
+        },
+        error: (err) => console.log('error', err),
+        complete: () => console.log('completed'),
+      });
+    }
   }
 
   calculateTotalValue(): void {
-    this.totalValue = this.carts.reduce(
-      (acc, cart) => acc + cart.count * cart.price,
-      0
-    );
+    if (this.carts && this.carts.length > 0) {
+      this.totalValue = this.carts.reduce(
+        (acc, cart) => acc + cart.count * cart.price,
+        0
+      );
+    } else {
+      this.totalValue = 0;
+    }
   }
 
   onDelete(deleteid: number, productId: number): void {
@@ -91,9 +96,8 @@ export class CartComponent implements OnInit {
       this.cartService
         .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
-        this.calculateTotalValue();
+      this.calculateTotalValue();
     }
-    
   }
   decrementCount(cart: Cart) {
     if (cart.count != 1) {
@@ -101,7 +105,7 @@ export class CartComponent implements OnInit {
       this.cartService
         .cartCountUpdate(this.user.id, cart.artworkId, cart.count, this.total)
         .subscribe((response) => console.log(response));
-        this.calculateTotalValue();
+      this.calculateTotalValue();
     }
   }
 
@@ -122,8 +126,8 @@ export class CartComponent implements OnInit {
         ],
       });
       this.addressId = this.userprofile[0].addressList[0].id!;
-      console.log(this.addressId,"check");
-      
+      console.log(this.addressId, 'check');
+
       this.orderService
         .createOrder(item.userId, item.artworkId, this.addressId)
         .subscribe({
@@ -136,7 +140,7 @@ export class CartComponent implements OnInit {
         });
     }
     this.stoargeService.setOrder(this.orders);
-    this.carts=[];
+    this.carts = [];
     return this.orders;
   }
 }

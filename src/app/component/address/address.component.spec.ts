@@ -1,54 +1,66 @@
-import { TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule and ReactiveFormsModule
+import { HttpClientModule } from '@angular/common/http';
 
 import { Address } from 'src/app/model/address';
 import { AddressService } from 'src/app/service/address.service';
-import { urlEndpoint } from 'src/app/utils/constant';
-import { AppComponent } from 'src/app/app.component';
 import { AddressComponent } from './address.component';
+import { StorageService } from 'src/app/service/storage.service';
+import { of } from 'rxjs';
 
-describe('AddressService', () => {
+const userDetails = {
+  values: {
+    name: 'user',
+    username: 'user',
+    street: 'abc',
+    city: 'abc',
+    state: 'abc',
+    zipcode: 123456,
+  },
+};
+const userId = 1;
+const mockResponse: Address[] = [
+  {
+    street: 'abc',
+    city: 'abc',
+    state: 'abc',
+    zipcode: 123456,
+  },
+];
+
+describe('AddressComponent', () => {
+  // Corrected to 'AddressComponent'
+  let component: AddressComponent;
+  let fixture: ComponentFixture<AddressComponent>;
   let service: AddressService;
-  let httpMock: HttpTestingController;
+  let storageService: StorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [AddressService],
-    });
+      declarations: [AddressComponent],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientModule],
+      providers: [AddressService, StorageService],
+    }).compileComponents();
+    fixture = TestBed.createComponent(AddressComponent);
+    component = fixture.componentInstance;
     service = TestBed.inject(AddressService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
+    storageService = TestBed.inject(StorageService);
+    fixture.detectChanges();
   });
 
   it('AddressComponent should create', () => {
-    expect(AddressComponent).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it('should add address', () => {
-    const dummyAddress: Address = {
-      userId: 1,
-      street: 'xyz',
-      city: 'xyz',
-      state: 'xyz',
-      zipcode: 123456,
-    };
-    const userId = 1;
-
-    service.postAddress(dummyAddress, userId).subscribe((data) => {
-      expect(data).toEqual(dummyAddress);
-    });
-
-    const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/user`);
-    expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(dummyAddress);
-
-    req.flush(dummyAddress);
+    spyOn(storageService, 'getLoggedInUser').and.returnValue({ id: userId });
+    spyOn(service, 'postAddress').and.returnValue(of(mockResponse[0]));
+    spyOn(storageService, 'setAddress');
+    component.onSubmit(userDetails.values);
+    expect(service.postAddress).toHaveBeenCalledWith(
+      userDetails.values,
+      userId
+    );
+    expect(storageService.setAddress).toHaveBeenCalled();
   });
 });

@@ -8,7 +8,7 @@ import { Category } from '../model/category';
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
   fetchdata(): Observable<Category[]> {
     return this.http.get<Category[]>(
       `${urlEndpoint.baseUrl}/admin/category/all`

@@ -1,7 +1,7 @@
 export interface Order {
   id: number;
   total?: number;
-  username: String;
+  username?: String;
   createdAt?: Date;
   addressId?: number;
   orderedArtWorkList: {
@@ -12,5 +12,5 @@ export interface Order {
     count: number;
    
   }[];
-  orderStatus?: string; // Optional, if you want it at the top level of Order
+  orderStatus?: string | undefined;
 }

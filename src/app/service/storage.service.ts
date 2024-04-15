@@ -40,8 +40,20 @@ export class StorageService {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
   public getCart(): Cart[] {
-    return JSON.parse(localStorage.getItem('cart') || '[]');
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+      try {
+        return JSON.parse(cartData);
+      } catch (error) {
+        console.error('Error parsing cart data:', error);
+
+        return [];
+      }
+    } else {
+      return [];
+    }
   }
+
   public removeCart(): void {
     localStorage.removeItem('cart');
   }

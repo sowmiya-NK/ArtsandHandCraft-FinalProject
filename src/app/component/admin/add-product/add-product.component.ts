@@ -38,7 +38,6 @@ export class AddProductComponent {
     private categoryService: CategoryService
   ) {}
 
-  onCategoryChange() {}
   addProduct(productForm: NgForm) {
     console.log(productForm.value);
 
@@ -49,7 +48,7 @@ export class AddProductComponent {
     formData.append('description', productForm.value.description);
     formData.append('categoryId', productForm.value.category);
     formData.append('price', productForm.value.price);
-console.log(formData);
+    console.log(formData);
 
     this.productService
       .addProduct(formData)
@@ -67,19 +66,19 @@ console.log(formData);
 
       this.productService.findProductById(id).subscribe({
         next: (products: any) => {
-          console.log(products.data);
-          console.log('befor', this.productName);
-          this.productDetails = products.data;
-          this.productName = products.data.title;
-          this.description = products.data.description;
-          this.price = products.data.price;
-          console.log('after', this.productName);
+          if (products && products.data) {
+            this.productDetails = products.data;
+            this.productName = products.data.title;
+            this.description = products.data.description;
+            this.price = products.data.price;
+          } 
         },
       });
       this.categoryService.fetchdata().subscribe((response: any) => {
-        console.log('category', response);
-        this.categoryid = response.id;
-        this.category = response.data;
+        if (response && response.data) {
+          this.categoryid = response.id;
+          this.category = response.data;
+        }
       });
     });
   }

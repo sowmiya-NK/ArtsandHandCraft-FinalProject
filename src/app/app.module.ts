@@ -26,7 +26,6 @@ import { CategoryviewComponent } from './component/admin/category/categoryview/c
 import { UserProfileComponent } from './component/admin/user-profile/user-profile.component';
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 import { ProfileComponent } from './component/profile/profile.component';
-import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
 
 import { AddressComponent } from './component/address/address.component';
 import { ContactPageComponent } from './component/contact-page/contact-page.component';
@@ -55,7 +54,6 @@ export function playerFactory() {
     UserProfileComponent,
     AdminOrderComponent,
     ProfileComponent,
-    StatsuChekingComponent,
     AddressComponent,
     ContactPageComponent,
   ],

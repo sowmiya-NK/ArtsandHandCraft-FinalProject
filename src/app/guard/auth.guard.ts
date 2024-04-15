@@ -10,13 +10,13 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const url = new URL(window.location.href);
 
-  console.log(loginService.isLoggedIn());
+  // console.log(loginService.isLoggedIn());
   
   storageService.setRoute(
     route.routeConfig?.path !== undefined?  route.routeConfig.path : null);
 
 
-  console.log(route.routeConfig?.path);
+  // console.log(route.routeConfig?.path);
   
   
 

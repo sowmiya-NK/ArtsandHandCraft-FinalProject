@@ -37,21 +37,13 @@ export class SproductComponent implements OnInit {
       this.productService.fetchdata().subscribe({
         next: (products: any) => {
           let productDetails: Product[] = products.data;
-          console.log(products);
-
           this.productDetails = productDetails;
-          // this.productDetail = productDetails[0];
         },
-
-        error: (err) => console.log('error', err),
-        complete: () => console.log('completed'),
       });
 
       this.productService.findProductById(this.productId).subscribe({
         next: (products: any) => {
-          console.log(products.data);
           this.singleProductDetails = products.data;
-          console.log(this.singleProductDetails);
         },
       });
     });

@@ -19,7 +19,6 @@ describe('User-ProfileComponent', () => {
   it('userprofileComponent should created', () => {
     expect(component).toBeTruthy();
   });
-  
 
   it('should navigate to the next page when Next button is clicked', () => {
     component.currentPage = 1;

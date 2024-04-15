@@ -30,12 +30,12 @@ export class OrderService {
     };
     return this.http.post<Order[]>(`${urlEndpoint.baseUrl}/order`, orderdata);
   }
-  // admin order status change
-  getorderStatus(): Observable<Orderstatus[]> {
-    return this.http.get<Orderstatus[]>(
-      `${urlEndpoint.baseUrl}/admin/order/status`
-    );
-  }
+  // // admin order status change
+  // getorderStatus(): Observable<Orderstatus[]> {
+  //   return this.http.get<Orderstatus[]>(
+  //     `${urlEndpoint.baseUrl}/admin/order/status`
+  //   );
+  // }
 
   changeOrderStatus(
     orderId: number,

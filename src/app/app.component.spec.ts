@@ -17,13 +17,17 @@ import { authGuard } from './guard/auth.guard';
 import { FooterComponent } from './component/footer/footer.component';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { find, findIndex } from 'rxjs';
+import { count, find, findIndex } from 'rxjs';
 import { CartService } from './service/cart.service';
+import { StorageService } from './service/storage.service';
+import { Cart } from './model/cart';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let router: Router;
+  let storageService: StorageService;
+  let cartService: CartService;
 
   const cartServiceStub: Partial<CartService> = {
     getCartCount: jasmine.createSpy().and.returnValue(1),
@@ -63,13 +67,18 @@ describe('AppComponent', () => {
         AppRoutingModule,
         RouterTestingModule,
       ],
-      providers: [{ provide: CartService, useValue: cartServiceStub }],
+      providers: [
+        { provide: CartService, useValue: cartServiceStub },
+        { provide: StorageService, CartService },
+      ],
     }).compileComponents();
 
     router = TestBed.inject(Router);
+    spyOn(router, 'navigateByUrl').and.stub;
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-
+    storageService = TestBed.inject(StorageService);
+    cartService = TestBed.inject(CartService);
     fixture.detectChanges();
   });
 
@@ -133,7 +142,7 @@ describe('AppComponent', () => {
     expect(component.cartCount).toBeGreaterThan(0);
   });
 
-  it('should count the cart value', () => {
+  it('should check count equal to  the cart value', () => {
     const cartClick = fixture.debugElement.query(By.css('#cartButton'));
     if (cartClick) {
       expect(cartClick).toBeTruthy();
@@ -144,4 +153,55 @@ describe('AppComponent', () => {
     expect(cartServiceStub.getCartCount).toHaveBeenCalled();
     expect(cartCount).toEqual(1);
   });
+
+  // it('should naviagate to all  routes', () => {
+  //   const routerLinks = [
+  //     '/contactPage',
+  //     '/user/profile',
+  //     '/cart',
+  //     '/order',
+  //     '/admin',
+  //     '/admin/user',
+  //     '/admin/product',
+  //     '/admin/categoryview',
+  //     '/admin/order',
+  //   ];
+
+  //   routerLinks.forEach((routerLink) => {
+  //     router.navigate([routerLink]);
+  //     expect(router.navigateByUrl).toHaveBeenCalledWith(routerLink);
+  //   });
+  // });
+  // it('should return cart count', () => {
+  //   const loggedInUser = { id: 1 };
+  //   const cartItems: Cart[] = [
+  //     {
+  //       userId: 1,
+  //       artworkId: 22,
+  //       price: 890,
+  //       title: 'Canvas Painting Wall Art',
+  //       count: 7,
+  //     },
+  //     {
+  //       userId: 1,
+  //       artworkId: 22,
+  //       price: 890,
+  //       title: 'Canvas Painting Wall Art',
+  //       count: 3,
+  //     },
+  //   ];
+  //   component.ngOnInit();
+  //   spyOn(storageService, 'getLoggedInUser').and.returnValue(loggedInUser);
+  //   spyOn(storageService, 'getCart').and.returnValue(cartItems);
+   
+  //   let c = component.getCartCount();
+  //   const expectedCount = cartItems.reduce((total, cart) => {
+  //     if (cart.userId === loggedInUser.id) {
+  //       total += cart.count;
+  //     }
+  //     return total;
+  //   }, 0);
+
+  //   expect(c).toEqual(expectedCount);
+  // });
 });

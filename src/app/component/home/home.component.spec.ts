@@ -23,15 +23,12 @@ describe('HomeComponent', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(waitForAsync(() => {
-    const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
+    // const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
 
     TestBed.configureTestingModule({
       declarations: [HomeComponent, FooterComponent],
       imports: [FormsModule, HttpClientModule, HttpClientTestingModule],
-      providers: [
-        ProductService,
-        { provide: CartService, useValue: cartServiceSpy },
-      ],
+      providers: [ProductService, { provide: CartService }],
     }).compileComponents();
   }));
 
@@ -155,8 +152,6 @@ describe('HomeComponent', () => {
   });
 
   it('should add to cart', () => {
-    const userId = 3;
-    const artWorkId = 24;
     const dummyCartItems: Cart[] = [
       {
         userId: 3,
@@ -166,11 +161,12 @@ describe('HomeComponent', () => {
         count: 1,
       },
     ];
-    // const spy = spyOn(cartService, 'addToCart').and.returnValue(
-    //   of(dummyCartItems)
-    // );
-    // component.addToCart(artWorkId);
-    // expect(spy).toHaveBeenCalledWith(userId, artWorkId);
+    let userId = 3;
+    let artworkId = 24;
+
+    spyOn(cartService, 'addToCart').and.returnValue(of(dummyCartItems));
+    component.addToCart(artworkId);
+    expect(cartService.addToCart).toHaveBeenCalled();
     fixture.whenStable().then(() => {
       expect(cartService.addToCart).toHaveBeenCalled();
       const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/cart`);

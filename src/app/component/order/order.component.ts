@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private storageService: StorageService,
+    private storageService: StorageService
   ) {
     this.user = storageService.getLoggedInUser();
     this.date = new Date();
@@ -30,27 +30,26 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.fetchdata(this.user?.id).subscribe({
       next: (orders: any) => {
-        console.log(orders,'orderdetails');
-
         this.orderDetails = orders.data;
       },
-      error: () => console.log('error'),
-      complete: () => console.log('completed'),
+
     });
   }
   currentStep: string = 'address';
   completedSteps: string[] = [];
 
-  
-getStatusColor(status:string):string{
-  switch(status){
-    case "pending": return 'orange'; 
-    case "confirmed": return 'blue';  
-    case "out of delivery": return 'red';  
-    case "delivered": return 'green'; 
-    default: return 'black';
+  getStatusColor(status: string): string {
+    switch (status) {
+      case 'pending':
+        return 'orange';
+      case 'confirmed':
+        return 'blue';
+      case 'out of delivery':
+        return 'red';
+      case 'delivered':
+        return 'green';
+      default:
+        return 'black';
+    }
   }
 }
-  
-}
-

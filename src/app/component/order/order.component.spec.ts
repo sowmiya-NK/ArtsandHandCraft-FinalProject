@@ -26,35 +26,32 @@ describe('OrderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should fetch order details from OrderService', async () => {
-  //   const userId = 1;
-  //   const testOrderData: Order[] = [
-  //     {
-  //       id: 79,
-  //       total: 2499,
-  //       username: 'user',
-  //       orderedArtWorkList: [
-  //         {
-  //           id: 72,
-  //           title: 'Canvas Painting Wall Art',
-  //           description:
-  //             'ArtX Bird Canvas Painting Wall Art Oil Painting For Bedroom and Living Room With Frame',
-  //           price: 2499,
-  //           count: 1,
-  //         },
-  //       ],
-  //     },
-  //   ];
+  it('should fetch order details from OrderService', async () => {
+    let userId = 1;
+    const testOrderData: Order[] = [
+      {
+        id: 79,
+        total: 2499,
 
-  //   spyOn(orderService, 'fetchdata')
-  //     .withArgs(userId)
-  //     .and.returnValue(of(testOrderData));
+        orderedArtWorkList: [
+          {
+            id: 72,
+            title: 'Canvas Painting Wall Art',
+            description:
+              'ArtX Bird Canvas Painting Wall Art Oil Painting For Bedroom and Living Room With Frame',
+            price: 2499,
+            count: 1,
+          },
+        ],
+      },
+    ];
+    component.user.id = userId;
 
-  //   orderService.fetchdata(userId).subscribe(() => {
-  //     expect(orderService.fetchdata).toHaveBeenCalledWith(userId);
-  //     expect(component.orderDetails).toEqual(testOrderData);
-  //   });
-  // });
+    spyOn(orderService, 'fetchdata')
+      .withArgs(userId)
+      .and.returnValue(of(testOrderData));
 
-  
+    component.ngOnInit();
+    expect(orderService.fetchdata).toHaveBeenCalledWith(userId);
+  });
 });

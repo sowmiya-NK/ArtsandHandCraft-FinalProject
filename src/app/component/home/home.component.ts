@@ -44,19 +44,20 @@ export class HomeComponent implements OnInit {
       next: (response: any) => {
         console.log('product return', response);
         this.productDetails = response.data;
-        this.totalProducts =response.data;
+        this.totalProducts = response.data;
       },
       error: (err) => console.log('error', err),
       complete: () => console.log('productcompleted'),
     });
-    
   }
   addToCart(productId: number): void {
-    this.cartService
-      .addToCart(this.stoargeService.getLoggedInUser()?.id, productId)
-      .subscribe((Response) => console.log(Response));
-    error: () => console.log('product not added in cart');
+    const userId = this.stoargeService.getLoggedInUser()?.id;
+    this.cartService.addToCart(userId, productId).subscribe((response) => {
+      console.log(response);
+
+    });
   }
+
   viewProducts(id: number) {
     this.router.navigate(['/sproduct'], {
       queryParams: { id: id },

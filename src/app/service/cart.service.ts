@@ -14,7 +14,7 @@ export class CartService {
   itemCount: number = 1;
   constructor(
     private http: HttpClient,
-    private storageService: StorageService,
+    private storageService: StorageService
   ) {}
 
   fetchdata(userId: number): Observable<Cart[]> {
@@ -34,7 +34,7 @@ export class CartService {
       artWorkId: productId,
       count: count,
     };
-  
+
     return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 
@@ -58,13 +58,12 @@ export class CartService {
     let cartArr = this.storageService
       .getCart()
       ?.filter((item: Cart) => item.userId === userId.id);
-    // console.log(userId);
-    // console.log(cartArr);
     if (cartArr) {
       let count: number;
       count = cartArr.reduce((a: number, c: Cart) => {
         if (c.userId === userId.id) {
           a += c.count;
+          console.log('cart value -----------', a);
         }
         return a;
       }, 0);

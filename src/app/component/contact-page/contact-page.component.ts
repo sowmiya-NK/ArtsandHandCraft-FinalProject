@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ContactPageComponent {
   onSubmit() {
-    alert('Your feedback has been submited successfuly!!!\uD83D\uDE05');
+    alert('Your feedback has been submited successfuly!!!');
   }
 }

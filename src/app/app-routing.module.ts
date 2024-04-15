@@ -16,7 +16,7 @@ import { UserProfileComponent } from './component/admin/user-profile/user-profil
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { PaymentComponent } from './component/payment/payment.component';
-import { StatsuChekingComponent } from './component/statsu-cheking/statsu-cheking.component';
+
 import { AddressComponent } from './component/address/address.component';
 import { ContactPageComponent } from './component/contact-page/contact-page.component';
 
@@ -40,7 +40,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'payment', component: PaymentComponent },
-  { path: 'statuschecking', component: StatsuChekingComponent },
+
   { path: 'user/address', component: AddressComponent },
   { path: 'contactPage', component: ContactPageComponent },
 ];
