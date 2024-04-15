@@ -11,6 +11,18 @@ import { CategoryService } from 'src/app/service/category.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Category } from 'src/app/model/category';
 
+const categoryData: AppResponse = {
+  status: 200,
+  timestamp: '',
+  data: [
+    {
+      id: 1,
+      title: 'test category',
+    },
+  ],
+  error: null,
+};
+
 describe('AddProductComponent', () => {
   let component: AddProductComponent;
   let fixture: ComponentFixture<AddProductComponent>;
@@ -83,28 +95,34 @@ describe('AddProductComponent', () => {
   });
 
   it('should fetch product details and categories on initialization', () => {
-    const productData: Product[] = [
-      {
-        id: 1,
-        title: 'product title',
-        description: 'product description',
-        price: 1000,
-      },
-    ];
+    let dummyProduct: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          id: 1,
+          title: 'test product',
+          description: 'test description',
+          price: 1000,
+        },
+      ],
+      error: null,
+    };
 
-    const categoryData: Category[] = [
-      {
-        id: 1,
-        title: 'test category',
-      },
-    ];
-
-    productService.findProductById.and.returnValue(of(productData[0]));
+    productService.findProductById.and.returnValue(of(dummyProduct));
 
     categoryService.fetchdata.and.returnValue(of(categoryData));
 
     component.ngOnInit();
 
     expect(productService.findProductById).toHaveBeenCalled();
+    expect(component.productDetails).toEqual(dummyProduct.data);
+    expect(component.categoryid).toEqual(categoryData.data.id);
+  });
+
+  it('should call onCategoryChange method', () => {
+    categoryService.fetchdata.and.returnValue(of(categoryData));
+    component.onCategoryChange();
+    expect(component.category).toEqual(categoryData.data);
   });
 });

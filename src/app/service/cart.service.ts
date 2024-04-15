@@ -6,6 +6,7 @@ import { urlEndpoint } from '../utils/constant';
 import { StorageService } from './storage.service';
 import { Order } from '../model/order';
 import { OrderService } from './order.service';
+import { AppResponse } from '../model/appResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +22,8 @@ export class CartService {
     return this.http.get<Cart[]>(`${urlEndpoint.baseUrl}/cart/${userId}`);
   }
 
-  deleteCart(id: number, productId: number): Observable<Cart[]> {
-    return this.http.delete<Cart[]>(
+  deleteCart(id: number, productId: number): Observable<AppResponse> {
+    return this.http.delete<AppResponse>(
       `${urlEndpoint.baseUrl}/cart/${id}/${productId}`
     );
   }
@@ -43,14 +44,14 @@ export class CartService {
     productId: number,
     c: number,
     t: number
-  ): Observable<Cart[]> {
+  ): Observable<AppResponse> {
     const requestData = {
       userId: userId,
       artWorkId: productId,
       count: c,
       total: t,
     };
-    return this.http.put<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
+    return this.http.put<AppResponse>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
 
   getCartCount() {

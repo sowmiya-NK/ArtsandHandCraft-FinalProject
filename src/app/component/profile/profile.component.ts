@@ -15,6 +15,7 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 export class ProfileComponent implements OnInit {
   // userDetails: UserProfile = null;
   userprofile: UserProfile[] = [];
+  deleteAddress1: Address[] = [];
 
   user: AppUser;
   constructor(
@@ -28,8 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getUserById(this.user?.id).subscribe({
       next: (response: any) => {
-        let profile = response.data;
-        this.userprofile = [profile];
+        this.userprofile = response.data;
       },
     });
   }
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   deleteAddress(deleteId: number) {
     this.addressService
       .deleteAddress(deleteId)
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => (this.deleteAddress1 = response.data));
     this.ngOnInit();
   }
 }

@@ -3,18 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product';
 import { urlEndpoint } from '../utils/constant';
+import { AppResponse } from '../model/appResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   constructor(private http: HttpClient) {}
-  fetchdata(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${urlEndpoint.baseUrl}/admin/artWork/all`);
+  fetchdata(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/admin/artWork/all`
+    );
   }
 
-  deleteProduct(id: number): Observable<Product[]> {
-    return this.http.delete<Product[]>(
+  deleteProduct(id: number): Observable<AppResponse> {
+    return this.http.delete<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/artWork/${id}`
     );
   }
@@ -36,8 +39,8 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${urlEndpoint.baseUrl}/artWork/${id}`);
   }
-  findProductById(editId: number): Observable<Product> {
-    return this.http.get<Product>(
+  findProductById(editId: number): Observable<AppResponse> {
+    return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/artWork/${editId}`
     );
   }

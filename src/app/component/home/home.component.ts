@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   totalProducts: Product[] = [];
   itemsPerPage: number = 8;
   currentPage: number = 1;
+  error: string = '';
 
   constructor(
     private productService: ProductService,
@@ -42,11 +43,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.fetchdata().subscribe({
       next: (response: any) => {
-        console.log('product return', response);
         this.productDetails = response.data;
+        console.log(this.productDetails);
+        
         this.totalProducts = response.data;
       },
-      error: (err) => console.log('error', err),
+      error: (err) => this.error = err,
       complete: () => console.log('productcompleted'),
     });
   }
@@ -54,7 +56,6 @@ export class HomeComponent implements OnInit {
     const userId = this.stoargeService.getLoggedInUser()?.id;
     this.cartService.addToCart(userId, productId).subscribe((response) => {
       console.log(response);
-
     });
   }
 

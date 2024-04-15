@@ -1,18 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './user-profile.component';
+import { UserprofileService } from 'src/app/service/userProfile.service';
+import { of, throwError } from 'rxjs';
+import { AppResponse } from 'src/app/model/appResponse';
 
 describe('User-ProfileComponent', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
+  let userProfileService: UserprofileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [UserProfileComponent],
       imports: [HttpClientModule],
+      providers: [UserprofileService],
     });
     fixture = TestBed.createComponent(UserProfileComponent);
     component = fixture.componentInstance;
+    userProfileService = TestBed.inject(UserprofileService);
     fixture.detectChanges();
   });
 
@@ -78,5 +84,60 @@ describe('User-ProfileComponent', () => {
     fixture.detectChanges();
     component.currentPage -= 1;
     expect(component.currentPage).toBe(2);
+  });
+
+  it('should navigate to the next page when Next button is clicked', () => {
+    component.currentPage = 1;
+    const nextButton = fixture.nativeElement.querySelector(
+      '.page-item:last-child .page-link'
+    );
+    if (nextButton) {
+      nextButton.click();
+    }
+    component.getPageNumbers();
+    fixture.detectChanges();
+    component.currentPage += 1;
+    expect(component.currentPage).toBe(2);
+  });
+
+  it('should navigate to the previous page when Previous button is clicked', () => {
+    component.currentPage = 3;
+    const previousButton = fixture.nativeElement.querySelector(
+      '.page-item:first-child .page-link'
+    );
+    if (previousButton) {
+      previousButton.click();
+    }
+    component.getLastPage();
+    fixture.detectChanges();
+    component.currentPage -= 1;
+    expect(component.currentPage).toBe(2);
+  });
+
+  it('error handling', () => {
+    spyOn(userProfileService, 'fetchdata').and.returnValue(
+      throwError('Error occured')
+    );
+    component.ngOnInit();
+    expect(component.error).toEqual('Error occured');
+  });
+
+  it('should calll ngOnInit method', () => {
+    let dummyProfile: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          id: 1,
+          username: 'user',
+          email: 'user',
+        },
+      ],
+      error: null,
+    };
+
+    spyOn(userProfileService, 'fetchdata').and.returnValue(of(dummyProfile));
+    component.ngOnInit();
+    expect(component.profiles).toEqual(dummyProfile.data);
   });
 });

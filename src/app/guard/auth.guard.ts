@@ -10,15 +10,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const url = new URL(window.location.href);
 
-  // console.log(loginService.isLoggedIn());
-  
   storageService.setRoute(
-    route.routeConfig?.path !== undefined?  route.routeConfig.path : null);
-
-
-  // console.log(route.routeConfig?.path);
-  
-  
+    route.routeConfig?.path !== undefined ? route.routeConfig.path : null
+  );
 
   if (!loginService.isLoggedIn()) {
     router.navigate(['/login'], { replaceUrl: true });

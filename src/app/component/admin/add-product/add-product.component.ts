@@ -71,7 +71,7 @@ export class AddProductComponent {
             this.productName = products.data.title;
             this.description = products.data.description;
             this.price = products.data.price;
-          } 
+          }
         },
       });
       this.categoryService.fetchdata().subscribe((response: any) => {
@@ -86,5 +86,13 @@ export class AddProductComponent {
   onFileChange(event: any) {
     const fileInput = event.target.files[0];
     this.file = fileInput;
+  }
+
+  onCategoryChange() {
+    this.categoryService.fetchdata().subscribe({
+      next: (category: any) => {
+        this.category = category.data;
+      },
+    });
   }
 }

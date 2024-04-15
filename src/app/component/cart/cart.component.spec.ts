@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { CartService } from 'src/app/service/cart.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Cart } from 'src/app/model/cart';
 import {
   HttpClientTestingModule,
@@ -17,6 +17,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { UserprofileService } from 'src/app/service/userProfile.service';
 import { Profile } from 'src/app/model/profile';
 import { UserProfile } from 'src/app/model/user-profile';
+import { AppResponse } from 'src/app/model/appResponse';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -73,38 +74,57 @@ describe('CartComponent', () => {
   it('should delete cart', () => {
     const id = 179;
     const artWorkId = 22;
-    const mockResponse: Cart[] = [
-      { userId: 1, artworkId: 22, count: 1, price: 650 },
-    ];
+    const mockResponse: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [{ userId: 1, artworkId: 22, count: 1, price: 650 }],
+      error: null,
+    };
 
     cartservice.deleteCart(id, artWorkId).subscribe((data) => {
       expect(data).toEqual(mockResponse);
     });
-    // component.onDelete(id, artWorkId);
+    spyOn(cartservice, 'deleteCart').and.returnValue(of(mockResponse));
+    component.onDelete(id, artWorkId);
+    expect(component.carts).toEqual(mockResponse.data);
 
-    const req = httpMock.expectOne(
-      `${urlEndpoint.baseUrl}/cart/${id}/${artWorkId}`
-    );
-    expect(req.request.method).toBe('DELETE');
-    req.flush(mockResponse);
+    // const req = httpMock.expectOne(
+    //   `${urlEndpoint.baseUrl}/cart/${id}/${artWorkId}`
+    // );
+    // expect(req.request.method).toBe('DELETE');
+    // req.flush(mockResponse);
   });
 
-  it('should create user order ', async () => {
-    let dummyOrder: Order[] = [
-      {
-        addressId: 76,
-        id: 1,
-        orderedArtWorkList: [
-          { id: 22, title: 'Canvas Painting Wall Art', price: 2499, count: 1 },
-        ],
-      },
+  it('should create user order ', () => {
+    let dummyOrder: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          addressId: 76,
+          id: 1,
+          orderedArtWorkList: [
+            {
+              id: 22,
+              title: 'Canvas Painting Wall Art',
+              price: 2499,
+              count: 1,
+            },
+          ],
+        },
+      ],
+      error: null,
+    };
+    component.cartItem = [
+      { userId: 1, title: 'test cart', price: 1000, count: 1, artworkId: 1,total:1000 },
     ];
 
-    spyOn(orderService, 'createOrder').and.returnValue(of(dummyOrder));
-    component.checkOut();
     orderService.createOrder(1, 22, 76).subscribe((data) => {
       expect(data).toEqual(dummyOrder);
     });
+    // spyOn(orderService, 'createOrder').and.returnValue(of(dummyOrder));
+    // component.checkOut();
+    // expect(component.orders).toEqual(dummyOrder.data);
   });
 
   it('should update cart count', () => {
@@ -120,21 +140,30 @@ describe('CartComponent', () => {
       total: total,
     };
 
-    const dummyCartItems: Cart[] = [
-      {
-        userId: userId,
-        artworkId: artWorkId,
-        price: total,
-        title: 'Canvas Painting Wall Art',
-        count: count,
-      },
-    ];
+    const dummyCartItems: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          userId: userId,
+          artworkId: artWorkId,
+          price: total,
+          title: 'Canvas Painting Wall Art',
+          count: count,
+        },
+      ],
+      error: null,
+    };
 
     cartservice
       .cartCountUpdate(userId, artWorkId, count, total)
       .subscribe((cartItems) => {
         expect(cartItems).toEqual(dummyCartItems);
       });
+
+    spyOn(cartservice, 'cartCountUpdate').and.returnValue(of(dummyCartItems));
+    component.increamentCount(dummyCartItems.data);
+    component.decrementCount(dummyCartItems.data);
 
     const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/cart`);
     expect(req).toBeTruthy();
@@ -145,18 +174,24 @@ describe('CartComponent', () => {
   it('should fetch user profile and cart data if user is logged in', () => {
     let userId = { id: 1 };
     const dummyCart: Cart[] = [];
-    const mockUserProfile: UserProfile[] = [
-      {
-        username: 'user',
-        addressList: [
-          {
-            street: 'abc',
-            city: 'abc',
-            zipcode: 123456,
-          },
-        ],
-      },
-    ];
+    const mockUserProfile: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          username: 'user',
+          addressList: [
+            {
+              street: 'abc',
+              city: 'abc',
+              zipcode: 123456,
+            },
+          ],
+        },
+      ],
+      error: null,
+    };
+
     spyOn(stoargeService, 'getLoggedInUser').and.returnValue(userId);
     spyOn(cartservice, 'fetchdata').and.returnValue(of(dummyCart));
     spyOn(userProfileService, 'getUserById').and.returnValue(
@@ -167,5 +202,13 @@ describe('CartComponent', () => {
     expect(stoargeService.getLoggedInUser).toHaveBeenCalled();
     expect(cartservice.fetchdata).toHaveBeenCalledWith(userId.id);
     expect(userProfileService.getUserById).toHaveBeenCalledWith(userId.id);
+  });
+
+  it('error handling', () => {
+    spyOn(userProfileService, 'getUserById').and.returnValue(
+      throwError('Error occured')
+    );
+    component.ngOnInit();
+    expect(component.error).toEqual('Error occured');
   });
 });

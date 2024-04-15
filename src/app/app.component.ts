@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
   }
   getCartCount(): number {
     this.cartCount = this.cartService.getCartCount();
-    console.log('cart counts--', this.cartCount);
     return this.cartCount;
   }
 }

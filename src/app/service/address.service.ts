@@ -3,6 +3,7 @@ import { Address } from '../model/address';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { urlEndpoint } from '../utils/constant';
+import { AppResponse } from '../model/appResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class AddressService {
     return this.http.post<Address>(`${urlEndpoint.baseUrl}/user`, profile);
   }
 
-  deleteAddress(deleteId: number): Observable<Address> {
-    return this.http.delete<Address>(`${urlEndpoint.baseUrl}/user/${deleteId}`);
+  deleteAddress(deleteId: number): Observable<AppResponse> {
+    return this.http.delete<AppResponse>(`${urlEndpoint.baseUrl}/user/${deleteId}`);
   }
 }

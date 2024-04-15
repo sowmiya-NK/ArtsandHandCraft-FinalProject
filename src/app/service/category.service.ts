@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { urlEndpoint } from '../utils/constant';
 import { Category } from '../model/category';
+import { AppResponse } from '../model/appResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
   constructor(public http: HttpClient) {}
-  fetchdata(): Observable<Category[]> {
-    return this.http.get<Category[]>(
+  fetchdata(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/category/all`
     );
   }
@@ -34,8 +35,8 @@ export class CategoryService {
     }
   }
 
-  findCategoryById(id: number): Observable<Category> {
-    return this.http.get<Category>(
+  findCategoryById(id: number): Observable<AppResponse> {
+    return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/category/${id}`
     );
   }

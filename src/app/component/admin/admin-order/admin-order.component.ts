@@ -14,17 +14,15 @@ export class AdminOrderComponent implements OnInit {
   itemsPerPage: number = 5;
   currentPage: number = 1;
   orderChange: Orderstatus[] = [];
-
+  error: string = '';
   constructor(private orderService: OrderService) {}
   ngOnInit(): void {
     this.orderService.getAllOrderDetails().subscribe({
-      next: (order: any) => {
-        let orderDetail: Order[] = order.data;
-        this.orderDetails = orderDetail;
-        // this.productDetail = productDetails[0];
+      next: (response: any) => {
+        this.orderDetails = response.data;
       },
 
-      error: () => console.log('error'),
+      error: (err) => this.error = err,
     });
   }
 
@@ -36,13 +34,11 @@ export class AdminOrderComponent implements OnInit {
       });
   }
 
-
   getPageNumbers(): number[] {
     const pageCount = Math.ceil(this.orderDetails.length / this.itemsPerPage);
     return Array.from({ length: pageCount }, (_, index) => index + 1);
   }
 
-  
   getLastPage(): number {
     return this.getPageNumbers().slice(-1)[0] || 1;
   }

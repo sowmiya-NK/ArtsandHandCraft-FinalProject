@@ -34,12 +34,7 @@ export class CategoryComponent {
       this.editId = id;
       this.categoryService.findCategoryById(id).subscribe({
         next: (response: any) => {
-          console.log(response, 'edit catgeory');
           this.category_name = response.data.title;
-          console.log('catgeory name', this.category_name);
-        },
-        error: (error: any) => {
-          console.error('Error fetching category:', error);
         },
       });
     });

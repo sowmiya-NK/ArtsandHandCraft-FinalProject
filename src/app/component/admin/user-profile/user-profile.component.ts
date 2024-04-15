@@ -13,7 +13,7 @@ import { UserprofileService } from 'src/app/service/userProfile.service';
 })
 export class UserProfileComponent implements OnInit {
   profiles: UserProfile[] = [];
-  // createdAtFromDB: string = '2023-11-29T12:58:43.725448';
+
   createdAt: Date;
 
   formattedDate: string;
@@ -26,22 +26,16 @@ export class UserProfileComponent implements OnInit {
     private userProfileService: UserprofileService,
     private dataPipe: DatePipe
   ) {
-    // Convert the string from the database to a Date object
     this.createdAt = new Date();
 
-    // Format the Date object using DatePipe
     this.formattedDate = dataPipe.transform(this.createdAt, 'yyyy-MM-dd ')!;
   }
   ngOnInit(): void {
     this.userProfileService.fetchdata().subscribe({
       next: (response: any) => {
-        let userDetails: UserProfile[] = response.data;
-        console.log(response);
-        this.profiles = userDetails;
+        this.profiles = response.data;
       },
-
-      error: (err) => console.log('error', err),
-      complete: () => console.log('completed'),
+      error: (err) => (this.error = err),
     });
   }
   //returns total no of pages based on total no of items

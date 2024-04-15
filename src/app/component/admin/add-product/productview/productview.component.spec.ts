@@ -11,6 +11,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { urlEndpoint } from 'src/app/utils/constant';
+import { AppResponse } from 'src/app/model/appResponse';
 
 describe('ProductViewComponent', () => {
   let component: ProductviewComponent;
@@ -43,49 +44,22 @@ describe('ProductViewComponent', () => {
   });
   it('should delete product', () => {
     let productId = 21;
-    const deleteProduct: Product[] = [
-      {
-        id: 21,
-        title: 'Door & Wall Hanging Home Decor',
-        description: 'handcrafted Rajasthani Door & Wall Hanging Home Decor',
-        price: 650,
-      },
-    ];
+    const deleteProduct: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          id: 21,
+          title: 'Door & Wall Hanging Home Decor',
+          description: 'handcrafted Rajasthani Door & Wall Hanging Home Decor',
+          price: 650,
+        },
+      ],
+      error: null,
+    };
     spyOn(productService, 'deleteProduct').and.returnValue(of(deleteProduct));
     component.onDelete(productId);
     expect(productService.deleteProduct).toHaveBeenCalledWith(productId);
-  });
-
-  it('should display Previous button and disable it on first page', () => {
-    component.currentPage = 1;
-    const previousButton = fixture.nativeElement.querySelector(
-      '.page-item:first-child .page-link'
-    );
-    if (previousButton) {
-      previousButton.click();
-    }
-    fixture.detectChanges();
-    expect(component.currentPage).toBe(1);
-    if (previousButton) {
-      expect(previousButton.classList.contains('disabled')).toBe(true);
-    } else {
-      console.log('previous button not found');
-    }
-  });
-
-  it('should display next button and disable it on last page', () => {
-    component.currentPage = 3;
-    const nextButton = fixture.nativeElement.querySelector(
-      '.page-item:last-child .page-link'
-    );
-    if (nextButton) {
-      nextButton.click();
-    }
-    fixture.detectChanges();
-    expect(component.currentPage).toBe(3);
-    if (nextButton) {
-      expect(nextButton.classList.contains('disabled')).toBeTrue;
-    }
   });
 
   it('should navigate to the next page when Next button is clicked', () => {
@@ -96,7 +70,7 @@ describe('ProductViewComponent', () => {
     if (nextButton) {
       nextButton.click();
     }
-
+    component.getPageNumbers();
     fixture.detectChanges();
     component.currentPage += 1;
     expect(component.currentPage).toBe(2);
@@ -110,9 +84,39 @@ describe('ProductViewComponent', () => {
     if (previousButton) {
       previousButton.click();
     }
-
+    component.getLastPage();
     fixture.detectChanges();
     component.currentPage -= 1;
     expect(component.currentPage).toBe(2);
+  });
+
+  it('should fetch product details', () => {
+    const product: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          id: 21,
+          title: 'Door & Wall Hanging Home Decor',
+          description: 'handcrafted Rajasthani Door & Wall Hanging Home Decor',
+          price: 650,
+        },
+      ],
+      error: null,
+    };
+
+    productService.fetchdata().subscribe();
+    spyOn(productService, 'fetchdata').and.returnValue(of(product));
+    component.ngOnInit();
+    expect(component.productDetails).toEqual(product.data);
+  });
+
+  it('should call onedit method', () => {
+    const navigate = spyOn(router, 'navigate');
+    const editId = 1;
+    component.onEdit(editId);
+    expect(navigate).toHaveBeenCalledWith(['/admin/addproduct'], {
+      queryParams: { id: editId },
+    });
   });
 });

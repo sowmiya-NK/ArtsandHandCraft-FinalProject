@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   addressId: number = 0;
   itemCount: number = 1;
   cartEmptyMessage = 'Oops! Your cart is Empty!';
+  error: string = '';
 
   constructor(
     private cartService: CartService,
@@ -36,7 +37,6 @@ export class CartComponent implements OnInit {
     private userProfileService: UserprofileService
   ) {
     this.user = this.stoargeService.getLoggedInUser();
-    console.log(this.user, 'ddlldl');
   }
 
   ngOnInit(): void {
@@ -49,18 +49,14 @@ export class CartComponent implements OnInit {
           this.carts = cartDetails;
           this.calculateTotalValue();
         },
-        error: () => console.log('error'),
-        complete: () => console.log('completed'),
       });
 
       this.userProfileService.getUserById(this.user.id).subscribe({
         next: (response: any) => {
           let profile = response.data;
-          this.userprofile = profile
-          console.log(this.userprofile, 'newww');
+          this.userprofile = profile;
         },
-        error: (err) => console.log('error', err),
-        complete: () => console.log('completed'),
+        error: (err) => (this.error = err),
       });
     }
   }
@@ -77,20 +73,14 @@ export class CartComponent implements OnInit {
   }
 
   onDelete(deleteid: number, productId: number): void {
-    console.log(deleteid, productId);
-
     this.cartService.deleteCart(deleteid, productId).subscribe({
-      next: (cart: Cart[]) => {
-        this.carts = cart;
-        console.log(cart);
+      next: (response: any) => {
+        this.carts = response.data;
       },
-      complete: () => console.log('deleted'),
-      error: () => console.log('error'),
     });
   }
 
   increamentCount(cart: Cart) {
-    //add product only 3
     if (cart.count != 3) {
       cart.count += 1;
       this.cartService
@@ -110,7 +100,6 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(): Order[] {
-    console.log('addressid', this.addressId);
     for (let item of this.cartItem) {
       this.orders.push({
         id: 0,
@@ -126,17 +115,13 @@ export class CartComponent implements OnInit {
         ],
       });
       this.addressId = this.userprofile[0].addressList[0].id!;
-      console.log(this.addressId, 'check');
 
       this.orderService
         .createOrder(item.userId, item.artworkId, this.addressId)
         .subscribe({
-          next: (response: Order[]) => {
-            console.log('response', response);
-            this.orders = response;
+          next: (response: any) => {
+            this.orders = response.data;
           },
-          complete: () => console.log('orderCreated'),
-          error: () => console.log('error'),
         });
     }
     this.stoargeService.setOrder(this.orders);

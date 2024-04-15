@@ -13,7 +13,24 @@ import { ProductService } from 'src/app/service/product.service';
 import { CartService } from 'src/app/service/cart.service';
 import { urlEndpoint } from 'src/app/utils/constant';
 import { Cart } from 'src/app/model/cart';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import { Product } from 'src/app/model/product';
+import { AppResponse } from 'src/app/model/appResponse';
+import { Router } from '@angular/router';
+
+let dummyProduct: AppResponse = {
+  status: 200,
+  timestamp: '',
+  data: [
+    {
+      id: 1,
+      title: 'test product',
+      description: 'test description',
+      price: 1000,
+    },
+  ],
+  error: null,
+};
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,6 +38,7 @@ describe('HomeComponent', () => {
   let productService: ProductService;
   let cartService: CartService;
   let httpMock: HttpTestingController;
+  let router: Router;
 
   beforeEach(waitForAsync(() => {
     // const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
@@ -38,6 +56,7 @@ describe('HomeComponent', () => {
     productService = TestBed.inject(ProductService);
     cartService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>;
     httpMock = TestBed.inject(HttpTestingController);
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -152,25 +171,51 @@ describe('HomeComponent', () => {
   });
 
   it('should add to cart', () => {
+    let userId = 3;
+    let artworkId = 24;
+
     const dummyCartItems: Cart[] = [
       {
-        userId: 3,
-        artworkId: 24,
+        userId: userId,
+        artworkId: artworkId,
         price: 2499,
         title: 'Canvas Painting Wall Art',
         count: 1,
       },
     ];
-    let userId = 3;
-    let artworkId = 24;
+
+    cartService.addToCart(userId, artworkId).subscribe();
 
     spyOn(cartService, 'addToCart').and.returnValue(of(dummyCartItems));
     component.addToCart(artworkId);
     expect(cartService.addToCart).toHaveBeenCalled();
-    fixture.whenStable().then(() => {
-      expect(cartService.addToCart).toHaveBeenCalled();
-      const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/cart`);
-      expect(req.request.method).toBe('POST');
+
+    const req = httpMock.expectOne(`${urlEndpoint.baseUrl}/cart`);
+    expect(req.request.method).toBe('POST');
+  
+  });
+
+  it('should check the product details from product service', () => {
+    spyOn(productService, 'fetchdata').and.returnValue(of(dummyProduct));
+    component.ngOnInit();
+    expect(component.productDetails).toEqual(dummyProduct.data);
+  });
+
+  it('handle error', () => {
+    spyOn(productService, 'fetchdata').and.returnValue(
+      throwError('Error occured')
+    );
+    component.ngOnInit();
+    expect(component.error).toEqual('Error occured');
+  });
+
+  it('navigate to single product item using id', () => {
+    const navigateSpy = spyOn(router, 'navigate');
+    let productId = 1;
+    component.viewProducts(productId);
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/sproduct'], {
+      queryParams: { id: productId },
     });
   });
 });

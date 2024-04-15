@@ -54,4 +54,21 @@ describe('OrderComponent', () => {
     component.ngOnInit();
     expect(orderService.fetchdata).toHaveBeenCalledWith(userId);
   });
+
+  it('should return status color for status changing', () => {
+    const status1 = 'pending';
+    const status2 = 'confirmed';
+    const status3 = 'out of delivery';
+    const status4 = 'delivered';
+
+    const result1 = component.getStatusColor(status1);
+    const result2 = component.getStatusColor(status2);
+    const result3 = component.getStatusColor(status3);
+    const result4 = component.getStatusColor(status4);
+
+    expect(result1).toEqual('orange');
+    expect(result2).toEqual('blue');
+    expect(result3).toEqual('red');
+    expect(result4).toEqual('green');
+  });
 });

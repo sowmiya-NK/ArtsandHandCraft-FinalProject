@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { ProductService } from 'src/app/service/product.service';
 import { Product } from 'src/app/model/product';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AppResponse } from 'src/app/model/appResponse';
 
 describe('SingleProductComponent', () => {
   let component: SproductComponent;
@@ -49,17 +50,22 @@ describe('SingleProductComponent', () => {
   });
 
   it('should fetch a single product using a product id', () => {
-    const productData: Product[] = [
-      {
-        id: 1,
-        title: 'product title',
-        description: 'product description',
-        price: 1000,
-      },
-    ];
+    let dummyProduct: AppResponse = {
+      status: 200,
+      timestamp: '',
+      data: [
+        {
+          id: 1,
+          title: 'test product',
+          description: 'test description',
+          price: 1000,
+        },
+      ],
+      error: null,
+    };
 
-    productService.fetchdata.and.returnValue(of(productData));
-    productService.findProductById.and.returnValue(of(productData[0]));
+    productService.fetchdata.and.returnValue(of(dummyProduct));
+    productService.findProductById.and.returnValue(of(dummyProduct.data));
     component.ngOnInit();
 
     expect(productService.findProductById).toHaveBeenCalled();

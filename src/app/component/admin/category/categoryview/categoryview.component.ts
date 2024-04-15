@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class CategoryviewComponent implements OnInit {
   categories: Category[] = [];
+  error: string = '';
   constructor(
     private categoryService: CategoryService,
     private router: Router
@@ -19,26 +20,17 @@ export class CategoryviewComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.fetchdata().subscribe({
       next: (category: any) => {
-        // categories = category;
-        console.log(category);
-        let categoryDetails: Category[] = category.data;
-        this.categories = categoryDetails;
+        this.categories = category.data;
       },
-      error: () => console.log('error'),
-      complete: () => console.log('completed'),
+      error: (err) => (this.error = err),
     });
   }
 
   onDelete(deleteid: any): void {
-    console.log(deleteid);
-
     this.categoryService.deleteCategory(deleteid).subscribe({
       next: (Category: Category[]) => {
         this.categories = Category;
-        console.log(this.categories);
       },
-      complete: () => console.log('deleted'),
-      error: () => console.log('error'),
     });
   }
   onEdit(editId: number) {
